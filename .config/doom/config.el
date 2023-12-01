@@ -251,6 +251,10 @@
               ("M-k" . company-select-previous)
               ("M-j" . company-select-next)))
 
+(map! :map read-expression-map
+      "M-k" 'previous-line-or-history-element
+      "M-j" 'next-line-or-history-element)
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
