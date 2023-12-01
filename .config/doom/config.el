@@ -108,6 +108,10 @@
    org-appear-autoemphasis nil
    org-startup-with-inline-images nil))
 
+(after! org
+  (setq org-superstar-headline-bullets-list '(9675))
+  (setq org-superstar-item-bullet-alist '((43 . 10022) (45 . 10148))))
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
