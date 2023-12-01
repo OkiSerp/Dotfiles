@@ -94,6 +94,20 @@
 (setq org-emphasis-regexp-components
       '("-[:space:]('\"{" "-[:space:].,:!?;'\")}\\[‼…" "[:space:]" "." 1))
 
+(after! org
+  (setq
+   org-log-done t
+   org-ellipsis " …"
+   org-special-ctrl-k t
+   org-log-into-drawer t
+   org-startup-folded 'fold
+   org-image-actual-width nil
+   org-hide-block-startup nil
+   org-hide-drawer-startup t
+   org-hide-emphasis-markers t
+   org-appear-autoemphasis nil
+   org-startup-with-inline-images nil))
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
