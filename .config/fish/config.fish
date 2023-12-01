@@ -20,3 +20,8 @@ fish_add_path $HOME/.config/emacs/bin
 set -gx DOOMDIR $HOME/.config/doom
 
 fish_add_path $HOME/.local/bin
+
+alias mv "$(which mv) -i"
+alias cp "$(which cp) -i"
+
+alias neofetch "echo && $(which neofetch)"
