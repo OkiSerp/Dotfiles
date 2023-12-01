@@ -1,5 +1,6 @@
 :properties:
-#+title: Stow
+#+title: Stow Docs
+#+description: How to use `stow' utility
 #+author: Oleksii Kapula
 :end:
 
