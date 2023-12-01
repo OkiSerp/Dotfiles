@@ -89,6 +89,8 @@
       mouse-wheel-progressive-speed nil
       mouse-wheel-follow-mouse t)
 
+(setq scroll-margin 9)
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 
