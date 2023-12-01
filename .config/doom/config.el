@@ -178,6 +178,8 @@
 
 (setq default-input-method "ukrainian-computer")
 
+(map! :leader (:prefix ("l" . "translate")))
+
 (map! :leader :desc "English input" "le"
       (cmd! (set-input-method nil)
             (setq default-input-method "ukrainian-computer"
