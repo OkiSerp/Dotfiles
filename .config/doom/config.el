@@ -237,6 +237,13 @@
   (map! :leader :desc "Translate query reverse" "lQ"
         'google-translate-query-translate-reverse))
 
+(map! :leader "dj" 'dired-jump)
+(map! :leader "do" 'dired-jump-other-window)
+
+(map! :map dired-mode-map
+      :n "h" #'dired-up-directory
+      :n "l" #'dired-find-alternate-file)
+
 (use-package! vertico
   :config
   (setq vertico-count 10)
