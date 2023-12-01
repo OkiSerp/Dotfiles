@@ -176,6 +176,11 @@
 
 (evil-set-register ?r [?v ?i ?w escape ?a ?_ escape ?b ?i ?_ escape ?w])
 
+(setq +doom-dashboard-menu-sections nil
+      +doom-dashboard-ascii-banner-fn nil)
+
+(remove-hook '+doom-dashboard-functions 'doom-dashboard-widget-footer)
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
