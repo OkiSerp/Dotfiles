@@ -237,6 +237,13 @@
   (map! :leader :desc "Translate query reverse" "lQ"
         'google-translate-query-translate-reverse))
 
+(map! :nvi "M-k" 'previous-buffer
+      :nvi "M-j" 'next-buffer)
+
+(map! "M-q" 'kill-current-buffer)
+(map! "M-s" 'save-buffer)
+(map! "M-i" 'ibuffer)
+
 (map! :leader "dj" 'dired-jump)
 (map! :leader "do" 'dired-jump-other-window)
 
