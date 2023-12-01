@@ -100,6 +100,7 @@
       '@/browse-org-directory)
 
 (defun @/org-enlarge-headlines (&rest _)
+  "Make org headings larger and thicker."
   (dolist (face '((org-level-1 . 1.5) (org-level-2 . 1.4)
                   (org-level-3 . 1.3) (org-level-4 . 1.3)
                   (org-level-5 . 1.3) (org-level-6 . 1.3)
@@ -109,6 +110,7 @@
 (add-hook 'org-mode-hook '@/org-enlarge-headlines)
 
 (defun @/org-center-buffer (&rest _)
+  "Center org buffer."
   (setq-local
    visual-fill-column-width 90
    visual-fill-column-center-text t)
@@ -118,6 +120,7 @@
 (add-hook 'org-mode-hook '@/org-center-buffer)
 
 (defun @/org-insert-heading (&rest _)
+  "Add one line above newly created org heading."
   (evil-open-above 1)
   (evil-normal-state)
   (evil-next-line)
@@ -126,6 +129,7 @@
 (add-hook 'org-insert-heading-hook '@/org-insert-heading)
 
 (defun @/org-meta-return (&optional arg &rest _)
+  "Modified version of `org-meta-return'."
   (interactive "P")
   (or (run-hook-with-args-until-success 'org-metareturn-hook)
       (call-interactively
