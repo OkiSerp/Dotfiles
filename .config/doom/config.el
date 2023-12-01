@@ -79,7 +79,11 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+
+(let ((dir "~/OrgFiles/"))
+  (setq org-directory dir
+        org-archive-location (expand-file-name ".archive/%s::" dir)
+        org-agenda-files (list (expand-file-name "Agenda.org" dir))))
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
