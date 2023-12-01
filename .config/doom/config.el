@@ -138,6 +138,15 @@
 
 (add-hook 'org-mode-hook '@/org-enlarge-headlines)
 
+(defun @/org-center-buffer (&rest _)
+  (setq-local
+   visual-fill-column-width 90
+   visual-fill-column-center-text t)
+  (visual-fill-column-mode 1)
+  (visual-line-mode 1))
+
+(add-hook 'org-mode-hook '@/org-center-buffer)
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
