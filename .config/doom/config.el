@@ -178,6 +178,17 @@
 
 (setq default-input-method "ukrainian-computer")
 
+(map! :leader :desc "English input" "le"
+      (cmd! (set-input-method nil)
+            (setq default-input-method "ukrainian-computer"
+                  evil-input-method nil)))
+
+(map! :leader :desc "Ukrainian input" "lu"
+      (cmd! (set-input-method "ukrainian-computer")))
+
+(map! :leader :desc "Russian input" "lr"
+      (cmd! (set-input-method "russian-computer")))
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
