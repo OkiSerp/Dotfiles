@@ -237,6 +237,11 @@
   (map! :leader :desc "Translate query reverse" "lQ"
         'google-translate-query-translate-reverse))
 
+(use-package! vertico
+  :bind (:map vertico-map
+              ("M-k" . vertico-previous)
+              ("M-j" . vertico-next)))
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
