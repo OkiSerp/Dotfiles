@@ -262,6 +262,8 @@
       "M-k" 'previous-line-or-history-element
       "M-j" 'next-line-or-history-element)
 
+(keymap-global-unset "C-s")
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
