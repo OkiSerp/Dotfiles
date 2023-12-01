@@ -49,6 +49,29 @@
     `(show-paren-match
       :background ,(catppuccin-get-color 'crust))))
 
+(defface @/visual-bell
+  `((t :foreground ,(catppuccin-get-color 'text)
+     :background ,(catppuccin-get-color 'red))) "")
+
+(defun @/visual-bell-fn ()
+  (let* ((face (if (facep 'mode-line-active)
+                   'mode-line-active
+                 'mode-line))
+         (buf (current-buffer))
+         (cookie (face-remap-add-relative
+                  face '@/visual-bell)))
+    (force-mode-line-update)
+    (run-with-timer
+     0.15 nil
+     (lambda ()
+       (with-current-buffer buf
+         (face-remap-remove-relative cookie)
+         (force-mode-line-update))))))
+
+(after! catppuccin-theme
+  (setq ring-bell-function '@/visual-bell-fn
+        visible-bell t))
+
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
