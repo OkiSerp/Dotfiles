@@ -44,7 +44,10 @@
 (use-package! catppuccin-theme
   :config
   (setq catppuccin-flavor 'mocha)
-  (load-theme 'catppuccin :no-confirm))
+  (load-theme 'catppuccin :no-confirm)
+  (custom-set-faces!
+    `(show-paren-match
+      :background ,(catppuccin-get-color 'crust))))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
