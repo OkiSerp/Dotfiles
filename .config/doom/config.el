@@ -279,6 +279,10 @@
 (after! evil
   (map! :nvm "'" 'evil-jump-item))
 
+(after! evil-snipe
+  (setq evil-snipe-scope 'visible
+        evil-snipe-repeat-scope 'whole-visible))
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
