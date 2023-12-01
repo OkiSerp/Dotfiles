@@ -294,6 +294,10 @@
   (setq evil-split-window-below t
         evil-vsplit-window-right nil))
 
+(after! doom-modeline
+  (add-to-list 'doom-modeline-continuous-word-count-modes 'text-mode)
+  (setq doom-modeline-enable-word-count t))
+
 (customize-set-variable
  'doom-modeline-buffer-file-name-style 'relative-to-project)
 
