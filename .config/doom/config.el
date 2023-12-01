@@ -189,6 +189,16 @@
 (map! :leader :desc "Russian input" "lr"
       (cmd! (set-input-method "russian-computer")))
 
+(dolist
+    (provider
+     '(("Cambridge dictionary"
+        "https://dictionary.cambridge.org/dictionary/english/%s")
+       ("Google translate"
+        "https://translate.google.com/?sl=en&tl=uk&text=%s&op=translate")
+       ("Deepl ru"
+        "https://www.deepl.com/translator#en/ru/%s")))
+  (add-to-list '+lookup-provider-url-alist provider))
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
