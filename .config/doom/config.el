@@ -80,6 +80,9 @@
 (add-hook! 'prog-mode-hook
   (face-remap-add-relative 'font-lock-comment-face :slant 'italic))
 
+(setq-default tab-width 2
+              standard-indent 2)
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 
