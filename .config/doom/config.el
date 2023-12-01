@@ -52,6 +52,10 @@
 (setq-default tab-width 2
               standard-indent 2)
 
+(add-hook! 'sh-mode-hook
+  (setq sh-basic-offset 2
+        fish-indent-offset 2))
+
 (setq mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
       mouse-wheel-progressive-speed nil
       mouse-wheel-follow-mouse t)
