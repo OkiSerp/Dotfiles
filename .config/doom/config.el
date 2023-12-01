@@ -171,6 +171,11 @@
       "M-[" 'org-previous-visible-heading
       "M-]" 'org-next-visible-heading)
 
+(evil-set-register ?w [?A ?* escape ?^ ?w ?i ?* escape ?j])
+(evil-set-register ?e [?A ?/ escape ?^ ?w ?i ?/ escape ?j])
+
+(evil-set-register ?r [?v ?i ?w escape ?a ?_ escape ?b ?i ?_ escape ?w])
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
