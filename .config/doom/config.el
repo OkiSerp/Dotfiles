@@ -112,6 +112,15 @@
   (setq org-superstar-headline-bullets-list '(9675))
   (setq org-superstar-item-bullet-alist '((43 . 10022) (45 . 10148))))
 
+(defun @/browse-org-directory ()
+  (interactive)
+  (unless (file-directory-p org-directory)
+    (make-directory org-directory 'parents))
+  (doom-project-browse org-directory))
+
+(map! :leader :desc "Browse org directory" "fo"
+      '@/browse-org-directory)
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
