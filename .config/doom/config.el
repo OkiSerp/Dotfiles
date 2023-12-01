@@ -350,7 +350,7 @@
     (call-process-shell-command command nil nil)
     (set-frame-parameter (selected-frame) 'blur 0)))
 
-(defun @/toggle-blur-behind-x-frame ()
+(defun @/toggle-blur-behind-x-frame (&rest _)
   "Toggle blur behind `x' frame."
   (interactive)
   (let ((blur (frame-parameter (selected-frame) 'blur)))
@@ -362,7 +362,7 @@
           (@/remove-blur-behind-x-frame)
         (@/set-blur-behind-x-frame)))))
 
-(defun @/set-blur-behind-new-x-frame ()
+(defun @/set-blur-behind-new-x-frame (&rest _)
   "Set frame behind newly created `x' frame."
   (let ((blur (frame-parameter (selected-frame) 'blur)))
     (when (eql blur nil)
