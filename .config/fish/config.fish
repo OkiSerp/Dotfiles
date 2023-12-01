@@ -1,5 +1,5 @@
 if status is-interactive
-  fish_config theme choose "Catppuccin Mocha"
+  fish_config theme choose "custom"
 end
 
 set -g fish_greeting
