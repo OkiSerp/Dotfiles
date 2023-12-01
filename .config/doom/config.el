@@ -51,9 +51,11 @@
 
 (defface @/visual-bell
   `((t :foreground ,(catppuccin-get-color 'text)
-     :background ,(catppuccin-get-color 'red))) "")
+     :background ,(catppuccin-get-color 'red)))
+  "Face to use for `@/visual-bell-fn'.")
 
-(defun @/visual-bell-fn ()
+(defun @/visual-bell-fn (&rest _)
+  "Function to use for `ring-bell-function'."
   (let* ((face (if (facep 'mode-line-active)
                    'mode-line-active
                  'mode-line))
