@@ -91,6 +91,8 @@
         org-archive-location (expand-file-name ".archive/%s::" dir)
         org-agenda-files (list (expand-file-name "Agenda.org" dir))))
 
+(setq org-emphasis-regexp-components
+      '("-[:space:]('\"{" "-[:space:].,:!?;'\")}\\[‼…" "[:space:]" "." 1))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
