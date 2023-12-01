@@ -245,6 +245,8 @@
               ("M-j" . vertico-next)))
 
 (use-package! company
+  :config
+  (setq company-box-scrollbar nil)
   :bind (:map company-active-map
               ("M-k" . company-select-previous)
               ("M-j" . company-select-next)))
