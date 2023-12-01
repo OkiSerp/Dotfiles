@@ -12,3 +12,6 @@ bind -M insert \ej "history-search-forward"
 
 bind -M default \ek "history-search-backward"
 bind -M default \ej "history-search-forward"
+
+alias vi  (which nvim)
+set -gx EDITOR (which nvim)
