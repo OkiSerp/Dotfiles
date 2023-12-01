@@ -300,6 +300,10 @@
       magit-delete-by-moving-to-trash t
       delete-by-moving-to-trash t)
 
+(after! recentf
+  (add-to-list
+   'recentf-exclude (expand-file-name ".local/" doom-emacs-dir)))
+
 (after! doom-modeline
   (add-to-list 'doom-modeline-continuous-word-count-modes 'text-mode)
   (setq doom-modeline-enable-word-count t))
