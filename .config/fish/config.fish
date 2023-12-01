@@ -32,3 +32,31 @@ alias ll "lsd --group-dirs first --icon always --icon-theme fancy --color always
   --blocks permission,user,size,git,name -lA"
 alias lt "lsd --group-dirs first --icon always --icon-theme fancy --color always \
   --blocks permission,user,size,git,name -lAX --tree -I .git -I node_modules"
+
+if [ "$fish_key_bindings" = fish_vi_key_bindings ]
+  bind -Minsert ! __history_previous_command
+  bind -Minsert '$' __history_previous_command_arguments
+else
+  bind ! __history_previous_command
+  bind '$' __history_previous_command_arguments
+end
+
+function __history_previous_command
+  switch (commandline -t)
+    case "!"
+      commandline -t $history[1]
+      commandline -f repaint
+    case "*"
+      commandline -i !
+  end
+end
+
+function __history_previous_command_arguments
+  switch (commandline -t)
+    case "!"
+      commandline -t ""
+      commandline -f history-token-search-backward
+    case "*"
+      commandline -i '$'
+  end
+end
