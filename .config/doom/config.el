@@ -213,6 +213,16 @@
       (cmd! (+lookup/online
              (doom-thing-at-point-or-region) "Deepl ru")))
 
+(use-package! google-translate
+  :config
+  (setq google-translate-default-source-language "en"
+        google-translate-default-target-language "uk"
+        google-translate-pop-up-buffer-set-focus t
+        google-translate-output-destination 'help
+        google-translate-backend-method 'curl
+        google-translate-show-phonetic t
+        google-translate-display-translation-phonetic nil))
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
