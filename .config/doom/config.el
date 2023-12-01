@@ -129,14 +129,14 @@
 (map! :leader :desc "Browse org directory" "fo"
       '@/browse-org-directory)
 
-(defun @/org-change-headlines (&rest _)
+(defun @/org-enlarge-headlines (&rest _)
   (dolist (face '((org-level-1 . 1.5) (org-level-2 . 1.4)
                   (org-level-3 . 1.3) (org-level-4 . 1.3)
                   (org-level-5 . 1.3) (org-level-6 . 1.3)
                   (org-level-7 . 1.3) (org-level-8 . 1.3)))
     (set-face-attribute (car face) nil :weight 'heavy :height (cdr face))))
 
-(add-hook 'org-mode-hook '@/org-change-headlines)
+(add-hook 'org-mode-hook '@/org-enlarge-headlines)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
