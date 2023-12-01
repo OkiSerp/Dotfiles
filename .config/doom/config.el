@@ -294,6 +294,9 @@
   (setq evil-split-window-below t
         evil-vsplit-window-right nil))
 
+(customize-set-variable
+ 'doom-modeline-buffer-file-name-style 'relative-to-project)
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
