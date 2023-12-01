@@ -237,6 +237,11 @@
   (map! :leader :desc "Translate query reverse" "lQ"
         'google-translate-query-translate-reverse))
 
+(map! :after evil-org
+      :map (evil-org-mode-map org-mode-map)
+      :nvi "M-k" 'previous-buffer
+      :nvi "M-j" 'next-buffer)
+
 (map! :nvi "M-k" 'previous-buffer
       :nvi "M-j" 'next-buffer)
 
