@@ -181,6 +181,10 @@
 
 (remove-hook '+doom-dashboard-functions 'doom-dashboard-widget-footer)
 
+(add-hook! 'doom-after-init-hook
+  (add-hook! '+doom-dashboard-functions :append
+    (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Pure Evil‼"))))
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
