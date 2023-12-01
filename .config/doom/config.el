@@ -85,6 +85,10 @@
 (setq-default tab-width 2
               standard-indent 2)
 
+(setq mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
+      mouse-wheel-progressive-speed nil
+      mouse-wheel-follow-mouse t)
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 
