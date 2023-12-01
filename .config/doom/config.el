@@ -283,6 +283,9 @@
   (setq evil-snipe-scope 'visible
         evil-snipe-repeat-scope 'whole-visible))
 
+(customize-set-variable
+ 'evil-disable-insert-state-bindings t)
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
