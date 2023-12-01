@@ -147,6 +147,14 @@
 
 (add-hook 'org-mode-hook '@/org-center-buffer)
 
+(defun @/org-insert-heading (&rest _)
+  (evil-open-above 1)
+  (evil-normal-state)
+  (evil-next-line)
+  (evil-append-line 1))
+
+(add-hook 'org-insert-heading-hook '@/org-insert-heading)
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
