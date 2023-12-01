@@ -199,6 +199,18 @@
         "https://www.deepl.com/translator#en/ru/%s")))
   (add-to-list '+lookup-provider-url-alist provider))
 
+(map! :leader :desc "Cambridge dictionary" "lc"
+      (cmd! (+lookup/online
+             (doom-thing-at-point-or-region) "Cambridge dictionary")))
+
+(map! :leader :desc "Google translate" "lg"
+      (cmd! (+lookup/online
+             (doom-thing-at-point-or-region) "Google translate")))
+
+(map! :leader :desc "Deepl ru" "ld"
+      (cmd! (+lookup/online
+             (doom-thing-at-point-or-region) "Deepl ru")))
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
