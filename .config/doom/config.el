@@ -112,7 +112,8 @@
   (setq org-superstar-headline-bullets-list '(9675))
   (setq org-superstar-item-bullet-alist '((43 . 10022) (45 . 10148))))
 
-(defun @/browse-org-directory ()
+(defun @/browse-org-directory (&rest _)
+  "Browse your `org-directory'."
   (interactive)
   (unless (file-directory-p org-directory)
     (make-directory org-directory 'parents))
