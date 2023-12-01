@@ -276,6 +276,9 @@
 
 (keymap-global-unset "C-s")
 
+(after! evil
+  (map! :nvm "'" 'evil-jump-item))
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
