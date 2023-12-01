@@ -188,6 +188,40 @@
 (add-hook! '+doom-dashboard-mode-hook
   (setq-local evil-normal-state-cursor '(hbar . 0)))
 
+(defvar @/frame-geometry-file
+  (expand-file-name "frame-geometry" user-emacs-directory)
+  "File that stores previous session's last frame' geometry.")
+
+(defun @/frame-geometry-write-file (&rest _)
+  "Write frame geometry to `@/frame-geometry-file'."
+  (let ((top (frame-parameter (selected-frame) 'top))
+        (left (frame-parameter (selected-frame) 'left))
+        (width (frame-parameter (selected-frame) 'width))
+        (height (frame-parameter (selected-frame) 'height))
+        (fullscreen (frame-parameter (selected-frame) 'fullscreen)))
+    (if fullscreen
+        (with-temp-file @/frame-geometry-file
+          (insert
+           (format
+            "(add-to-list 'default-frame-alist '(fullscreen . %S))\n"
+            fullscreen)))
+      (with-temp-file @/frame-geometry-file
+        (insert
+         "(dolist (param '("
+         (format "(top . %d)\n" top)
+         (format "\t(left . %d)\n" left)
+         (format "\t(width . %d)\n" width)
+         (format "\t(height . %d)))\n" height)
+         "(add-to-list 'default-frame-alist param))\n")))))
+
+(defun @/frame-geometry-load-file (&rest _)
+  "Load frame geometry from `@/frame-geometry-file'."
+  (when (file-readable-p @/frame-geometry-file)
+    (load @/frame-geometry-file :noerror :nomessage)))
+
+(add-hook 'emacs-startup-hook '@/frame-geometry-load-file)
+(add-hook 'kill-emacs-hook '@/frame-geometry-write-file)
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
