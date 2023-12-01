@@ -2,6 +2,7 @@
 #+title: Stow Docs
 #+description: How to use `stow' utility
 #+author: Oleksii Kapula
+#+startup: fold
 :end:
 
 * Intro
