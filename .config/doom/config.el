@@ -223,6 +223,20 @@
         google-translate-show-phonetic t
         google-translate-display-translation-phonetic nil))
 
+(after! google-translate
+  (map! :leader :desc "Translate buffer" "lb"
+        'google-translate-buffer)
+  (map! :leader :desc "Translate at point" "lw"
+        'google-translate-at-point)
+  (map! :leader :desc "Translate at point reverse" "lW"
+        'google-translate-at-point-reverse)
+  (map! :leader :desc "Translate smooth" "ls"
+        'google-translate-smooth-translate)
+  (map! :leader :desc "Translate query" "lq"
+        'google-translate-query-translate)
+  (map! :leader :desc "Translate query reverse" "lQ"
+        'google-translate-query-translate-reverse))
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
