@@ -290,6 +290,10 @@
   (setq evil-kill-on-visual-paste nil
         evil-want-fine-undo t))
 
+(after! evil
+  (setq evil-split-window-below t
+        evil-vsplit-window-right nil))
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
