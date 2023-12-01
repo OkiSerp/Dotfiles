@@ -294,6 +294,8 @@
   (setq evil-split-window-below t
         evil-vsplit-window-right nil))
 
+(customize-set-variable 'vterm-always-compile-module t)
+
 (after! doom-modeline
   (add-to-list 'doom-modeline-continuous-word-count-modes 'text-mode)
   (setq doom-modeline-enable-word-count t))
