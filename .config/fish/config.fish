@@ -25,3 +25,10 @@ alias mv "$(which mv) -i"
 alias cp "$(which cp) -i"
 
 alias neofetch "echo && $(which neofetch)"
+
+alias ls "lsd --group-dirs first --icon never --color always"
+alias la "lsd --group-dirs first --icon never --color always -A"
+alias ll "lsd --group-dirs first --icon always --icon-theme fancy --color always \
+  --blocks permission,user,size,git,name -lA"
+alias lt "lsd --group-dirs first --icon always --icon-theme fancy --color always \
+  --blocks permission,user,size,git,name -lAX --tree -I .git -I node_modules"
