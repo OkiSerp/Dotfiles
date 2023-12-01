@@ -36,7 +36,7 @@ alias lt "lsd --group-dirs first --icon always --icon-theme fancy --color always
 if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end
 
 fundle plugin "IlanCosman/tide@v6"
-fundle plugin "jethrokuan/fzf"
+fundle plugin "PatrickF1/fzf.fish"
 fundle plugin "jorgebucaran/nvm.fish"
 
 fundle init
