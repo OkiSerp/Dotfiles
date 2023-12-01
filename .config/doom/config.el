@@ -244,6 +244,11 @@
               ("M-k" . vertico-previous)
               ("M-j" . vertico-next)))
 
+(use-package! company
+  :bind (:map company-active-map
+              ("M-k" . company-select-previous)
+              ("M-j" . company-select-next)))
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
