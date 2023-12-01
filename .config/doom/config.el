@@ -238,6 +238,8 @@
         'google-translate-query-translate-reverse))
 
 (use-package! vertico
+  :config
+  (setq vertico-count 10)
   :bind (:map vertico-map
               ("M-k" . vertico-previous)
               ("M-j" . vertico-next)))
