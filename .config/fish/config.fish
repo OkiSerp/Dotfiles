@@ -15,3 +15,8 @@ bind -M default \ej "history-search-forward"
 
 alias vi  (which nvim)
 set -gx EDITOR (which nvim)
+
+fish_add_path $HOME/.config/emacs/bin
+set -gx DOOMDIR $HOME/.config/doom
+
+fish_add_path $HOME/.local/bin
