@@ -4,11 +4,11 @@
 #+author: Oleksii Kapula
 :end:
 
-* INTRO
+* Intro
 
 One painful part of keeping a ~.dotfiles~ directory is managing symbolic links between your configuration files and the locations where they need to go in your home directory.
 
-* GETTING STARTED
+* Getting Started
 
 To get started, make sure you've already set up a ~.dotfiles~ directory.
 
@@ -16,13 +16,13 @@ You'll also need to install GNU Stow, you can find it in the package managers of
 
 If you're on Arch based distribution just run ~sudo pacman -S stow~.
 
-* ABOUT GNU STOW
+* About GNU ~stow~
 
 [[https://www.gnu.org/software/stow/][GNU Stow]] describes itself as a "symlink farm manager," but in practical terms it's just a program that can mirror the structure of one directory into another by creating symbolic links back to the original files.
 
 This is extremely useful when you have a directory full of configuration files that is managed by Git and you want to send all of those configuration files to where they belong in your home directory.
 
-* BASIC USAGE
+* Basic Usage
 
 Let's say we've got our configuration files stored in a directory under the home directory called ~.dotfiles~. We can easily create symbolic links to the files in this directory to the equivalent locations in the home directory using the following command:
 
@@ -49,7 +49,7 @@ We can now see that all of the configuration files under ~~/.dotfiles~, even tho
 
 It's possible that you will receive an error saying that the target file or link already exists so you might need to remove existing files before this command will succeed.
 
-* HOW IT WORKS
+* How It Works
 
 [[https://www.gnu.org/software/stow/][GNU Stow]] walks the file and directory hierarchy of the directory passed as the first parameter to the ~stow~ command and creates symbolic links to those files in the equivalent locations in the target directory.
 
@@ -73,7 +73,7 @@ This means that you have full control over the source and target directories tha
 
 *TIP:* If you keep your dotfiles directory somewhere other than the home folder, I'd recommend creating a simple Bash script for invoking ~stow~ with the right parameters since you'll probably have to run it occasionally.
 
-* IGNORING FILE AND DIRECTORIES
+* Ignoring File And Directories
 
 By default, GNU Stow does a good job of [[https://www.gnu.org/software/stow/manual/stow.html#Types-And-Syntax-Of-Ignore-Lists][ignoring common files and directories]] you might not want to be linked back to your home directory like ~README~ and ~LICENSE~ files, source control folders.
 
@@ -97,7 +97,7 @@ An important detail here is that specifying your own ignore file will override S
 
 [[https://www.gnu.org/software/stow/manual/stow.html#Types-And-Syntax-Of-Ignore-Lists][GNU Stow Manual: Types and Syntax of Ignore Lists]]
 
-* CLEANING UP SYMBOLIC LINKS
+* Cleaning Up Symbolic Links
 
 If for some reason you'd like to get rid of all the symbolic links that GNU Stow created in your home folder, you can do that with one extra parameter to the command we've been running so far:
 
