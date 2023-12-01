@@ -296,6 +296,10 @@
 
 (customize-set-variable 'vterm-always-compile-module t)
 
+(setq trash-directory "~/.local/share/Trash/files/"
+      magit-delete-by-moving-to-trash t
+      delete-by-moving-to-trash t)
+
 (after! doom-modeline
   (add-to-list 'doom-modeline-continuous-word-count-modes 'text-mode)
   (setq doom-modeline-enable-word-count t))
