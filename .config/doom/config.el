@@ -286,6 +286,10 @@
 (customize-set-variable
  'evil-disable-insert-state-bindings t)
 
+(after! evil
+  (setq evil-kill-on-visual-paste nil
+        evil-want-fine-undo t))
+
 (setq +doom-dashboard-menu-sections nil
       +doom-dashboard-ascii-banner-fn nil)
 
