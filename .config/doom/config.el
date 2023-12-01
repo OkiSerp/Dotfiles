@@ -114,6 +114,11 @@
   (setq org-superstar-headline-bullets-list '(9675))
   (setq org-superstar-item-bullet-alist '((43 . 10022) (45 . 10148))))
 
+(after! (org catppuccin-theme)
+  (custom-set-faces!
+    `(org-todo :foreground ,(catppuccin-get-color 'teal))
+    `(org-verbatim :foreground ,(catppuccin-get-color 'yellow))))
+
 (defun @/browse-org-directory (&rest _)
   "Browse your `org-directory'."
   (interactive)
