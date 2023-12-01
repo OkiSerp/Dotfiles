@@ -6,6 +6,8 @@
 
 (package! catppuccin-theme)
 
+(package! google-translate)
+
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
 
