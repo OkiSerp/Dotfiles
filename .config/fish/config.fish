@@ -33,6 +33,20 @@ alias ll "lsd --group-dirs first --icon always --icon-theme fancy --color always
 alias lt "lsd --group-dirs first --icon always --icon-theme fancy --color always \
   --blocks permission,user,size,git,name -lAX --tree -I .git -I node_modules"
 
+if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end
+
+fundle plugin "IlanCosman/tide@v6"
+fundle plugin "jethrokuan/fzf"
+fundle plugin "jorgebucaran/nvm.fish"
+
+fundle init
+
+set -gx FZF_DEFAULT_OPTS --bind=alt-j:down,alt-k:up
+set fzf_fd_opts --hidden --no-ignore --exclude=.git --exclude=node_modules
+
+set -U nvm_default_version lts
+set -U nvm_default_packages yarn pnpm
+
 if [ "$fish_key_bindings" = fish_vi_key_bindings ]
   bind -Minsert ! __history_previous_command
   bind -Minsert '$' __history_previous_command_arguments
