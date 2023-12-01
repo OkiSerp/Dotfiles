@@ -155,6 +155,18 @@
 
 (add-hook 'org-insert-heading-hook '@/org-insert-heading)
 
+(defun @/org-meta-return (&optional arg &rest _)
+  (interactive "P")
+  (or (run-hook-with-args-until-success 'org-metareturn-hook)
+      (call-interactively
+       (cond (arg #'org-insert-heading)
+             ((org-at-table-p) #'org-table-wrap-region)
+             ((org-at-heading-or-item-p) #'+org/insert-item-below)))))
+
+(map! :after evil-org
+      :map (evil-org-mode-map org-mode-map)
+      "M-RET" '@/org-meta-return)
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
