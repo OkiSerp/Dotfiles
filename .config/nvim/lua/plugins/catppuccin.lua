@@ -3,6 +3,10 @@ local plugin = {
   name = "catppuccin",
   lazy = false,
   priority = 999,
+  init = function()
+    vim.opt.background = "dark"
+    vim.opt.termguicolors = true
+  end,
 }
 
 local opts = {
@@ -13,7 +17,7 @@ local opts = {
   },
   transparent_background = true,
   show_end_of_buffer = true,
-  term_colors = false,
+  term_colors = true,
   dim_inactive = {
     enabled = false,
     shade = "dark",
