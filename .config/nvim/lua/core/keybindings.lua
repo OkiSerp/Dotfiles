@@ -59,3 +59,24 @@ bind(c, "<M-j>", "<Down>")
 bind(c, "<M-k>", "<Up>")
 
 bind(n, "<leader>/", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+bind(nv, "<leader>wh", "<C-w>h", opts)
+bind(nv, "<leader>wj", "<C-w>j", opts)
+bind(nv, "<leader>wk", "<C-w>k", opts)
+bind(nv, "<leader>wl", "<C-w>l", opts)
+
+bind(nv, "<leader>ws", "<C-w>s", opts)
+bind(nv, "<leader>wv", "<C-w>v", opts)
+
+bind(nv, "<leader>w<M-o>", "<C-w>o", opts)
+bind(nv, "<leader>wd", "<C-w>q", opts)
+
+bind(nv, "<leader>w=", "<C-w>=", opts)
+bind(nv, "<leader>w_", "<C-w>_", opts)
+bind(nv, "<leader>w|", "<C-w>|", opts)
+
+bind(nv, "<leader>w<", "<C-w><<C-w><", opts)
+bind(nv, "<leader>w>", "<C-w>><C-w>>", opts)
+
+bind(nv, "<leader>w+", "<C-w>+", opts)
+bind(nv, "<leader>w-", "<C-w>-", opts)
