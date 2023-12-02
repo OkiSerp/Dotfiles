@@ -46,6 +46,9 @@ local opts = {
     treesitter = true,
     which_key = true,
     vim_sneak = true,
+    telescope = {
+      enabled = true,
+    },
   },
 }
 
