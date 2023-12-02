@@ -54,3 +54,6 @@ bind(i, "<M-Cr>", "<C-o>O")
 bind(i, "<M-v>", "<C-o>P")
 
 bind(n, "<M-x>", ":")
+
+bind(c, "<M-j>", "<Down>")
+bind(c, "<M-k>", "<Up>")
