@@ -11,3 +11,6 @@ local silent = { silent = true }
 local opts = { noremap = true, silent = true }
 
 local bind = vim.keymap.set
+
+bind(nv, "<leader>qq", vim.cmd.xall, opts)
+bind(nv, "<leader>qQ", ":qall!<Cr>", opts)
