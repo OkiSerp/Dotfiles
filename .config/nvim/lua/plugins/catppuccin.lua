@@ -49,6 +49,7 @@ local opts = {
     telescope = {
       enabled = true,
     },
+    noice = true,
   },
 }
 
