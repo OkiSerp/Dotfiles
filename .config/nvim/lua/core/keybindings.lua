@@ -35,3 +35,6 @@ bind(v, ">", ">gv")
 
 bind(v, "J", ":move '>+1<CR>gv=gv", silent)
 bind(v, "K", ":move '<-2<CR>gv=gv", silent)
+
+bind(n, "n", "nzzzv")
+bind(n, "N", "Nzzzv")
