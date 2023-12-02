@@ -50,6 +50,7 @@ local opts = {
       enabled = true,
     },
     noice = true,
+    gitsigns = true,
   },
 }
 
