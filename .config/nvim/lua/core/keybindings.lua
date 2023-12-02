@@ -29,3 +29,6 @@ local utils = require("utils")
 
 bind(nv, "<leader>tw", utils.ToggleWrap, opts)
 bind(nv, "<leader>tl", utils.ToggleNumbers, opts)
+
+bind(v, "<", "<gv")
+bind(v, ">", ">gv")
