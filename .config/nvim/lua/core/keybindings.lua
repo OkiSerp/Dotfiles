@@ -57,3 +57,5 @@ bind(n, "<M-x>", ":")
 
 bind(c, "<M-j>", "<Down>")
 bind(c, "<M-k>", "<Up>")
+
+bind(n, "<leader>/", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
