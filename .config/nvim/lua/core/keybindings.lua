@@ -48,3 +48,7 @@ bind(n, "X", [["_X]])
 
 bind(nv, "Q", "<Nop>")
 bind(nv, "<Space>", "<Nop>")
+
+bind(i, "<M-Cr>", "<C-o>O")
+
+bind(i, "<M-v>", "<C-o>P")
