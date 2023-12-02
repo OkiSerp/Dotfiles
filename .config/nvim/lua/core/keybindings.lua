@@ -42,3 +42,6 @@ bind(n, "N", "Nzzzv")
 bind(n, "J", "mzJ`z")
 
 bind(nv, "'", "%")
+
+bind(n, "x", [["_x]])
+bind(n, "X", [["_X]])
