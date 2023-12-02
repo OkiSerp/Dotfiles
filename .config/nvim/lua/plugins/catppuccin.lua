@@ -43,20 +43,7 @@ local opts = {
   color_overrides = {},
   custom_highlights = {},
   integrations = {
-    which_key = true,
-    telescope = {
-      enabled = true,
-    },
     treesitter = true,
-    indent_blankline = {
-      enabled = true,
-      scope_color = "lavender",
-      colored_indent_levels = false,
-    },
-    noice = true,
-    mini = {
-      enabled = true,
-    },
   },
 }
 
