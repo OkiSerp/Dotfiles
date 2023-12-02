@@ -44,6 +44,7 @@ local opts = {
   custom_highlights = {},
   integrations = {
     treesitter = true,
+    which_key = true,
   },
 }
 
