@@ -17,6 +17,8 @@ bind(nv, "<leader>qQ", ":qall!<Cr>", opts)
 
 bind(nv, "<leader>oe", vim.cmd.Ex, opts)
 
+bind(nv, "<leader>;", ":", { noremap = true })
+
 vim.opt.hidden = true
 
 bind(nvi, "<M-q>", vim.cmd.bdelete, opts)
