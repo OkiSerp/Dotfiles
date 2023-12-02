@@ -52,3 +52,5 @@ bind(nv, "<Space>", "<Nop>")
 bind(i, "<M-Cr>", "<C-o>O")
 
 bind(i, "<M-v>", "<C-o>P")
+
+bind(n, "<M-x>", ":")
