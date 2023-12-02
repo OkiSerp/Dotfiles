@@ -24,3 +24,8 @@ bind(nvi, "<M-s>", vim.cmd.write, { noremap = true })
 
 bind(nvi, "<M-j>", vim.cmd.bnext, opts)
 bind(nvi, "<M-k>", vim.cmd.bprevious, opts)
+
+local utils = require("utils")
+
+bind(nv, "<leader>tw", utils.ToggleWrap, opts)
+bind(nv, "<leader>tl", utils.ToggleNumbers, opts)
