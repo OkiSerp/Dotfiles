@@ -36,3 +36,6 @@ vim.autochdir = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
+
+vim.opt.undodir = vim.fn.expand("~/.cache/nvim/undodir")
+vim.opt.undofile = true
