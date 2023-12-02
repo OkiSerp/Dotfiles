@@ -24,3 +24,6 @@ vim.opt.smarttab = true
 
 vim.opt.breakindent = true
 vim.opt.wrap = false
+
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
