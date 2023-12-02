@@ -45,6 +45,7 @@ local opts = {
   integrations = {
     treesitter = true,
     which_key = true,
+    vim_sneak = true,
   },
 }
 
