@@ -14,3 +14,5 @@ local bind = vim.keymap.set
 
 bind(nv, "<leader>qq", vim.cmd.xall, opts)
 bind(nv, "<leader>qQ", ":qall!<Cr>", opts)
+
+bind(nv, "<leader>oe", vim.cmd.Ex, opts)
