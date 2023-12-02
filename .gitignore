@@ -1,1 +1,3 @@
 .config/doom/flycheck_config.el
+
+.config/nvim/lazy-lock.json
