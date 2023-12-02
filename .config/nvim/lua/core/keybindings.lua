@@ -45,3 +45,6 @@ bind(nv, "'", "%")
 
 bind(n, "x", [["_x]])
 bind(n, "X", [["_X]])
+
+bind(nv, "Q", "<Nop>")
+bind(nv, "<Space>", "<Nop>")
