@@ -23,7 +23,7 @@
 
 (setq display-line-numbers-type nil)
 
-(add-hook! 'prog-mode-hook
+(add-hook! '(prog-mode-hook conf-mode-hook)
   (face-remap-add-relative 'font-lock-comment-face :slant 'italic))
 
 (setq-default tab-width 2
