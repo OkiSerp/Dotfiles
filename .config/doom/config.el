@@ -191,6 +191,19 @@
   (map! :leader :desc "Translate query reverse" "lQ"
         'google-translate-query-translate-reverse))
 
+(defun @/google-translate-from-clipboard (&rest _)
+  "Translate text from clipboard using `google-translate' package."
+  (interactive)
+  (let ((source google-translate-default-source-language)
+        (target google-translate-default-target-language)
+        (output google-translate-output-destination)
+        (text (gui-get-selection 'CLIPBOARD)))
+    (google-translate-translate source target text output)))
+
+(after! google-translate
+  (map! :leader :desc "Translate from clipboard" "lf"
+        '@/google-translate-from-clipboard))
+
 (map! :after evil-org
       :map (evil-org-mode-map org-mode-map)
       :nvi "M-k" 'previous-buffer
