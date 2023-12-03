@@ -204,6 +204,11 @@
   (map! :leader :desc "Translate from clipboard" "lf"
         '@/google-translate-from-clipboard))
 
+(map! "M-v" 'yank
+      :after evil-org
+      :map (evil-org-mode-map org-mode-map)
+      "M-v" 'org-yank)
+
 (map! :after evil-org
       :map (evil-org-mode-map org-mode-map)
       :nvi "M-k" 'previous-buffer
