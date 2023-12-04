@@ -311,17 +311,13 @@
         (left (frame-parameter (selected-frame) 'left))
         (width (frame-parameter (selected-frame) 'width))
         (height (frame-parameter (selected-frame) 'height))
-        (fullscreen (frame-parameter (selected-frame) 'fullscreen))
-        (blur (% (+ 1 (or (frame-parameter (selected-frame) 'blur) 0)) 2)))
+        (fullscreen (frame-parameter (selected-frame) 'fullscreen)))
     (if fullscreen
         (with-temp-file @/frame-geometry-file
           (insert
            (format
             "(add-to-list 'initial-frame-alist '(fullscreen . %S))\n"
-            fullscreen)
-           (format
-            "(add-to-list 'initial-frame-alist '(blur . %S))\n"
-            blur)))
+            fullscreen)))
       (with-temp-file @/frame-geometry-file
         (insert
          "(dolist (param '("
@@ -329,10 +325,7 @@
          (format "\t(left . %d)\n" left)
          (format "\t(width . %d)\n" width)
          (format "\t(height . %d)))\n" height)
-         "(add-to-list 'default-frame-alist param))\n"
-         (format
-          "(add-to-list 'initial-frame-alist '(blur . %S))\n"
-          blur))))))
+         "(add-to-list 'default-frame-alist param))\n")))))
 
 (defun @/frame-geometry-load-file (&rest _)
   "Load frame geometry from `@/frame-geometry-file'."
@@ -381,7 +374,7 @@
 
 (when (eql (window-system) 'x)
   (add-to-list 'default-frame-alist '(alpha-background . 90))
-  (add-hook 'window-setup-hook '@/toggle-blur-behind-x-frame)
+  (add-hook 'window-setup-hook '@/set-blur-behind-x-frame)
   (add-hook 'doom-switch-frame-hook '@/set-blur-behind-new-x-frame)
   (map! :leader :desc "Blur behind frame" "tu"
         '@/toggle-blur-behind-x-frame))
