@@ -191,6 +191,12 @@
   (map! :leader :desc "Translate query reverse" "lQ"
         'google-translate-query-translate-reverse))
 
+(after! google-translate
+  (map! :leader :desc "Change source lang to ru" "lR"
+        (cmd! (setq google-translate-default-target-language "ru")))
+  (map! :leader :desc "Change source lang to uk" "lU"
+        (cmd! (setq google-translate-default-target-language "uk"))))
+
 (defun @/google-translate-from-clipboard (&rest _)
   "Translate text from clipboard using `google-translate' package."
   (interactive)
