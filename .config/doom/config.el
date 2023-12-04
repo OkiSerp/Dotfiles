@@ -38,7 +38,7 @@
 
 (setq scroll-margin 9)
 
-(let ((dir "~/OrgFiles/"))
+(let ((dir (expand-file-name "OrgFiles/" (getenv "HOME"))))
   (setq org-directory dir
         org-archive-location (expand-file-name ".archive/%s::" dir)
         org-agenda-files (list (expand-file-name "Agenda.org" dir))))
