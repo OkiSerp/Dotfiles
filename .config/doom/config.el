@@ -325,7 +325,7 @@
          (format "\t(left . %d)\n" left)
          (format "\t(width . %d)\n" width)
          (format "\t(height . %d)))\n" height)
-         "(add-to-list 'default-frame-alist param))\n")))))
+         "(add-to-list 'initial-frame-alist param))\n")))))
 
 (defun @/frame-geometry-load-file (&rest _)
   "Load frame geometry from `@/frame-geometry-file'."
