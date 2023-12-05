@@ -61,7 +61,7 @@
    org-startup-with-inline-images nil))
 
 (after! org
-  (setq org-superstar-headline-bullets-list '(9675))
+  (setq org-superstar-headline-bullets-list '(10033))
   (setq org-superstar-item-bullet-alist '((43 . 10022) (45 . 10148))))
 
 (after! (org catppuccin-theme)
