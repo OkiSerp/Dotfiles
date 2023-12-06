@@ -1,0 +1,47 @@
+[
+  {
+    "key": "alt+q",
+    "command": "workbench.action.closeActiveEditor",
+    "when": "true"
+  },
+  {
+    "key": "alt+o f",
+    "command": "workbench.action.files.openFile",
+    "when": "true"
+  },
+  {
+    "key": "alt+o d",
+    "command": "workbench.action.files.openFolder",
+    "when": "openFolderWorkspaceSupport"
+  },
+  {
+    "key": "alt+o t",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "alt+o e",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "true"
+  },
+  {
+    "key": "alt+j",
+    "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+    "when": "!activeEditorGroupEmpty"
+  },
+  {
+    "key": "alt+j",
+    "command": "workbench.action.quickOpenNavigateNextInEditorPicker",
+    "when": "inEditorsPicker && inQuickOpen"
+  },
+  {
+    "key": "alt+k",
+    "command": "workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
+    "when": "!activeEditorGroupEmpty"
+  },
+  {
+    "key": "alt+k",
+    "command": "workbench.action.quickOpenNavigatePreviousInEditorPicker",
+    "when": "inEditorsPicker && inQuickOpen"
+  },
+]
