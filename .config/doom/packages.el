@@ -6,6 +6,9 @@
 
 (package! catppuccin-theme)
 
+(package! char-fold)
+(package! reverse-im)
+
 (package! google-translate)
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
