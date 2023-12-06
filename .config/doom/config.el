@@ -303,7 +303,8 @@
 
 (add-hook! 'doom-after-init-hook
   (add-hook! '+doom-dashboard-functions :append
-    (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Pure Evil‼"))))
+    (insert "\n" (+doom-dashboard--center
+                  +doom-dashboard--width "Pure Evil‼"))))
 
 (add-hook! '+doom-dashboard-mode-hook
   (setq-local evil-normal-state-cursor '(hbar . 0)))
