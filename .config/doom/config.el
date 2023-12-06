@@ -134,15 +134,15 @@
 
 (map! :leader (:prefix ("l" . "translate")))
 
-(map! :leader :desc "English input" "le"
+(map! :leader :desc "English input method" "le"
       (cmd! (set-input-method nil)
             (setq default-input-method "ukrainian-computer"
                   evil-input-method nil)))
 
-(map! :leader :desc "Ukrainian input" "lu"
+(map! :leader :desc "Ukrainian input method" "lu"
       (cmd! (set-input-method "ukrainian-computer")))
 
-(map! :leader :desc "Russian input" "lr"
+(map! :leader :desc "Russian input method" "lr"
       (cmd! (set-input-method "russian-computer")))
 
 (dolist
