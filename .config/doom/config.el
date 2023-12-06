@@ -250,6 +250,10 @@
       :n "h" #'dired-up-directory
       :n "l" #'dired-find-alternate-file)
 
+(map! :leader :desc "g s SPC" :m "lv"
+      (cmd! (let ((current-prefix-arg t))
+              (evil-avy-goto-char-timer))))
+
 (use-package! vertico
   :config
   (setq vertico-count 10)
