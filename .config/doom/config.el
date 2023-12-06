@@ -38,6 +38,13 @@
 
 (setq scroll-margin 9)
 
+(setq fill-column 80
+      display-fill-column-indicator t
+      display-fill-column-indicator-character ?│)
+
+(add-hook! '(prog-mode-hook conf-mode-hook)
+  (display-fill-column-indicator-mode +1))
+
 (let ((dir (expand-file-name "OrgFiles/" (getenv "HOME"))))
   (setq org-directory dir
         org-archive-location (expand-file-name ".archive/%s::" dir)
