@@ -388,13 +388,3 @@
   (add-hook 'doom-switch-frame-hook '@/set-blur-behind-new-x-frame)
   (map! :leader :desc "Blur behind frame" "tu"
         '@/toggle-blur-behind-x-frame))
-
-;; HACK: Display startup frame as a normal frame must to.
-;; FIXME: Without adding commented line down below to
-;; `$EMACSDIR/early-init.el', it won't work as good as it should be.
-;; TODO: Try it out in vanilla emacs.
-;; (add-to-list 'initial-frame-alist '(visibility . nil))
-;; NOTE: In `daemon' I don't have this issue, but I don't wanna use it.
-(add-hook! 'window-setup-hook
-  (dolist (frame (frame-list))
-    (make-frame-visible frame)))
