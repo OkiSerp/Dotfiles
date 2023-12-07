@@ -394,7 +394,7 @@
 ;; `$EMACSDIR/early-init.el', it won't work as good as it should be.
 ;; TODO: Try it out in vanilla emacs.
 ;; (add-to-list 'initial-frame-alist '(visibility . nil))
-;; NOTE: With `daemon' it works nice, but I don't want to use it.
+;; NOTE: In `daemon' I don't have this issue, but I don't wanna use it.
 (add-hook! 'window-setup-hook
   (dolist (frame (frame-list))
     (make-frame-visible frame)))
