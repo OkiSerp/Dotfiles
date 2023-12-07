@@ -51,6 +51,7 @@ local opts = {
     },
     noice = true,
     gitsigns = true,
+    mason = true,
   },
 }
 
