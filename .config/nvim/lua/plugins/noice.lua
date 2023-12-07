@@ -39,7 +39,21 @@ plugin.opts = {
     view_warn = "mini",
     view_history = "messages",
     view_search = "virtualtext",
-  }
+  },
+  lsp = {
+    progress = {
+      enabled = true,
+      format = "lsp_progress",
+      format_done = "lsp_progress_done",
+      throttle = 1000 / 30,
+      view = "mini",
+    },
+    message = {
+      enabled = true,
+      view = "mini",
+      opts = {},
+    },
+  },
 }
 
 return plugin
