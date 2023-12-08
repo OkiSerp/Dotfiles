@@ -19,7 +19,7 @@
 (after! catppuccin-theme
   (custom-set-faces!
     `(show-paren-match
-      :background ,(catppuccin-get-color 'crust))))
+      :background ,(catppuccin-get-color 'surface2))))
 
 (setq display-line-numbers-type nil)
 
