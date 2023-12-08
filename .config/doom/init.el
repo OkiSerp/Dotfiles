@@ -3,7 +3,6 @@
 ;; This file controls what Doom modules are enabled and what order they load
 ;; in. Remember to run 'doom sync' after modifying it!
 
-
 (add-to-list 'initial-frame-alist '(visibility . nil))
 
 (add-hook
