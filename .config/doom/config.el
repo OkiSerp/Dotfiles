@@ -393,7 +393,7 @@ This function works perfectly on frame switch."
 (add-to-list 'default-frame-alist '(alpha-background . 90))
 
 (add-hook 'window-setup-hook '@/set-blur-behind-x-frame)
-(add-hook! 'doom-switch-frame-hook
+(add-hook! 'window-selection-change-functions
   (@/set-blur-behind-new-x-frame-on-switch))
 
 (map! :leader :desc "Blur behind frame" "tu"
