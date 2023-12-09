@@ -5,11 +5,9 @@
 
 (add-to-list 'initial-frame-alist '(visibility . nil))
 
-(add-hook
- 'window-setup-hook
- (lambda (&rest _)
-   (dolist (frame (frame-list))
-     (make-frame-visible frame))))
+(add-hook! 'window-setup-hook
+  (dolist (frame (frame-list))
+    (make-frame-visible frame)))
 
 ;; NOTE Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's
 ;;      documentation. There you'll find a link to Doom's Module Index where all
