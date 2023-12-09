@@ -387,7 +387,7 @@
 (add-to-list 'default-frame-alist '(alpha-background . 90))
 
 (add-hook 'window-setup-hook '@/set-blur-behind-x-frame)
-(add-hook 'doom-switch-frame-hook '@/set-blur-behind-new-x-frame)
+(add-hook 'window-selection-change-functions '@/set-blur-behind-new-x-frame)
 
 (map! :leader :desc "Blur behind frame" "tu"
       '@/toggle-blur-behind-x-frame)
