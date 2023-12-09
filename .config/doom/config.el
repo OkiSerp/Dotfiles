@@ -362,7 +362,7 @@ If FRAME in nil, use current frame."
 
 (defun @/remove-blur-behind-x-frame (&optional frame &rest _)
   "Remove blur behind `x' frame.\n
-If FRAME in nil, use current frame."
+If FRAME is nil, use current frame."
   (interactive)
   (let* ((frame (cond (frame) (t (selected-frame))))
          (frame-id (frame-parameter frame 'outer-window-id))
@@ -375,7 +375,7 @@ If FRAME in nil, use current frame."
 
 (defun @/toggle-blur-behind-x-frame (&optional frame &rest _)
   "Toggle blur behind `x' frame.\n
-If FRAME nil, use current frame."
+If FRAME is nil, use current frame."
   (interactive)
   (let* ((frame (cond (frame) (t (selected-frame))))
          (blur (frame-parameter frame 'blur)))
