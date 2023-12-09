@@ -384,8 +384,8 @@ If FRAME nil, use current frame."
       (@/remove-blur-behind-x-frame frame))))
 
 (defun @/set-blur-behind-new-x-frame (&rest _)
-  "Set blur behind newly created `x' frame
-that works on frame switch."
+  "Set blur behind newly created `x' frame.\n
+This function works perfectly on frame switch."
   (let ((blur (frame-parameter (selected-frame) 'blur)))
     (when (eql blur nil)
       (@/set-blur-behind-x-frame))))
