@@ -383,7 +383,7 @@ If FRAME nil, use current frame."
         (@/set-blur-behind-x-frame frame)
       (@/remove-blur-behind-x-frame frame))))
 
-(defun @/set-blur-behind-new-x-frame (&rest _)
+(defun @/set-blur-behind-new-x-frame-on-switch (&rest _)
   "Set blur behind newly created `x' frame.\n
 This function works perfectly on frame switch."
   (let ((blur (frame-parameter (selected-frame) 'blur)))
@@ -393,7 +393,8 @@ This function works perfectly on frame switch."
 (add-to-list 'default-frame-alist '(alpha-background . 90))
 
 (add-hook 'window-setup-hook '@/set-blur-behind-x-frame)
-(add-hook 'doom-switch-frame-hook '@/set-blur-behind-new-x-frame)
+(add-hook! 'doom-switch-frame-hook
+  (@/set-blur-behind-new-x-frame-on-switch))
 
 (map! :leader :desc "Blur behind frame" "tu"
       '@/toggle-blur-behind-x-frame)
