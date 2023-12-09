@@ -345,41 +345,47 @@
 (add-hook 'emacs-startup-hook '@/frame-geometry-load-file)
 (add-hook 'kill-emacs-hook '@/frame-geometry-write-file)
 
-(defun @/set-blur-behind-x-frame (&rest _)
-  "Set blur behind `x' frame."
+(defun @/set-blur-behind-x-frame (&optional frame &rest _)
+  "Set blur behind `x' frame.\n
+If FRAME in nil, use current frame."
   (interactive)
-  (let* ((frame-id (frame-parameter (selected-frame) 'outer-window-id))
-         (command (concat "xprop -f _KDE_NET_WM_BLUR_BEHIND_REGION 32c "
-                          "-set _KDE_NET_WM_BLUR_BEHIND_REGION 0 -id "
-                          frame-id)))
+  (let* ((frame (cond (frame) (t (selected-frame))))
+         (frame-id (frame-parameter frame 'outer-window-id))
+         (command (format
+                   "%s %s %s"
+                   "xprop -f _KDE_NET_WM_BLUR_BEHIND_REGION 32c"
+                   "-set _KDE_NET_WM_BLUR_BEHIND_REGION 0 -id"
+                   frame-id)))
     (when (eql (window-system) 'x)
-      (call-process-shell-command command nil nil)
-      (set-frame-parameter (selected-frame) 'blur 1))))
+      (call-process-shell-command command)
+      (set-frame-parameter frame 'blur 1))))
 
-(defun @/remove-blur-behind-x-frame (&rest _)
-  "Set blur behind `x' frame."
+(defun @/remove-blur-behind-x-frame (&optional frame &rest _)
+  "Remove blur behind `x' frame.\n
+If FRAME in nil, use current frame."
   (interactive)
-  (let* ((frame-id (frame-parameter (selected-frame) 'outer-window-id))
-         (command (format "xprop -remove _KDE_NET_WM_BLUR_BEHIND_REGION -id %s"
-                          frame-id)))
+  (let* ((frame (cond (frame) (t (selected-frame))))
+         (frame-id (frame-parameter frame 'outer-window-id))
+         (command (format
+                   "xprop -remove _KDE_NET_WM_BLUR_BEHIND_REGION -id %s"
+                   frame-id)))
     (when (eql (window-system) 'x)
-      (call-process-shell-command command nil nil)
-      (set-frame-parameter (selected-frame) 'blur 0))))
+      (call-process-shell-command command)
+      (set-frame-parameter frame 'blur 0))))
 
-(defun @/toggle-blur-behind-x-frame (&rest _)
-  "Toggle blur behind `x' frame."
+(defun @/toggle-blur-behind-x-frame (&optional frame &rest _)
+  "Toggle blur behind `x' frame.\n
+If FRAME nil, use current frame."
   (interactive)
-  (let ((blur (frame-parameter (selected-frame) 'blur)))
-    (cl-block nil
-      (when (eql blur nil)
-        (@/set-blur-behind-x-frame)
-        (cl-return))
-      (if (> blur 0)
-          (@/remove-blur-behind-x-frame)
-        (@/set-blur-behind-x-frame)))))
+  (let* ((frame (cond (frame) (t (selected-frame))))
+         (blur (frame-parameter frame 'blur)))
+    (if (or (eql blur nil) (<= blur 0))
+        (@/set-blur-behind-x-frame frame)
+      (@/remove-blur-behind-x-frame frame))))
 
 (defun @/set-blur-behind-new-x-frame (&rest _)
-  "Set frame behind newly created `x' frame."
+  "Set blur behind newly created `x' frame
+that works on frame switch."
   (let ((blur (frame-parameter (selected-frame) 'blur)))
     (when (eql blur nil)
       (@/set-blur-behind-x-frame))))
