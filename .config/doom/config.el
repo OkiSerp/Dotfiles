@@ -352,8 +352,9 @@
          (command (concat "xprop -f _KDE_NET_WM_BLUR_BEHIND_REGION 32c "
                           "-set _KDE_NET_WM_BLUR_BEHIND_REGION 0 -id "
                           frame-id)))
-    (call-process-shell-command command nil nil)
-    (set-frame-parameter (selected-frame) 'blur 1)))
+    (when (eql (window-system) 'x)
+      (call-process-shell-command command nil nil)
+      (set-frame-parameter (selected-frame) 'blur 1))))
 
 (defun @/remove-blur-behind-x-frame (&rest _)
   "Set blur behind `x' frame."
@@ -361,8 +362,9 @@
   (let* ((frame-id (frame-parameter (selected-frame) 'outer-window-id))
          (command (format "xprop -remove _KDE_NET_WM_BLUR_BEHIND_REGION -id %s"
                           frame-id)))
-    (call-process-shell-command command nil nil)
-    (set-frame-parameter (selected-frame) 'blur 0)))
+    (when (eql (window-system) 'x)
+      (call-process-shell-command command nil nil)
+      (set-frame-parameter (selected-frame) 'blur 0))))
 
 (defun @/toggle-blur-behind-x-frame (&rest _)
   "Toggle blur behind `x' frame."
@@ -382,9 +384,10 @@
     (when (eql blur nil)
       (@/set-blur-behind-x-frame))))
 
-(when (eql (window-system) 'x)
-  (add-to-list 'default-frame-alist '(alpha-background . 90))
-  (add-hook 'window-setup-hook '@/set-blur-behind-x-frame)
-  (add-hook 'doom-switch-frame-hook '@/set-blur-behind-new-x-frame)
-  (map! :leader :desc "Blur behind frame" "tu"
-        '@/toggle-blur-behind-x-frame))
+(add-to-list 'default-frame-alist '(alpha-background . 90))
+
+(add-hook 'window-setup-hook '@/set-blur-behind-x-frame)
+(add-hook 'doom-switch-frame-hook '@/set-blur-behind-new-x-frame)
+
+(map! :leader :desc "Blur behind frame" "tu"
+      '@/toggle-blur-behind-x-frame)
