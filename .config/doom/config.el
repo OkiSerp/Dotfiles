@@ -5,11 +5,14 @@
 (setq user-full-name "Oleksii Kapula"
       user-mail-address "")
 
-(let ((size 20)
-      (font "Mononoki Nerd Font"))
+(let ((font "JetBrains Mono"))
   (when (doom-font-exists-p font)
-    (setq doom-font (font-spec :family font :size size)
-          doom-big-font (font-spec :family font :size (+ 6 size)))))
+    (setq doom-font (font-spec :family font :size 18)
+          doom-big-font (font-spec :family font :size 24))))
+
+(let ((font "JetBrainsMono NF"))
+  (when (doom-font-exists-p font)
+    (setq doom-symbol-font (font-spec :family font :size 18))))
 
 (use-package! catppuccin-theme
   :config
