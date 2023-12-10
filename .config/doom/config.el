@@ -2,6 +2,16 @@
 
 (setq confirm-kill-emacs nil)
 
+(defun @/delete-frame-without-prompt (&rest _)
+  "Delete frame without prompt.\n
+Modified version of `doom/delete-frame-with-prompt'."
+  (interactive)
+  (if (cdr (visible-frame-list))
+      (delete-frame)
+    (save-buffers-kill-emacs)))
+
+(map! :leader :desc "Delete frame" "qf" '@/delete-frame-without-prompt)
+
 (setq user-full-name "Oleksii Kapula"
       user-mail-address "")
 
