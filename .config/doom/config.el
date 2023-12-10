@@ -12,6 +12,9 @@ Modified version of `doom/delete-frame-with-prompt'."
 
 (map! :leader :desc "Delete frame" "qf" '@/delete-frame-without-prompt)
 
+(customize-set-variable
+ 'helpful-switch-buffer-function 'switch-to-buffer-other-frame)
+
 (setq user-full-name "Oleksii Kapula"
       user-mail-address "")
 
