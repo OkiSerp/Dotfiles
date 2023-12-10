@@ -238,6 +238,8 @@ Modified version of `doom/delete-frame-with-prompt'."
       :map (evil-org-mode-map org-mode-map)
       "M-v" 'org-yank)
 
+(map! "M-p" 'consult-yank-pop)
+
 (map! :after evil-org
       :map (evil-org-mode-map org-mode-map)
       :nvi "M-k" 'previous-buffer
