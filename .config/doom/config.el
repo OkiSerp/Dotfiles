@@ -56,7 +56,7 @@ Modified version of `doom/delete-frame-with-prompt'."
 
 (setq fill-column 80
       display-fill-column-indicator t
-      display-fill-column-indicator-character ?│)
+      display-fill-column-indicator-character 9474)
 
 (add-hook! '(prog-mode-hook conf-mode-hook)
   (display-fill-column-indicator-mode +1))
