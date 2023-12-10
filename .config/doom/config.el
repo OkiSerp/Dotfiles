@@ -10,10 +10,6 @@
     (setq doom-font (font-spec :family font :size 18)
           doom-big-font (font-spec :family font :size 24))))
 
-(let ((font "JetBrainsMono NF"))
-  (when (doom-font-exists-p font)
-    (setq doom-symbol-font (font-spec :family font))))
-
 (use-package! catppuccin-theme
   :config
   (setq catppuccin-flavor 'mocha)
