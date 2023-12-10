@@ -44,6 +44,6 @@
     "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/VSCodium/User/config.lua",
     "vscode-neovim.ctrlKeysForInsertMode": [],
     "vscode-neovim.ctrlKeysForNormalMode": [
-        "r", "u", "v", "w", "z",
-    ],
+        "r", "v"
+    ]
 }
