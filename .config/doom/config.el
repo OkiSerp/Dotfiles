@@ -12,7 +12,7 @@
 
 (let ((font "JetBrainsMono NF"))
   (when (doom-font-exists-p font)
-    (setq doom-symbol-font (font-spec :family font :size 18))))
+    (setq doom-symbol-font (font-spec :family font))))
 
 (use-package! catppuccin-theme
   :config
