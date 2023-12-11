@@ -233,13 +233,6 @@ Modified version of `doom/delete-frame-with-prompt'."
   (map! :leader :desc "Translate from clipboard" "lf"
         '@/google-translate-from-clipboard))
 
-(map! "M-v" 'yank
-      :after evil-org
-      :map (evil-org-mode-map org-mode-map)
-      "M-v" 'org-yank)
-
-(map! "M-p" 'consult-yank-pop)
-
 (map! :after evil-org
       :map (evil-org-mode-map org-mode-map)
       :nvi "M-k" 'previous-buffer
@@ -252,8 +245,7 @@ Modified version of `doom/delete-frame-with-prompt'."
 (map! "M-s" 'save-buffer)
 (map! "M-i" 'ibuffer)
 
-(map! "M-i" '+vertico/switch-workspace-buffer
-      "M-I" 'consult-buffer)
+(map! "M-v" 'consult-yank-pop)
 
 (map! :leader "dj" 'dired-jump)
 (map! :leader "do" 'dired-jump-other-window)
