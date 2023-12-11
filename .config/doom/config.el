@@ -10,7 +10,8 @@ Modified version of `doom/delete-frame-with-prompt'."
       (delete-frame)
     (save-buffers-kill-emacs)))
 
-(map! :leader :desc "Delete frame" "qf" '@/delete-frame-without-prompt)
+(map! :leader :desc "Delete frame" "qf"
+      '@/delete-frame-without-prompt)
 
 (customize-set-variable
  'helpful-switch-buffer-function 'switch-to-buffer-other-frame)
