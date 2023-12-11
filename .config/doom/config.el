@@ -250,6 +250,7 @@ Modified version of `doom/delete-frame-with-prompt'."
 
 (map! "M-q" 'kill-current-buffer)
 (map! "M-s" 'save-buffer)
+(map! "M-i" 'ibuffer)
 
 (map! "M-i" '+vertico/switch-workspace-buffer
       "M-I" 'consult-buffer)
