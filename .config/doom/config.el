@@ -234,6 +234,22 @@ Modified version of `doom/delete-frame-with-prompt'."
   (map! :leader :desc "Translate from clipboard" "lf"
         '@/google-translate-from-clipboard))
 
+(defun @/google-translate-buffer-reverse (&rest _)
+  "Translate current buffer, but switch target and source languages.
+Reverse version of `google-translate-buffer'."
+  (interactive)
+  (let ((source google-translate-default-source-language)
+        (target google-translate-default-target-language))
+    (setq google-translate-default-source-language target
+          google-translate-default-target-language source)
+    (google-translate-buffer)
+    (setq google-translate-default-source-language source
+          google-translate-default-target-language target)))
+
+(map! :after google-translate
+      :leader :desc "Translate buffer reverse"
+      "lB" '@/google-translate-buffer-reverse)
+
 (map! :after evil-org
       :map (evil-org-mode-map org-mode-map)
       :nvi "M-k" 'previous-buffer
