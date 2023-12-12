@@ -28,7 +28,7 @@ Modified version of `doom/delete-frame-with-prompt'."
     (setq doom-font (font-spec :family font :size 18)
           doom-big-font (font-spec :family font :size 24))))
 
-(let ((font "DeJaVu Sans"))
+(let ((font "DejaVu Sans"))
   (when (doom-font-exists-p font)
     (setq doom-variable-pitch-font (font-spec :family font))))
 
