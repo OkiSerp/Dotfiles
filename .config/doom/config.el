@@ -258,6 +258,28 @@ Reverse version of `google-translate-buffer'."
       :leader :desc "Translate buffer reverse"
       "lB" '@/google-translate-buffer-reverse)
 
+(defun @/nov-center-buffer (&rest _)
+  "Center `nov' buffers."
+  (setq-local
+   visual-fill-column-center-text t
+   visual-fill-column-width 80)
+  (visual-line-mode 1)
+  (visual-fill-column-mode 1))
+
+(use-package! nov
+  :mode ("\\.epub\\'" . nov-mode)
+  :hook
+  ((nov-mode . mixed-pitch-mode)
+   (nov-mode . @/nov-center-buffer))
+  :custom
+  (nov-text-width t)
+  (nov-variable-pitch nil))
+
+(map! :after nov
+      :map nov-mode-map :n "q"
+      (cmd! (set-buffer-modified-p nil)
+            (kill-current-buffer)))
+
 (map! :after evil-org
       :map (evil-org-mode-map org-mode-map)
       :nvi "M-k" 'previous-buffer
@@ -434,25 +456,3 @@ This function works perfectly on frame switch."
 
 (map! :leader :desc "Blur behind frame" "tu"
       '@/toggle-blur-behind-x-frame)
-
-(defun @/nov-center-buffer (&rest _)
-  "Center `nov' buffers."
-  (setq-local
-   visual-fill-column-center-text t
-   visual-fill-column-width 80)
-  (visual-line-mode 1)
-  (visual-fill-column-mode 1))
-
-(use-package! nov
-  :mode ("\\.epub\\'" . nov-mode)
-  :hook
-  ((nov-mode . mixed-pitch-mode)
-   (nov-mode . @/nov-center-buffer))
-  :custom
-  (nov-text-width t)
-  (nov-variable-pitch nil))
-
-(map! :after nov
-      :map nov-mode-map :n "q"
-      (cmd! (set-buffer-modified-p nil)
-            (kill-current-buffer)))
