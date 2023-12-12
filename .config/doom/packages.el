@@ -11,8 +11,6 @@
 (package! mixed-pitch)
 
 (package! nov)
-(package! justify-kp
-  :recipe (:host github :repo "Fuco1/justify-kp"))
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
