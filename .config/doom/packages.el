@@ -8,8 +8,8 @@
 
 (package! google-translate)
 
+(package! visual-fill-column)
 (package! mixed-pitch)
-
 (package! nov)
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
