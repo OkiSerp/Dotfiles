@@ -28,13 +28,9 @@ Modified version of `doom/delete-frame-with-prompt'."
     (setq doom-font (font-spec :family font :size 18)
           doom-big-font (font-spec :family font :size 24))))
 
-(let* ((font "Noto Sans"))
+(let ((font "DeJaVu Sans"))
   (when (doom-font-exists-p font)
     (setq doom-variable-pitch-font (font-spec :family font))))
-
-(let* ((font "Noto Serif"))
-  (when (doom-font-exists-p font)
-    (setq doom-serif-font (font-spec :family font))))
 
 (use-package! catppuccin-theme
   :config
