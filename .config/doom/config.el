@@ -435,3 +435,40 @@ This function works perfectly on frame switch."
 
 (map! :leader :desc "Blur behind frame" "tu"
       '@/toggle-blur-behind-x-frame)
+
+(defun @/nov-window-configuration-change (&rest _)
+  (@/nov-post-html-render)
+  (remove-hook 'window-configuration-change-hook
+               '@/nov-window-configuration-change t))
+
+(defun @/nov-post-html-render (&rest _)
+  (if (get-buffer-window)
+      (let ((max-width (pj-line-width))
+            buffer-read-only)
+        (save-excursion
+          (goto-char (point-min))
+          (while (not (eobp))
+            (when (not (looking-at "^[[:space:]]*$"))
+              (goto-char (line-end-position))
+              (when (> (shr-pixel-column) max-width)
+                (goto-char (line-beginning-position))
+                (pj-justify)))
+            (forward-line 1))))
+    (add-hook 'window-configuration-change-hook
+              '@/nov-window-configuration-change nil t)))
+
+(use-package! justify-kp :after nov)
+
+(use-package! nov
+  :mode ("\\.epub\\'" . nov-mode)
+  :hook (nov-mode . mixed-pitch-mode)
+  :custom (nov-text-width t))
+
+(after! nov
+  (add-hook! 'nov-post-html-render-hook
+    (@/nov-post-html-render)))
+
+(map! :after nov
+      :map nov-mode-map :n "q"
+      (cmd! (set-buffer-modified-p nil)
+            (kill-current-buffer)))
