@@ -253,7 +253,8 @@ Reverse version of `google-translate-buffer'."
    visual-fill-column-center-text t
    visual-fill-column-width 80)
   (visual-line-mode 1)
-  (visual-fill-column-mode 1))
+  (visual-fill-column-mode 1)
+  (hl-line-mode 0))
 
 (use-package! nov
   :mode ("\\.epub\\'" . nov-mode)
