@@ -269,7 +269,9 @@ Reverse version of `google-translate-buffer'."
       :n "q" (cmd! (set-buffer-modified-p nil)
                    (kill-current-buffer))
       :nv "k" 'evil-previous-visual-line
-      :nv "j" 'evil-next-visual-line)
+      :nv "j" 'evil-next-visual-line
+      :nv "0" 'evil-beginning-of-visual-line
+      :nv "$" 'evil-end-of-visual-line)
 
 (map! :after nov
       :map nov-mode-map
