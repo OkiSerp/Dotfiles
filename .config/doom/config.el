@@ -247,8 +247,8 @@ Reverse version of `google-translate-buffer'."
       :leader :desc "Translate buffer reverse"
       "lB" '@/google-translate-buffer-reverse)
 
-(defun @/nov-center-buffer (&rest _)
-  "Center `nov' buffers."
+(defun @/nov-setup (&rest _)
+  "Various configuration for `nov' package."
   (setq-local
    visual-fill-column-center-text t
    visual-fill-column-width 80)
@@ -260,7 +260,7 @@ Reverse version of `google-translate-buffer'."
   :mode ("\\.epub\\'" . nov-mode)
   :hook
   ((nov-mode . mixed-pitch-mode)
-   (nov-mode . @/nov-center-buffer))
+   (nov-mode . @/nov-setup))
   :custom
   (nov-text-width t)
   (nov-variable-pitch nil))
