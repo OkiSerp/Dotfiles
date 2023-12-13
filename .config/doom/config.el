@@ -265,9 +265,16 @@ Reverse version of `google-translate-buffer'."
   (nov-variable-pitch nil))
 
 (map! :after nov
-      :map nov-mode-map :n "q"
-      (cmd! (set-buffer-modified-p nil)
-            (kill-current-buffer)))
+      :map nov-mode-map
+      :n "q" (cmd! (set-buffer-modified-p nil)
+                   (kill-current-buffer))
+      :nv "k" 'evil-previous-visual-line
+      :nv "j" 'evil-next-visual-line)
+
+(map! :after nov
+      :map nov-mode-map
+      :nvi "M-k" 'previous-buffer
+      :nvi "M-j" 'next-buffer)
 
 (map! :after evil-org
       :map (evil-org-mode-map org-mode-map)
