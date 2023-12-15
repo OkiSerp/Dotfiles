@@ -44,7 +44,12 @@ local opts = {
   },
 }
 
-require("lazy").setup({{ import = "plugins" }}, opts)
+local plugins = {
+  {
+    import = "plugins",
+  },
+}
+
+require("lazy").setup(plugins, opts)
 
 vim.keymap.set({ "n", "v" }, "<leader>hl", vim.cmd.Lazy)
-vim.keymap.set({ "n", "v" }, "<leader>hs", vim.cmd.source)
