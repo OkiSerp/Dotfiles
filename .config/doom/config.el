@@ -1,29 +1,4 @@
-;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
-
-(setq confirm-kill-emacs nil)
-
-(defun @/delete-frame-without-prompt (&rest _)
-  "Delete frame without prompt.\n
-Modified version of `doom/delete-frame-with-prompt'."
-  (interactive)
-  (if (cdr (visible-frame-list))
-      (delete-frame)
-    (save-buffers-kill-emacs)))
-
-(map! :leader :desc "Delete frame" "qf"
-      '@/delete-frame-without-prompt)
-
-(setq user-full-name "Oleksii Kapula"
-      user-mail-address "")
-
-(let ((font "JetBrains Mono"))
-  (when (doom-font-exists-p font)
-    (setq doom-font (font-spec :family font :size 18)
-          doom-big-font (font-spec :family font :size 24))))
-
-(let ((font "DejaVu Sans"))
-  (when (doom-font-exists-p font)
-    (setq doom-variable-pitch-font (font-spec :family font))))
+;;; -*- lexical-binding: t; -*-
 
 (use-package! catppuccin-theme
   :config
@@ -35,121 +10,97 @@ Modified version of `doom/delete-frame-with-prompt'."
     `(show-paren-match
       :background ,(catppuccin-get-color 'surface2))))
 
-(setq display-line-numbers-type nil)
+(let ((font "JetBrains Mono"))
+  (when (doom-font-exists-p font)
+    (setq doom-font (font-spec :name font :size 16)
+          doom-big-font (font-spec :name font :size 22))))
 
-(add-hook! '(prog-mode-hook conf-mode-hook)
-  (face-remap-add-relative 'font-lock-comment-face :slant 'italic))
+(let ((font "Noto Sans"))
+  (when (doom-font-exists-p font)
+    (setq doom-variable-pitch-font (font-spec :name font :size 18))))
 
-(setq-default tab-width 2
-              standard-indent 2)
+(let ((font "Noto Color Emoji"))
+  (when (doom-font-exists-p font)
+    (setq doom-emoji-font (font-spec :name font))))
 
-(after! fish-mode
-  (setq fish-indent-offset 2))
+(setq +doom-dashboard-functions
+      '(doom-dashboard-widget-loaded))
 
-(setq mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
-      mouse-wheel-progressive-speed nil
-      mouse-wheel-follow-mouse t)
+(add-hook! '+doom-dashboard-mode-hook
+  (setq-local evil-normal-state-cursor '(hbar . 0)))
 
-(setq scroll-margin 9)
+(setq doom-modeline-icon nil)
+
+(setq display-line-numbers-type nil
+      scroll-margin 5)
 
 (setq fill-column 80
       display-fill-column-indicator t
       display-fill-column-indicator-character 9474)
 
 (add-hook! '(prog-mode-hook conf-mode-hook)
-  (display-fill-column-indicator-mode +1))
+  (display-fill-column-indicator-mode 1))
 
-(let ((dir (expand-file-name "OrgFiles/" (getenv "HOME"))))
-  (setq org-directory dir
-        org-archive-location (expand-file-name ".archive/%s::" dir)
-        org-agenda-files (list (expand-file-name "Agenda.org" dir))))
+(use-package! olivetti
+  :custom
+  (olivetti-body-width 110)
+  :config
+  (add-hook! 'mixed-pitch-mode-hook
+    (setq-local olivetti-body-width 80)))
 
-(setq org-emphasis-regexp-components
-      '("-[:space:]('\"{" "-[:space:].,:!?;'\")}\\[‼…" "[:space:]" "." 1))
+(use-package! auto-olivetti
+  :after olivetti
+  :custom
+  (auto-olivetti-enabled-modes
+   '(text-mode prog-mode conf-mode help-mode
+     helpful-mode ibuffer-mode nov-mode))
+  :config
+  (auto-olivetti-mode))
 
-(after! org
-  (setq
-   org-log-done t
-   org-ellipsis " …"
-   org-special-ctrl-k t
-   org-log-into-drawer t
-   org-startup-folded 'fold
-   org-image-actual-width nil
-   org-hide-block-startup nil
-   org-hide-drawer-startup t
-   org-hide-emphasis-markers t
-   org-appear-autoemphasis nil
-   org-startup-with-inline-images nil))
+(use-package! evil
+  :init
+  (setq evil-disable-insert-state-bindings t
+        evil-kill-on-visual-paste nil
+        evil-want-fine-undo t))
 
-(after! org
-  (setq org-superstar-headline-bullets-list '(9679 9673))
-  (setq org-superstar-item-bullet-alist '((43 . 10022) (45 . 10148))))
+(after! evil
+  (map! :nv "'" 'evil-jump-item))
 
-(after! (org catppuccin-theme)
-  (custom-set-faces!
-    `(org-todo :foreground ,(catppuccin-get-color 'teal))
-    `(org-verbatim :foreground ,(catppuccin-get-color 'yellow))))
+(after! evil-snipe
+  (setq evil-snipe-scope 'visible))
 
-(defun @/browse-org-directory (&rest _)
-  "Browse your `org-directory'."
-  (interactive)
-  (unless (file-directory-p org-directory)
-    (make-directory org-directory 'parents))
-  (doom-project-browse org-directory))
+(use-package! corfu
+  :hook (prog-mode . corfu-mode)
+  :bind (:map corfu-map
+              ("M-k" . corfu-previous)
+              ("M-j" . corfu-next))
+  :custom
+  (corfu-cycle t)
+  (corfu-auto t)
+  :init
+  (setq completion-cycle-threshold 3
+        tab-always-indent 'complete))
 
-(map! :leader :desc "Browse org directory" "fo"
-      '@/browse-org-directory)
+(map! :map vertico-map
+      "M-k" 'vertico-previous
+      "M-j" 'vertico-next)
 
-(defun @/org-enlarge-headlines (&rest _)
-  "Make org headings larger and thicker."
-  (dolist (face '((org-level-1 . 1.5) (org-level-2 . 1.4)
-                  (org-level-3 . 1.3) (org-level-4 . 1.3)
-                  (org-level-5 . 1.3) (org-level-6 . 1.3)
-                  (org-level-7 . 1.3) (org-level-8 . 1.3)))
-    (set-face-attribute (car face) nil :weight 'heavy :height (cdr face))))
+(map! :map read-expression-map
+      "M-k" 'previous-line-or-history-element
+      "M-j" 'next-line-or-history-element)
 
-(add-hook 'org-mode-hook '@/org-enlarge-headlines)
+(map! :leader
+      (:prefix ("d" . "dired")
+       :n "j" 'dired-jump
+       :n "o" 'dired-jump-other-window))
 
-(defun @/org-center-buffer (&rest _)
-  "Center org buffer."
-  (setq-local
-   visual-fill-column-width 90
-   visual-fill-column-center-text t)
-  (visual-fill-column-mode 1)
-  (visual-line-mode 1))
+(map! :map dired-mode-map
+      :n "h" 'dired-up-directory
+      :n "l" 'dired-find-alternate-file)
 
-(add-hook 'org-mode-hook '@/org-center-buffer)
-
-(defun @/org-insert-heading (&rest _)
-  "Add one line above newly created org heading."
-  (evil-open-above 1)
-  (evil-normal-state)
-  (evil-next-line)
-  (evil-append-line 1))
-
-(add-hook 'org-insert-heading-hook '@/org-insert-heading)
-
-(defun @/org-meta-return (&optional arg &rest _)
-  "Modified version of `org-meta-return'."
-  (interactive "P")
-  (or (run-hook-with-args-until-success 'org-metareturn-hook)
-      (call-interactively
-       (cond (arg #'org-insert-heading)
-             ((org-at-table-p) #'org-table-wrap-region)
-             ((org-at-heading-or-item-p) #'+org/insert-item-below)))))
-
-(map! :after evil-org
-      :map (evil-org-mode-map org-mode-map)
-      "M-RET" '@/org-meta-return)
-
-(map! :map (evil-org-mode-map org-mode-map)
-      "M-[" 'org-previous-visible-heading
-      "M-]" 'org-next-visible-heading)
-
-(evil-set-register ?w [?A ?* escape ?^ ?w ?i ?* escape ?j])
-(evil-set-register ?e [?A ?/ escape ?^ ?w ?i ?/ escape ?j])
-
-(evil-set-register ?r [?v ?i ?w escape ?a ?_ escape ?b ?i ?_ escape ?w])
+(setq trash-directory "~/.local/share/Trash/files/"
+      delete-by-moving-to-trash t
+      magit-delete-by-moving-to-trash t)
 
 (setq default-input-method "ukrainian-computer")
 
@@ -218,7 +169,7 @@ Modified version of `doom/delete-frame-with-prompt'."
   (map! :leader :desc "Change source lang to uk" "lU"
         (cmd! (setq google-translate-default-target-language "uk"))))
 
-(defun @/google-translate-from-clipboard (&rest _)
+(defun serp/google-translate-from-clipboard (&rest _)
   "Translate text from clipboard using `google-translate' package."
   (interactive)
   (let ((source google-translate-default-source-language)
@@ -227,11 +178,11 @@ Modified version of `doom/delete-frame-with-prompt'."
         (text (gui-get-selection 'CLIPBOARD)))
     (google-translate-translate source target text output)))
 
-(after! google-translate
-  (map! :leader :desc "Translate from clipboard" "lf"
-        '@/google-translate-from-clipboard))
+(map! :after google-translate
+      :leader :desc "Translate from clipboard" "lf"
+      'serp/google-translate-from-clipboard)
 
-(defun @/google-translate-buffer-reverse (&rest _)
+(defun serp/google-translate-buffer-reverse (&rest _)
   "Translate current buffer, but switch target and source languages.
 Reverse version of `google-translate-buffer'."
   (interactive)
@@ -245,164 +196,104 @@ Reverse version of `google-translate-buffer'."
 
 (map! :after google-translate
       :leader :desc "Translate buffer reverse"
-      "lB" '@/google-translate-buffer-reverse)
-
-(defun @/nov-setup (&rest _)
-  "Various configuration for `nov' package."
-  (setq-local
-   visual-fill-column-center-text t
-   visual-fill-column-width 80)
-  (visual-line-mode 1)
-  (visual-fill-column-mode 1)
-  (hl-line-mode 0))
+      "lB" 'serp/google-translate-buffer-reverse)
 
 (use-package! nov
   :mode ("\\.epub\\'" . nov-mode)
   :hook
   ((nov-mode . mixed-pitch-mode)
-   (nov-mode . @/nov-setup))
+   (nov-mode . visual-line-mode))
   :custom
   (nov-text-width t)
   (nov-variable-pitch nil))
 
 (map! :after nov
       :map nov-mode-map
-      :n "q" (cmd! (set-buffer-modified-p nil)
-                   (kill-current-buffer))
       :nv "k" 'evil-previous-visual-line
       :nv "j" 'evil-next-visual-line
       :nv "0" 'evil-beginning-of-visual-line
       :nv "$" 'evil-end-of-visual-line)
 
-(map! :after nov
-      :map nov-mode-map
-      :nvi "M-k" 'previous-buffer
-      :nvi "M-j" 'next-buffer)
+(setq org-directory "~/OrgFiles/")
+
+(after! org
+  (setq org-log-done t
+        org-ellipsis " …"
+        org-special-ctrl-k t
+        org-log-into-drawer t
+        org-startup-folded 'fold
+        org-image-actual-width nil
+        org-hide-block-startup nil
+        org-hide-drawer-startup t
+        org-hide-emphasis-markers t
+        org-appear-autoemphasis nil
+        org-startup-with-inline-images nil))
+
+(after! org
+  (setq org-superstar-headline-bullets-list '(10033)
+        org-superstar-item-bullet-alist '((43 . 8226) (45 . 9702))))
+
+(defun serp/browse-org-directory (&rest _)
+  "Browse your `org-directory'."
+  (interactive)
+  (unless (file-directory-p org-directory)
+    (make-directory org-directory 'parents))
+  (doom-project-browse org-directory))
+
+(map! :leader :desc "Browse org directory" "fo"
+      'serp/browse-org-directory)
+
+(setq org-emphasis-regexp-components
+      '("-[:space:]('\"{" "-[:space:].,:!?;'\")}\\[‼…" "[:space:]" "." 1))
+
+(defun serp/org-enlarge-headlines (&rest _)
+  "Make org headings larger and thicker."
+  (dolist (face '((org-level-1 . 1.5) (org-level-2 . 1.4)
+                  (org-level-3 . 1.3) (org-level-4 . 1.3)
+                  (org-level-5 . 1.3) (org-level-6 . 1.3)
+                  (org-level-7 . 1.3) (org-level-8 . 1.3)))
+    (set-face-attribute (car face) nil :weight 'heavy :height (cdr face))))
+
+(add-hook 'org-mode-hook 'serp/org-enlarge-headlines)
+
+(defun serp/org-meta-return (&optional arg)
+  "Make the same logic as `org-meta-return', but better."
+  (interactive "P")
+  (or (run-hook-with-args-until-success 'org-metareturn-hook)
+      (call-interactively
+       (cond (arg 'org-insert-heading)
+             ((org-at-table-p) 'org-table-wrap-region)
+             ((org-in-item-p) '+org/insert-item-below)
+             ('org-insert-heading)))))
 
 (map! :after evil-org
       :map (evil-org-mode-map org-mode-map)
-      :nvi "M-k" 'previous-buffer
-      :nvi "M-j" 'next-buffer)
+      "M-RET" 'serp/org-meta-return)
 
-(map! :nvi "M-k" 'previous-buffer
-      :nvi "M-j" 'next-buffer)
+(evil-set-register ?w [?A ?* escape ?^ ?w ?i ?* escape ?j])
+(evil-set-register ?e [?A ?/ escape ?^ ?w ?i ?/ escape ?j])
 
-(map! "M-q" 'kill-current-buffer)
-(map! "M-s" 'save-buffer)
-(map! "M-i" 'ibuffer)
+(evil-set-register ?r [?v ?i ?w escape ?a ?_ escape ?b ?i ?_ escape ?w])
 
-(map! "M-v" 'consult-yank-pop)
+(setq confirm-kill-emacs nil)
 
-(map! :leader "dj" 'dired-jump)
-(map! :leader "do" 'dired-jump-other-window)
+(defun serp/delete-frame (&rest _)
+  "Delete frame without prompt."
+  (interactive)
+  (if (cdr (visible-frame-list))
+      (delete-frame)
+    (save-buffers-kill-emacs)))
 
-(map! :map dired-mode-map
-      :n "h" #'dired-up-directory
-      :n "l" #'dired-find-alternate-file)
+(map! :leader :desc "Delete frame" "qf"
+      'serp/delete-frame)
 
-(use-package! vertico
-  :config
-  (setq vertico-count 10)
-  :bind (:map vertico-map
-              ("M-k" . vertico-previous)
-              ("M-j" . vertico-next)))
+(add-to-list 'initial-frame-alist '(top . 110))
+(add-to-list 'initial-frame-alist '(left . 430))
 
-(use-package! company
-  :config
-  (setq company-box-scrollbar nil)
-  :bind (:map company-active-map
-              ("M-k" . company-select-previous)
-              ("M-j" . company-select-next)))
+(add-to-list 'default-frame-alist '(width . 105))
+(add-to-list 'default-frame-alist '(height . 35))
 
-(map! :map read-expression-map
-      "M-k" 'previous-line-or-history-element
-      "M-j" 'next-line-or-history-element)
-
-(keymap-global-unset "C-s")
-
-(after! evil
-  (map! :nvm "'" 'evil-jump-item))
-
-(after! evil-snipe
-  (setq evil-snipe-scope 'visible
-        evil-snipe-repeat-scope 'whole-visible))
-
-(customize-set-variable
- 'evil-disable-insert-state-bindings t)
-
-(after! evil
-  (setq evil-kill-on-visual-paste nil
-        evil-want-fine-undo t))
-
-(after! evil
-  (setq evil-split-window-below t
-        evil-vsplit-window-right nil))
-
-(customize-set-variable 'vterm-always-compile-module t)
-
-(setq trash-directory "~/.local/share/Trash/files/"
-      magit-delete-by-moving-to-trash t
-      delete-by-moving-to-trash t)
-
-(after! recentf
-  (add-to-list
-   'recentf-exclude (expand-file-name ".local/" doom-emacs-dir)))
-
-(after! doom-modeline
-  (add-to-list 'doom-modeline-continuous-word-count-modes 'text-mode)
-  (setq doom-modeline-enable-word-count t))
-
-(customize-set-variable
- 'doom-modeline-buffer-file-name-style 'relative-to-project)
-
-(setq +doom-dashboard-menu-sections nil
-      +doom-dashboard-ascii-banner-fn nil)
-
-(remove-hook '+doom-dashboard-functions 'doom-dashboard-widget-footer)
-
-(add-hook! 'doom-after-init-hook
-  (add-hook! '+doom-dashboard-functions :append
-    (insert "\n" (+doom-dashboard--center
-                  +doom-dashboard--width "Pure Evil‼"))))
-
-(add-hook! '+doom-dashboard-mode-hook
-  (setq-local evil-normal-state-cursor '(hbar . 0)))
-
-(defvar @/frame-geometry-file
-  (expand-file-name "frame-geometry" user-emacs-directory)
-  "File that stores previous session's last frame' geometry.")
-
-(defun @/frame-geometry-write-file (&rest _)
-  "Write frame geometry to `@/frame-geometry-file'."
-  (let ((top (frame-parameter (selected-frame) 'top))
-        (left (frame-parameter (selected-frame) 'left))
-        (width (frame-parameter (selected-frame) 'width))
-        (height (frame-parameter (selected-frame) 'height))
-        (fullscreen (frame-parameter (selected-frame) 'fullscreen)))
-    (if fullscreen
-        (with-temp-file @/frame-geometry-file
-          (insert
-           (format
-            "(add-to-list 'initial-frame-alist '(fullscreen . %S))\n"
-            fullscreen)))
-      (with-temp-file @/frame-geometry-file
-        (insert
-         "(dolist (param '("
-         (format "(top . %d)\n" top)
-         (format "\t(left . %d)\n" left)
-         (format "\t(width . %d)\n" width)
-         (format "\t(height . %d)))\n" height)
-         "(add-to-list 'initial-frame-alist param))\n")))))
-
-(defun @/frame-geometry-load-file (&rest _)
-  "Load frame geometry from `@/frame-geometry-file'."
-  (when (file-readable-p @/frame-geometry-file)
-    (load @/frame-geometry-file :noerror :nomessage)))
-
-(add-hook 'emacs-startup-hook '@/frame-geometry-load-file)
-(add-hook 'kill-emacs-hook '@/frame-geometry-write-file)
-
-(defun @/set-blur-behind-x-frame (&optional frame &rest _)
+(defun serp/add-blur-behind-x-frame (&optional frame &rest _)
   "Set blur behind `x' frame.\n
 If FRAME in nil, use current frame."
   (interactive)
@@ -417,7 +308,7 @@ If FRAME in nil, use current frame."
       (call-process-shell-command command)
       (set-frame-parameter frame 'blur 1))))
 
-(defun @/remove-blur-behind-x-frame (&optional frame &rest _)
+(defun serp/remove-blur-behind-x-frame (&optional frame &rest _)
   "Remove blur behind `x' frame.\n
 If FRAME is nil, use current frame."
   (interactive)
@@ -430,28 +321,29 @@ If FRAME is nil, use current frame."
       (call-process-shell-command command)
       (set-frame-parameter frame 'blur 0))))
 
-(defun @/toggle-blur-behind-x-frame (&optional frame &rest _)
+(defun serp/toggle-blur-behind-x-frame (&optional frame &rest _)
   "Toggle blur behind `x' frame.\n
 If FRAME is nil, use current frame."
   (interactive)
   (let* ((frame (cond (frame) (t (selected-frame))))
          (blur (frame-parameter frame 'blur)))
     (if (or (eql blur nil) (<= blur 0))
-        (@/set-blur-behind-x-frame frame)
-      (@/remove-blur-behind-x-frame frame))))
+        (serp/add-blur-behind-x-frame frame)
+      (serp/remove-blur-behind-x-frame frame))))
 
-(defun @/set-blur-behind-new-x-frame-on-switch (&rest _)
+(defun serp/add-blur-behind-new-x-frame-on-switch (&rest _)
   "Set blur behind newly created `x' frame.\n
-This function works perfectly on frame switch."
+Note: the function works perfectly on frame switch."
   (let ((blur (frame-parameter (selected-frame) 'blur)))
     (when (eql blur nil)
-      (@/set-blur-behind-x-frame))))
+      (serp/add-blur-behind-x-frame))))
 
 (add-to-list 'default-frame-alist '(alpha-background . 90))
 
-(add-hook 'window-setup-hook '@/set-blur-behind-x-frame)
+(add-hook 'window-setup-hook 'serp/add-blur-behind-x-frame)
+
 (add-hook! 'window-selection-change-functions
-  (@/set-blur-behind-new-x-frame-on-switch))
+  (serp/add-blur-behind-new-x-frame-on-switch))
 
 (map! :leader :desc "Blur behind frame" "tu"
-      '@/toggle-blur-behind-x-frame)
+      'serp/toggle-blur-behind-x-frame)
