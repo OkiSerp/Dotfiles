@@ -10,10 +10,10 @@
     `(show-paren-match
       :background ,(catppuccin-get-color 'surface2))))
 
-(let ((font "JetBrains Mono"))
+(let ((font "Mononoki"))
   (when (doom-font-exists-p font)
-    (setq doom-font (font-spec :name font :size 16)
-          doom-big-font (font-spec :name font :size 22))))
+    (setq doom-font (font-spec :name font :size 18)
+          doom-big-font (font-spec :name font :size 24))))
 
 (let ((font "Noto Sans"))
   (when (doom-font-exists-p font)
