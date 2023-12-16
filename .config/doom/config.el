@@ -17,7 +17,7 @@
 
 (let ((font "Noto Sans"))
   (when (doom-font-exists-p font)
-    (setq doom-variable-pitch-font (font-spec :name font :size 18))))
+    (setq doom-variable-pitch-font (font-spec :name font))))
 
 (let ((font "Noto Color Emoji"))
   (when (doom-font-exists-p font)
