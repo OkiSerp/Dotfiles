@@ -75,7 +75,6 @@
               ("M-k" . corfu-previous)
               ("M-j" . corfu-next))
   :custom
-  (corfu-cycle t)
   (corfu-auto t)
   :init
   (setq completion-cycle-threshold 3
