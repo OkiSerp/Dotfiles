@@ -169,7 +169,7 @@
         (cmd! (setq google-translate-default-target-language "uk"))))
 
 (defun serp/google-translate-from-clipboard (&rest _)
-  "Translate text from clipboard using `google-translate' package."
+  "Translate text from clipboard by using `google-translate' package."
   (interactive)
   (let ((source google-translate-default-source-language)
         (target google-translate-default-target-language)
@@ -182,8 +182,8 @@
       'serp/google-translate-from-clipboard)
 
 (defun serp/google-translate-buffer-reverse (&rest _)
-  "Translate current buffer, but switch target and source languages.
-Reverse version of `google-translate-buffer'."
+  "Translate current buffer, but switch target and source languages
+by using `google-translate' package."
   (interactive)
   (let ((source google-translate-default-source-language)
         (target google-translate-default-target-language))
