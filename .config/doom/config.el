@@ -204,7 +204,10 @@ by using `google-translate' package."
    (nov-mode . visual-line-mode))
   :custom
   (nov-text-width t)
-  (nov-variable-pitch nil))
+  (nov-variable-pitch nil)
+  :config
+  (add-hook! 'nov-mode-hook
+    (face-remap-add-relative 'default :height 1.1)))
 
 (map! :after nov
       :map nov-mode-map
