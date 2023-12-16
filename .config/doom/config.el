@@ -213,6 +213,11 @@ Reverse version of `google-translate-buffer'."
       :nv "0" 'evil-beginning-of-visual-line
       :nv "$" 'evil-end-of-visual-line)
 
+(after! (org catppuccin-theme)
+  (custom-set-faces!
+    `(org-todo :foreground ,(catppuccin-get-color 'teal))
+    `(org-verbatim :foreground ,(catppuccin-get-color 'yellow))))
+
 (setq org-directory "~/OrgFiles/")
 
 (after! org
