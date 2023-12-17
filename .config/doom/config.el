@@ -76,12 +76,13 @@
   (setq evil-snipe-scope 'visible))
 
 (use-package! corfu
-  :hook (prog-mode . corfu-mode)
   :custom
   (corfu-auto t)
   :init
   (setq completion-cycle-threshold 3
-        tab-always-indent 'complete))
+        tab-always-indent 'complete)
+  :config
+  (global-corfu-mode 1))
 
 (map! :map corfu-map
       "M-k" 'corfu-previous
