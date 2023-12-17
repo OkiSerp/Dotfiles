@@ -77,14 +77,15 @@
 
 (use-package! corfu
   :hook (prog-mode . corfu-mode)
-  :bind (:map corfu-map
-              ("M-k" . corfu-previous)
-              ("M-j" . corfu-next))
   :custom
   (corfu-auto t)
   :init
   (setq completion-cycle-threshold 3
         tab-always-indent 'complete))
+
+(map! :map corfu-map
+      "M-k" 'corfu-previous
+      "M-j" 'corfu-next)
 
 (map! :map vertico-map
       "M-k" 'vertico-previous
