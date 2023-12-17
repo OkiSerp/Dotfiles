@@ -281,7 +281,7 @@ by using `google-translate' package."
              ((org-in-item-p) '+org/insert-item-below)
              ('org-insert-heading)))))
 
-(map! :after evil-org
+(map! :after (:or org evil-org)
       :map (evil-org-mode-map org-mode-map)
       "M-RET" 'serp/org-meta-return)
 
