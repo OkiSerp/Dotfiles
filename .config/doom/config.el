@@ -41,6 +41,12 @@
 (add-hook! '(prog-mode-hook conf-mode-hook)
   (display-fill-column-indicator-mode 1))
 
+(setq-default tab-width 2
+              indent-tabs-mode nil)
+
+(after! fish-mode
+  (setq fish-indent-offset 2))
+
 (use-package! olivetti
   :custom
   (olivetti-body-width 110)
