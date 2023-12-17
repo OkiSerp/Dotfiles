@@ -15,6 +15,8 @@
 
 (package! google-translate)
 
+(package! evil-org :disable t)
+
 (package! mixed-pitch)
 (package! nov)
 
