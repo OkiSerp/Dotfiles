@@ -34,13 +34,6 @@
 (setq display-line-numbers-type nil
       scroll-margin 5)
 
-(setq fill-column 80
-      display-fill-column-indicator t
-      display-fill-column-indicator-character 9474)
-
-(add-hook! '(prog-mode-hook conf-mode-hook)
-  (display-fill-column-indicator-mode 1))
-
 (setq-default tab-width 2
               indent-tabs-mode nil)
 
