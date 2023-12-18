@@ -295,9 +295,6 @@ by using `google-translate' package."
 (map! :leader :desc "Delete frame" "qf"
       'serp/delete-frame)
 
-(add-to-list 'initial-frame-alist '(top . 110))
-(add-to-list 'initial-frame-alist '(left . 430))
-
 (add-to-list 'default-frame-alist '(width . 105))
 (add-to-list 'default-frame-alist '(height . 35))
 
