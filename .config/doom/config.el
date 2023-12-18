@@ -131,6 +131,10 @@
       (cmd! (+lookup/online
              (doom-thing-at-point-or-region) "Cambridge dictionary")))
 
+(map! :leader :desc "Cambridge dictionary from CB" "lC"
+      (cmd! (+lookup/online
+             (gui-get-selection 'CLIPBOARD) "Cambridge dictionary")))
+
 (map! :leader :desc "Google translate" "lg"
       (cmd! (+lookup/online
              (doom-thing-at-point-or-region) "Google translate")))
