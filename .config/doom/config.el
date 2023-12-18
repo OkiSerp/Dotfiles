@@ -305,8 +305,8 @@ If FRAME in nil, use current frame."
   (let* ((frame (cond (frame) (t (selected-frame))))
          (frame-id (frame-parameter frame 'outer-window-id))
          (command (format
-                   "%s %s %s"
-                   "xprop -f _KDE_NET_WM_BLUR_BEHIND_REGION 32c"
+                   "xprop %s %s %s"
+                   "-f _KDE_NET_WM_BLUR_BEHIND_REGION 32c"
                    "-set _KDE_NET_WM_BLUR_BEHIND_REGION 0 -id"
                    frame-id)))
     (when (eql (window-system) 'x)
