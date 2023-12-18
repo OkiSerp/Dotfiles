@@ -280,7 +280,8 @@ by using `google-translate' package."
 
 (map! :after (:or org evil-org)
       :map (evil-org-mode-map org-mode-map)
-      "M-RET" 'serp/org-meta-return)
+      "M-RET" 'serp/org-meta-return
+      :n "RET" '+org/dwim-at-point)
 
 (evil-set-register ?w [?A ?* escape ?^ ?w ?i ?* escape ?j])
 (evil-set-register ?e [?A ?/ escape ?^ ?w ?i ?/ escape ?j])
