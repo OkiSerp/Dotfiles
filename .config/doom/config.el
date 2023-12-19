@@ -91,6 +91,11 @@
       "M-k" 'previous-line-or-history-element
       "M-j" 'next-line-or-history-element)
 
+(map! :map global-map
+      "M-k" 'previous-buffer
+      "M-j" 'next-buffer
+      "M-i" 'ibuffer)
+
 (map! :leader
       (:prefix ("d" . "dired")
        :n "j" 'dired-jump
@@ -280,8 +285,8 @@ by using `google-translate' package."
              ((org-in-item-p) '+org/insert-item-below)
              ('org-insert-heading)))))
 
-(map! :after (:or org evil-org)
-      :map (evil-org-mode-map org-mode-map)
+(map! :after org
+      :map org-mode-map
       "M-RET" 'serp/org-meta-return
       :n "RET" '+org/dwim-at-point)
 
