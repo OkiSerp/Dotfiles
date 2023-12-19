@@ -71,10 +71,12 @@
 (use-package! corfu
   :custom
   (corfu-auto t)
+  (corfu-quit-at-boundary t)
   :init
   (setq completion-cycle-threshold 3
         tab-always-indent 'complete)
   :config
+  (corfu-history-mode 1)
   (global-corfu-mode 1))
 
 (map! :map corfu-map
