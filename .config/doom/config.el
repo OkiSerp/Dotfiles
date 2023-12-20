@@ -44,7 +44,7 @@
   :custom
   (olivetti-body-width 110)
   :config
-  (add-hook! 'mixed-pitch-mode-hook
+  (add-hook! '(text-mode-hook org-mode-hook nov-mode-hook)
     (setq-local olivetti-body-width 80)))
 
 (use-package! auto-olivetti
