@@ -313,6 +313,11 @@ by using `google-translate' package."
   (evil-set-register ?e [?A ?/ escape ?^ ?w ?i ?/ escape ?j])
   (evil-set-register ?r [?v ?i ?w escape ?a ?_ escape ?b ?i ?_ escape ?w]))
 
+(use-package! elfeed
+  :hook (elfeed-search-mode . elfeed-update)
+  :config
+  (setq elfeed-search-filter "@2-month-ago"))
+
 (setq confirm-kill-emacs nil)
 
 (defun serp/delete-frame (&rest _)
