@@ -290,10 +290,10 @@ by using `google-translate' package."
       "M-RET" 'serp/org-meta-return
       :n "RET" '+org/dwim-at-point)
 
-(evil-set-register ?w [?A ?* escape ?^ ?w ?i ?* escape ?j])
-(evil-set-register ?e [?A ?/ escape ?^ ?w ?i ?/ escape ?j])
-
-(evil-set-register ?r [?v ?i ?w escape ?a ?_ escape ?b ?i ?_ escape ?w])
+(after! org
+  (evil-set-register ?w [?A ?* escape ?^ ?w ?i ?* escape ?j])
+  (evil-set-register ?e [?A ?/ escape ?^ ?w ?i ?/ escape ?j])
+  (evil-set-register ?r [?v ?i ?w escape ?a ?_ escape ?b ?i ?_ escape ?w]))
 
 (setq confirm-kill-emacs nil)
 
