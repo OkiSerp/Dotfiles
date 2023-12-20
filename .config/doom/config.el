@@ -307,8 +307,8 @@ by using `google-translate' package."
 (map! :leader :desc "Delete frame" "qf"
       'serp/delete-frame)
 
-(add-to-list 'default-frame-alist '(width . 105))
-(add-to-list 'default-frame-alist '(height . 35))
+(add-to-list 'default-frame-alist '(width . 120))
+(add-to-list 'default-frame-alist '(height . 40))
 
 (defun serp/add-blur-behind-x-frame (&optional frame &rest _)
   "Set blur behind `x' frame.\n
