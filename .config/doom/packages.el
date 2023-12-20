@@ -15,6 +15,9 @@
 
 (package! google-translate)
 
+(package! reverse-im)
+(package! char-fold)
+
 (package! evil-org :disable t)
 
 (package! mixed-pitch)
