@@ -7,21 +7,9 @@
 
 (package! catppuccin-theme)
 
-(package! olivetti)
-(package! auto-olivetti
-  :recipe (:host sourcehut :repo "ashton314/auto-olivetti"))
-
-(package! corfu)
-
-(package! google-translate)
-
-(package! reverse-im)
-(package! char-fold)
-
 (package! evil-org :disable t)
 
-(package! mixed-pitch)
-(package! nov)
+(package! olivetti)
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
