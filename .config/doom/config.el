@@ -318,6 +318,8 @@ by using `google-translate' package."
   :config
   (setq elfeed-search-filter "@2-month-ago"))
 
+(map! :leader :desc "RSS" "oe" 'elfeed)
+
 (setq confirm-kill-emacs nil)
 
 (defun serp/delete-frame (&rest _)
