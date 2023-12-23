@@ -17,6 +17,7 @@ local setup = function()
       "tsserver",
       "emmet_ls",
       "jsonls",
+      "texlab"
     },
     automatic_installation = true,
   })
@@ -83,6 +84,8 @@ local setup = function()
 			"html",
 		},
 	})
+
+  lspconfig.texlab.setup({})
 end
 
 return {
