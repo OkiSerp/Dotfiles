@@ -15,7 +15,7 @@
 (bind-key [remap delete-frame] 'serp/delete-frame)
 
 (let ((size 16)
-      (font "Mononoki"))
+      (font "Fira Code"))
   (when (doom-font-exists-p font)
     (setq doom-font (font-spec :name font :size size)
           doom-big-font (font-spec :name font :size (+ 6 size)))))
