@@ -129,8 +129,17 @@ NOTE: the function works perfectly on frame switch."
     `(org-verbatim :foreground ,(catppuccin-get-color 'yellow))))
 
 ;; Get rid of bloated dashboard.
+(defun serp/doom-dashboard-widget-loaded ()
+  (when doom-init-time
+    (insert
+     (propertize
+      (+doom-dashboard--center
+       +doom-dashboard--width
+       "Don't let the evil dwell in your system.")
+      'face 'doom-dashboard-banner))))
+
 (setq +doom-dashboard-functions
-      '(doom-dashboard-widget-loaded))
+      '(serp/doom-dashboard-widget-loaded))
 
 (add-hook! '+doom-dashboard-mode-hook
   (setq-local evil-normal-state-cursor '(hbar . 0)))
