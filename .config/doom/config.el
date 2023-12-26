@@ -293,6 +293,8 @@ NOTE: the function works perfectly on frame switch."
 
 (map! :leader :desc "RSS" "oe" 'elfeed)
 
+(setq default-input-method "ukrainian-computer")
+
 (map! :leader (:prefix ("l" . "translate")))
 
 (use-package! google-translate
