@@ -25,6 +25,7 @@ set -gx DOOMDIR $HOME/.config/doom
 alias mv "$(which mv) -i"
 alias cp "$(which cp) -i"
 
+alias du="$(which du) -h"
 alias df="$(which df) -h"
 alias free="$(which free) -m"
 
