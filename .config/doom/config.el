@@ -265,10 +265,9 @@ NOTE: the function works perfectly on frame switch."
       "M-k" 'previous-line-or-history-element
       "M-j" 'next-line-or-history-element)
 
-(map! :map global-map
-      "M-k" 'previous-buffer
-      "M-j" 'next-buffer
-      "M-i" 'ibuffer)
+(map! :nvi "M-k" 'previous-buffer
+      :nvi "M-j" 'next-buffer
+      :nvi "M-i" 'ibuffer)
 
 ;; Create `dired' prefix map.
 (map! :leader
