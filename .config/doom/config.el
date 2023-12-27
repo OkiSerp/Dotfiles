@@ -298,7 +298,6 @@ NOTE: the function works perfectly on frame switch."
 (map! :leader (:prefix ("l" . "translate")))
 
 (use-package! google-translate
-  :after evil
   :config
   (setq google-translate-default-source-language "en"
         google-translate-default-target-language "uk"
