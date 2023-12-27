@@ -128,6 +128,9 @@ NOTE: the function works perfectly on frame switch."
     `(org-todo :foreground ,(catppuccin-get-color 'teal))
     `(org-verbatim :foreground ,(catppuccin-get-color 'yellow))))
 
+(add-hook! '(prog-mode-hook conf-mode-hook)
+  (face-remap-add-relative 'font-lock-comment-face :slant 'italic))
+
 ;; Get rid of bloated dashboard.
 (defun serp/doom-dashboard-widget-quote ()
   (when doom-init-time
