@@ -260,7 +260,7 @@ NOTE: the function works perfectly on frame switch."
       "M-k" 'vertico-previous
       "M-j" 'vertico-next)
 
-(map! :map company-mode-map
+(map! :map company-active-map
       "M-k" 'company-select-previous
       "M-j" 'company-select-next)
 
