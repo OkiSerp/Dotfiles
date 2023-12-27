@@ -121,7 +121,7 @@ NOTE: the function works perfectly on frame switch."
 (after! catppuccin-theme
   (custom-set-faces!
     `(show-paren-match
-      :background ,(catppuccin-get-color 'surface2))))
+      :background ,(catppuccin-get-color 'surface1))))
 
 (after! (:and org catppuccin-theme)
   (custom-set-faces!
