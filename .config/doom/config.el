@@ -164,7 +164,7 @@ NOTE: the function works perfectly on frame switch."
 ;; When it's too wide for you.
 (use-package! olivetti
   :custom
-  (olivetti-body-width 80)
+  (olivetti-body-width 100)
   :config
   (add-hook! '(text-mode-hook org-mode-hook)
     (olivetti-mode 1)))
