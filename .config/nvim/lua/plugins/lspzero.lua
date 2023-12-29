@@ -14,10 +14,10 @@ local setup = function()
   require("mason-lspconfig").setup({
     ensure_installed = {
       "lua_ls",
-      "tsserver",
-      "emmet_ls",
-      "jsonls",
-      "texlab"
+      -- "tsserver",
+      -- "emmet_ls",
+      -- "jsonls",
+      -- "texlab"
     },
     automatic_installation = true,
   })
@@ -60,32 +60,32 @@ local setup = function()
     },
   })
 
-  lspconfig.jsonls.setup({
-    filetypes = { "json", "jsonc" },
-  })
+  -- lspconfig.jsonls.setup({
+  --   filetypes = { "json", "jsonc" },
+  -- })
 
-  lspconfig.tsserver.setup({
-    filetypes = { "typescript" },
-    root_dir = lspconfig.util.root_pattern(
-      "package.json", "tsconfig.json", ".git"
-    ),
-  })
+  -- lspconfig.tsserver.setup({
+  --   filetypes = { "typescript" },
+  --   root_dir = lspconfig.util.root_pattern(
+  --     "package.json", "tsconfig.json", ".git"
+  --   ),
+  -- })
 
-  lspconfig.emmet_ls.setup({
-		filetypes = {
-			"typescriptreact",
-			"javascriptreact",
-			"javascript",
-			"css",
-			"sass",
-			"scss",
-			"less",
-			"vue",
-			"html",
-		},
-	})
+ --  lspconfig.emmet_ls.setup({
+	-- 	filetypes = {
+	-- 		"typescriptreact",
+	-- 		"javascriptreact",
+	-- 		"javascript",
+	-- 		"css",
+	-- 		"sass",
+	-- 		"scss",
+	-- 		"less",
+	-- 		"vue",
+	-- 		"html",
+	-- 	},
+	-- })
 
-  lspconfig.texlab.setup({})
+  -- lspconfig.texlab.setup({})
 end
 
 return {
