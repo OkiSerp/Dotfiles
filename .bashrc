@@ -1,3 +1,5 @@
+[[ $- != *i* ]] && return
+
 HISTTIMEFORMAT="%F %T "
 HISTCONTROL=ignoredups
 HISTSIZE=2000
