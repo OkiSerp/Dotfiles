@@ -4,7 +4,7 @@
 ;; sync' after modifying this file!
 
 ;; Frames seem to be a bit small. So we're going to fix it:
-(add-to-list 'default-frame-alist '(width . 130))
+(add-to-list 'default-frame-alist '(width . 120))
 (add-to-list 'default-frame-alist '(height . 40))
 
 ;; Fed up with confirmation?
@@ -164,7 +164,7 @@ NOTE: the function works perfectly on frame switch."
 ;; When it's too wide for you.
 (use-package! olivetti
   :custom
-  (olivetti-body-width 100)
+  (olivetti-body-width 80)
   :config
   (add-hook! '(text-mode-hook org-mode-hook)
     (olivetti-mode 1)))
