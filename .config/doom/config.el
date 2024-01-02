@@ -3,6 +3,8 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+(setq doom-leader-alt-key "C-SPC")
+
 ;; Frames seem to be a bit small. So we're going to fix it:
 (add-to-list 'default-frame-alist '(width . 120))
 (add-to-list 'default-frame-alist '(height . 40))
