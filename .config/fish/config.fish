@@ -34,10 +34,10 @@ alias neofetch "echo && $(which neofetch)"
 alias ls "lsd --group-dirs first --icon never --color always"
 alias la "lsd --group-dirs first --icon never --color always -A"
 
-alias ll "lsd --group-dirs first --icon always --icon-theme fancy --color always \
+alias ll "lsd --group-dirs first --icon never --icon-theme fancy --color always \
   --blocks permission,user,size,git,name -lA"
 
-alias lt "lsd --group-dirs first --icon always --icon-theme fancy --color always \
+alias lt "lsd --group-dirs first --icon never --icon-theme fancy --color always \
   --blocks permission,user,size,git,name -lAX --tree -I .git -I node_modules"
 
 if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end
