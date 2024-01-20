@@ -1,0 +1,46 @@
+import = [
+  "~/.config/alacritty/colorscheme.toml"
+]
+
+[env]
+TERM = "xterm-256color"
+
+[shell]
+program = "/usr/bin/bash"
+args = []
+
+[font]
+size = 11.25
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Regular"
+
+[window]
+blur = true
+opacity = 0.9
+padding = { x = 8, y = 8 }
+
+[window.dimensions]
+columns = 100
+lines = 30
+
+[window.class]
+general = "alacritty"
+instance = "alacritty"
+
+[scrolling]
+history = 8000
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+unfocused_hollow = true
+
+[cursor.style]
+shape = "Block"
+blinking = "Never"
+
+[mouse]
+hide_when_typing = true
