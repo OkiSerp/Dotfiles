@@ -85,17 +85,17 @@ alias ls="$(which lsd) --group-dirs first \
 alias la="$(which lsd) --group-dirs first \
   --icon never --color always -A"
 
-alias ll="$(which lsd) --group-dirs first --icon always \
+alias ll="$(which lsd) --group-dirs first --icon never \
   --icon-theme fancy --color always \
   --blocks permission,user,size,git,name -Al"
 
-alias lt="$(which lsd) --group-dirs first --icon always \
+alias lt="$(which lsd) --group-dirs first --icon never \
   --icon-theme fancy --color always \
   --blocks permission,user,size,git,name \
   -X -Al --tree -I .git -I node_modules"
 
 ld() {
-  /usr/bin/lsd --group-dirs first --icon always \
+  /usr/bin/lsd --group-dirs first --icon never \
     --icon-theme fancy --color always \
     --blocks permission,user,size,git,name \
     -X -Al "$@" | grep -E "^\."
