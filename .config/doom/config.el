@@ -163,14 +163,6 @@ NOTE: the function works perfectly on frame switch."
 (after! fish-mode
   (setq fish-indent-offset 2))
 
-;; When it's too wide for you.
-(use-package! olivetti
-  :custom
-  (olivetti-body-width 80)
-  :config
-  (add-hook! '(text-mode-hook org-mode-hook)
-    (olivetti-mode 1)))
-
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Org/")

@@ -9,8 +9,6 @@
 
 (package! evil-org :disable t)
 
-(package! olivetti)
-
 (package! google-translate)
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
