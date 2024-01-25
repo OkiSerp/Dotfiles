@@ -99,8 +99,8 @@ NOTE: the function works perfectly on frame switch."
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
 ;; refresh your font settings. If Emacs still can't find your font, it likely
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
-(let ((size 16)
-      (font "JetBrains Mono"))
+(let ((size 21)
+      (font "Agave Nerd Font"))
   (when (doom-font-exists-p font)
     (setq doom-font (font-spec :name font :size size)
           doom-big-font (font-spec :name font :size (+ 6 size)))))
@@ -174,8 +174,8 @@ NOTE: the function works perfectly on frame switch."
         org-appear-autoemphasis nil))
 
 (after! org
-  (setq org-superstar-headline-bullets-list '(9679)
-        org-superstar-item-bullet-alist '((43 . 8594) (45 . 10148))))
+  (setq org-superstar-headline-bullets-list '(10033)
+        org-superstar-item-bullet-alist '((43 . 10140) (45 . 10148))))
 
 (defun serp/browse-org-directory (&rest _)
   "Browse your `org-directory'."
