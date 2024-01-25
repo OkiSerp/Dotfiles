@@ -1,55 +1,28 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath,
+    })
 end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("core")
+require("core.opts")
+require("core.keys")
 
 local opts = {
-  defaults = {
-    lazy = true,
-  },
-  install = {
-    missing = true,
-    colorscheme = { "catppuccin" },
-  },
-  change_detection = {
-    enabled = true,
-    notify = false,
-  },
-  checker = {
-    enabled = true,
-    notify = false,
-    frequency = 3600 * 24 * 7,
-  },
-  disabled_plugins = {
-    "gzip",
-    "matchit",
-    "matchparen",
-    "netrwPlugin",
-    "tarPlugin",
-    "tohtml",
-    "tutor",
-    "zipPlugin",
-  },
+    defaults = {
+        lazy = true,
+    },
+    install = {
+        colorscheme = { "catppuccin" },
+    },
 }
 
-local plugins = {
-  {
-    import = "plugins",
-  },
-}
-
-require("lazy").setup(plugins, opts)
-
-vim.keymap.set({ "n", "v" }, "<leader>hl", vim.cmd.Lazy)
+require("lazy").setup("plug", opts)
