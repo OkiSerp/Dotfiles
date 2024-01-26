@@ -1,28 +1,6 @@
-RCS
-.+,v
-
-CVS
-\.\#.+
-\.cvsignore
-
-\.svn
-_darcs
-\.hg
-
-.+~
-\#.*\#
-
-^/README.*
-^/LICENSE.*
-^/COPYING
-
 \.git
 \.gitignore
 
 \.stowrc
 
-Stow.org
-
-README.md
-README.org
-.bashrc
+*.org
