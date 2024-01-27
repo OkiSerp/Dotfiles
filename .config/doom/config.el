@@ -126,6 +126,7 @@ NOTE: the function works perfectly on frame switch."
 (after! (:and org catppuccin-theme)
   (custom-set-faces!
     `(org-todo :foreground ,(catppuccin-get-color 'teal))
+    `(org-table :foreground ,(catppuccin-get-color 'overlay2))
     `(org-verbatim :foreground ,(catppuccin-get-color 'yellow))))
 
 (add-hook! '(prog-mode-hook conf-mode-hook)
