@@ -99,8 +99,8 @@ NOTE: the function works perfectly on frame switch."
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
 ;; refresh your font settings. If Emacs still can't find your font, it likely
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
-(let ((size 20)
-      (font "Agave Nerd Font"))
+(let ((size 18)
+      (font "JetBrains Mono"))
   (when (doom-font-exists-p font)
     (setq doom-font (font-spec :name font :size size)
           doom-big-font (font-spec :name font :size (+ 6 size)))))
