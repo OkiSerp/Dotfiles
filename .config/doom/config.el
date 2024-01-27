@@ -292,6 +292,8 @@ NOTE: the function works perfectly on frame switch."
 
 (setq default-input-method "ukrainian-computer")
 
+(map! :leader :desc "Input method" "ti" 'toggle-input-method)
+
 (map! :leader (:prefix ("l" . "translate")))
 
 (use-package! google-translate
