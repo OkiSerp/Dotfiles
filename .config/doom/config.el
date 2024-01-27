@@ -123,9 +123,6 @@ NOTE: the function works perfectly on frame switch."
     `(show-paren-match
       :background ,(catppuccin-get-color 'surface1))))
 
-(map! :after catppuccin-theme
-      :leader "hrc" 'catppuccin-reload)
-
 (after! (:and org catppuccin-theme)
   (custom-set-faces!
     `(org-todo :foreground ,(catppuccin-get-color 'teal))
