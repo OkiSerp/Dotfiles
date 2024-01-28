@@ -1,6 +1,11 @@
-local M = {}
+local utils = {}
 
-M.togglewrap = function()
+utils.bind = function(mode, map, cmd, opts)
+    local opts = opts or {}
+    vim.keymap.set(mode, map, cmd, opts)
+end
+
+utils.togglewrap = function()
     if vim.opt.wrap:get() then
         vim.cmd("set nowrap")
         return
@@ -8,7 +13,7 @@ M.togglewrap = function()
     vim.cmd("set wrap")
 end
 
-M.togglenumber = function()
+utils.togglenumber = function()
     if vim.opt.rnu:get() and vim.opt.nu:get() then
         vim.opt.nu = false
         vim.opt.rnu = false
@@ -21,4 +26,4 @@ M.togglenumber = function()
     end
 end
 
-return M
+return utils

@@ -1,3 +1,10 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = " m"
+
+vim.opt.hidden = true
+
+vim.opt.clipboard:append("unnamedplus")
+
 vim.wo.number = true
 vim.wo.relativenumber = true
 
@@ -8,10 +15,6 @@ vim.opt.guicursor = ""
 
 vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
-
-vim.opt.clipboard:append("unnamedplus")
-
-vim.opt.spell = true
 
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -24,6 +27,8 @@ vim.opt.smarttab = true
 
 vim.opt.breakindent = true
 vim.opt.wrap = false
+
+vim.opt.spell = true
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
