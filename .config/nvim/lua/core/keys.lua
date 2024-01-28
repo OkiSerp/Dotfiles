@@ -1,25 +1,28 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " m"
 
-vim.keymap.set("n", "<leader>qq", ":xall<Cr>")
-vim.keymap.set("n", "<leader>qQ", ":qall!<Cr>")
+local n, nv = "n", { "n", "v" }
+local nvi = { "n", "v", "i" }
+local sil = { silent = true }
 
-vim.keymap.set("n", "<leader>fs", ":write<Cr>")
+local bind = vim.keymap.set
 
-vim.keymap.set("n", "<leader>oe", ":Explore<Cr>")
+bind(nvi, "<M-q>", ":xa<Cr>")
+bind(nvi, "<M-Q>", ":qa!<Cr>")
+
+bind(nvi, "<M-s>", ":w<Cr>")
+
+bind(nv, "<leader>oe", ":Ex<Cr>")
 
 vim.opt.hidden = true
 
-vim.keymap.set("n", "<leader>bp", ":bprevious<Cr>")
-vim.keymap.set("n", "<leader>bn", ":bnext<Cr>")
-
-vim.keymap.set("n", "<leader>bk", ":bdelete<Cr>")
+bind(nvi, "<M-k>", ":bp<Cr>")
+bind(nvi, "<M-j>", ":bn<Cr>")
 
 local util = require("util")
 
-vim.keymap.set("n", "<leader>tw", util.togglewrap)
-
-vim.keymap.set("n", "<leader>tn", util.togglenumber)
+bind(n, "<leader>tw", util.togglewrap)
+bind(n, "<leader>tl", util.togglenumber)
 
 vim.keymap.set(
     "n",
@@ -27,22 +30,22 @@ vim.keymap.set(
     [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<left><left><left>]]
 )
 
-vim.keymap.set("v", "J", ":move '>+1<Cr>gv=gv", { silent = true })
-vim.keymap.set("v", "K", ":move '<-2<Cr>gv=gv", { silent = true })
+bind("v", "J", ":move '>+1<Cr>gv=gv", sil)
+bind("v", "K", ":move '<-2<Cr>gv=gv", sil)
 
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
+bind("v", "<", "<gv")
+bind("v", ">", ">gv")
 
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+bind("n", "n", "nzzzv")
+bind("n", "N", "Nzzzv")
 
-vim.keymap.set("n", "G", "Gzz")
+bind("n", "G", "Gzz")
 
-vim.keymap.set("n", "J", "mzJ`z")
+bind("n", "J", "mzJ`z")
 
-vim.keymap.set({ "n", "v" }, "'", "%")
+bind({ "n", "v" }, "'", "%")
 
-vim.keymap.set("n", "x", "\"_x")
-vim.keymap.set("n", "X", "\"_X")
+bind("n", "x", "\"_x")
+bind("n", "X", "\"_X")
 
-vim.keymap.set("n", "Q", "<Nop>")
+bind("n", "Q", "<Nop>")
