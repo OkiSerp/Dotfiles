@@ -9,6 +9,7 @@ local sil = { silent = true }
 
 bind(n, "<leader>tw", utils.togglewrap)
 bind(n, "<leader>tl", utils.togglenumber)
+bind(n, "<leader>ts", utils.togglespell)
 
 bind(nvi, "<M-q>", ":xa<Cr>")
 bind(nvi, "<M-Q>", ":qa!<Cr>")

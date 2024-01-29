@@ -26,4 +26,12 @@ utils.togglenumber = function()
     end
 end
 
+utils.togglespell = function()
+    if vim.opt.spell:get() then
+        vim.cmd("set nospell")
+        return
+    end
+    vim.cmd("set spell")
+end
+
 return utils
