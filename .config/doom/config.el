@@ -5,7 +5,7 @@
 
 ;; Frames seem to be a bit small. So we're going to fix it:
 (add-to-list 'default-frame-alist '(width . 120))
-(add-to-list 'default-frame-alist '(height . 40))
+(add-to-list 'default-frame-alist '(height . 30))
 
 ;; Fed up with confirmation?
 (setq confirm-kill-emacs nil)
