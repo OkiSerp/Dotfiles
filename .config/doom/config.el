@@ -294,10 +294,9 @@ NOTE: the function works perfectly on frame switch."
   "Toggle input method with message."
   (interactive)
   (toggle-input-method nil t)
-  (let ((im evil-input-method))
-    (if (null im)
-        (message "Back to normal!")
-      (message "%s" im))))
+  (if (null evil-input-method)
+      (message "Back to normal!")
+    (message "Ukrainian input method!")))
 
 (bind-key [remap toggle-input-method] 'serp/toggle-input-method)
 
