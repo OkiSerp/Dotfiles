@@ -296,10 +296,8 @@ NOTE: the function works perfectly on frame switch."
   (toggle-input-method nil t)
   (let ((im evil-input-method))
     (if (null im)
-        (message "Change input method to: US")
-      (progn
-        (setq im (upcase (substring im 0 2)))
-        (message "Change input method to: %s" im)))))
+        (message "Back to normal!")
+      (message "%s" im))))
 
 (bind-key [remap toggle-input-method] 'serp/toggle-input-method)
 
