@@ -175,8 +175,8 @@ NOTE: the function works perfectly on frame switch."
         org-appear-autoemphasis nil))
 
 (after! org
-  (setq org-superstar-headline-bullets-list '(10033)
-        org-superstar-item-bullet-alist '((43 . 10140) (45 . 10148))))
+  (setq org-superstar-headline-bullets-list '(9679)
+        org-superstar-item-bullet-alist '((43 . 10095) (45 . 10148))))
 
 (defun serp/browse-org-directory (&rest _)
   "Browse your `org-directory'."
