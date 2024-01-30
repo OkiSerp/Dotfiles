@@ -32,6 +32,9 @@ bind(n, "N", "Nzzzv")
 
 bind(n, "G", "Gzz")
 
+bind(n, "<C-u>", "<C-u>zz")
+bind(n, "<C-d>", "<C-d>zz")
+
 bind(n, "J", "mzJ`z")
 
 bind(nv, "'", "%")

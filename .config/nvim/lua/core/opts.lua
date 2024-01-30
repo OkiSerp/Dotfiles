@@ -8,8 +8,9 @@ vim.opt.clipboard:append("unnamedplus")
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+vim.opt.scroll = 15
 vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 8
+vim.opt.sidescrolloff = 12
 
 vim.opt.guicursor = ""
 
