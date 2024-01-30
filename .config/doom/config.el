@@ -290,7 +290,18 @@ NOTE: the function works perfectly on frame switch."
 
 (setq default-input-method "ukrainian-computer")
 
-(map! :leader :desc "Input method" "ti" 'toggle-input-method)
+(defun serp/toggle-input-method (&rest _)
+  "Toggle input method with message."
+  (interactive)
+  (toggle-input-method nil t)
+  (let ((im evil-input-method))
+    (if (null im)
+        (message "Change input method to: US")
+      (progn
+        (setq im (upcase (substring im 0 2)))
+        (message "Change input method to: %s" im)))))
+
+(bind-key [remap toggle-input-method] 'serp/toggle-input-method)
 
 (map! :leader (:prefix ("l" . "translate")))
 
