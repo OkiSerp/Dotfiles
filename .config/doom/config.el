@@ -7,6 +7,9 @@
 (add-to-list 'default-frame-alist '(width . 120))
 (add-to-list 'default-frame-alist '(height . 30))
 
+;; Hold `Alt/Meta' and press `RMB' to copy selection
+(bind-key [M-mouse-3] 'clipboard-kill-ring-save)
+
 ;; Fed up with confirmation?
 (setq confirm-kill-emacs nil)
 
