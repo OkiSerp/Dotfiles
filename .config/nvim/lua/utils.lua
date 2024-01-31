@@ -1,10 +1,5 @@
 local utils = {}
 
-utils.bind = function(mode, map, cmd, opts)
-    local opts = opts or {}
-    vim.keymap.set(mode, map, cmd, opts)
-end
-
 utils.togglewrap = function()
     if vim.opt.wrap:get() then
         vim.cmd("set nowrap")

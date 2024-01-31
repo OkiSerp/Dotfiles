@@ -1,25 +1,29 @@
 local utils = require("utils")
 
-local bind = utils.bind
-
 local n, v, i = "n", "v", "i"
 local nv, nvi = { n, v }, { n, v, i }
 
 local sil = { silent = true }
 
+local bind = vim.keymap.set
+
 bind(n, "<leader>tw", utils.togglewrap)
 bind(n, "<leader>tl", utils.togglenumber)
 bind(n, "<leader>ts", utils.togglespell)
 
-bind(nvi, "<M-q>", ":xa<Cr>")
-bind(nvi, "<M-Q>", ":qa!<Cr>")
+bind(n, "<leader>oe", vim.cmd.Explore)
 
-bind(nvi, "<M-s>", ":w<Cr>")
+bind(nvi, "<M-q>", vim.cmd.xall)
+bind(nvi, "<M-Q>", function()
+    vim.cmd(":qall!")
+end)
 
-bind(nv, "<leader>oe", ":Ex<Cr>")
+bind(nvi, "<M-s>", vim.cmd.write)
 
-bind(nvi, "<M-k>", ":bp<Cr>")
-bind(nvi, "<M-j>", ":bn<Cr>")
+bind(nvi, "<M-k>", vim.cmd.bprevious)
+bind(nvi, "<M-j>", vim.cmd.bnext)
+
+bind(nvi, "<M-B>", vim.cmd.bdelete)
 
 bind(v, "J", ":move '>+1<Cr>gv=gv", sil)
 bind(v, "K", ":move '<-2<Cr>gv=gv", sil)
