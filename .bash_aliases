@@ -18,6 +18,8 @@ alias du="/usr/bin/du -h"
 alias df="/usr/bin/df -h"
 alias free="/usr/bin/free -m"
 
+alias cls="/usr/bin/clear"
+
 alias vi="/usr/bin/nvim"
 alias vim="/usr/bin/nvim"
 
