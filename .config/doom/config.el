@@ -179,7 +179,7 @@ NOTE: the function works perfectly on frame switch."
 
 (after! org
   (setq org-superstar-headline-bullets-list '(9679)
-        org-superstar-item-bullet-alist '((43 . 8226) (45 . 9702))))
+        org-superstar-item-bullet-alist '((43 . 187) (45 . 8250))))
 
 (defun serp/browse-org-directory (&rest _)
   "Browse your `org-directory'."
