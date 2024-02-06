@@ -11,6 +11,9 @@ shopt -s histappend
 
 shopt -s autocd
 
+bind "set completion-ignore-case on"
+bind "set show-mode-in-prompt off"
+
 export LESSHISTFILE="/dev/null"
 
 export SUDO_EDITOR="$which(nvim)"
@@ -28,9 +31,6 @@ fi
 export DOOMDIR="$HOME/.config/doom"
 
 set -o vi
-
-bind "set completion-ignore-case on"
-bind "set show-mode-in-prompt off"
 
 RST="\\[\\033[00m\\]"
 RED="${RST}\\[\\033[01;31m\\]"
