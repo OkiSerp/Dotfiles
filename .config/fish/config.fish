@@ -37,10 +37,11 @@ alias ls "$(which lsd) --group-dirs first --icon never --color always"
 alias la "$(which lsd) --group-dirs first --icon never --color always -A"
 
 alias ll "$(which lsd) --group-dirs first --icon never --icon-theme fancy --color always \
-  --blocks permission,user,size,git,name -lA"
+--blocks permission,user,size,date,git,name -lA --date \"+%y/%m/%d\""
 
 alias lt "$(which lsd) --group-dirs first --icon never --icon-theme fancy --color always \
-  --blocks permission,user,size,git,name -lAX --tree -I .git -I node_modules"
+--blocks permission,user,size,date,git,name -lAX --date \"+%y/%m/%d\" \
+--tree -I .git -I node_modules"
 
 if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end
 
