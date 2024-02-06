@@ -13,9 +13,9 @@ shopt -s autocd
 
 export LESSHISTFILE="/dev/null"
 
-export SUDO_EDITOR="/usr/bin/nvim"
-export EDITOR="/usr/bin/nvim"
-export VISUAL="/usr/bin/nvim"
+export SUDO_EDITOR="$which(nvim)"
+export EDITOR="$which(nvim)"
+export VISUAL="$which(nvim)"
 
 if [ -f $HOME/.bash_aliases ]; then
     source $HOME/.bash_aliases
@@ -28,10 +28,6 @@ fi
 export DOOMDIR="$HOME/.config/doom"
 
 set -o vi
-
-bind -m vi-insert "\"\e-k\":previous-history"
-bind -m vi-insert "\"\e-j\":next-history"
-bind -m vi-insert "\"\C-l\":clear-screen"
 
 bind "set completion-ignore-case on"
 bind "set show-mode-in-prompt off"
