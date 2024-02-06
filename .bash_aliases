@@ -1,26 +1,38 @@
-alias ls="/usr/bin/ls --group-directories-first --color=always"
-alias la="/usr/bin/ls -A --group-directories-first --color=always"
+if [[ -x "$(command -v lsd)" ]]; then
+    alias ls="$(which lsd) --group-dirs first --icon never --color always"
+    alias la="$(which lsd) --group-dirs first --icon never --color always -A"
 
-alias ll="/usr/bin/ls -lAhGX --group-directories-first \
-    --time-style='+%y/%m/%d' --color=always"
+    alias ll="$(which lsd) --group-dirs first --icon never --icon-theme fancy --color always \
+        --blocks permission,user,size,date,git,name -lA --date \"+%y/%m/%d\""
 
-alias lt="/usr/bin/ls -lAhGXR -I .git --group-directories-first \
-    --time-style='+%y/%m/%d' --color=always"
+    alias lt="$(which lsd) --group-dirs first --icon never --icon-theme fancy --color always \
+        --blocks permission,user,size,date,git,name -lAX --date \"+%y/%m/%d\" \
+        --tree -I .git -I node_modules"
+else
+    alias ls="$(which ls) --group-directories-first --color=always"
+    alias la="$(which ls) -A --group-directories-first --color=always"
 
-alias grep="/usr/bin/grep --color=always"
+    alias ll="$(which ls) -lAhGX --group-directories-first \
+        --time-style='+%y/%m/%d' --color=always"
 
-alias head="/usr/bin/sed 11q"
+    alias lt="$(which ls) -lAhGXR -I .git --group-directories-first \
+        --time-style='+%y/%m/%d' --color=always"
+fi
 
-alias mv="/usr/bin/mv -i"
-alias cp="/usr/bin/cp -i"
+alias grep="$(which grep) --color=always"
 
-alias du="/usr/bin/du -h"
-alias df="/usr/bin/df -h"
-alias free="/usr/bin/free -m"
+alias head="$(which sed) 11q"
 
-alias cls="/usr/bin/clear"
+alias mv="$(which mv) -i"
+alias cp="$(which cp) -i"
 
-alias vi="/usr/bin/nvim"
-alias vim="/usr/bin/nvim"
+alias du="$(which du) -h"
+alias df="$(which df) -h"
+alias free="$(which free) -m"
 
-alias neofetch="/usr/bin/echo && /usr/bin/neofetch"
+alias cls="$(which clear)"
+
+alias vi="$(which nvim)"
+alias vim="$(which nvim)"
+
+alias neofetch="$(which echo) && $(which neofetch)"
