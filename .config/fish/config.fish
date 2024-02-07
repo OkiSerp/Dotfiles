@@ -37,7 +37,7 @@ alias ls "$(which lsd) --group-dirs first --icon never --color always"
 alias la "$(which lsd) --group-dirs first --icon never --color always -A"
 
 alias ll "$(which lsd) --group-dirs first --icon never --icon-theme fancy --color always \
---blocks permission,user,size,date,git,name -lA --date \"+%y/%m/%d\""
+--blocks permission,user,size,date,git,name -lA --date \"+%y/%m/%d\" --header"
 
 alias lt "$(which lsd) --group-dirs first --icon never --icon-theme fancy --color always \
 --blocks permission,user,size,date,git,name -lAX --date \"+%y/%m/%d\" \
