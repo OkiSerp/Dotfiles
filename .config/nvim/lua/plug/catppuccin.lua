@@ -5,13 +5,15 @@ local plug = {
     lazy = false,
 }
 
-local intg = {
+local integ = {
     treesitter = true,
     vim_sneak = true,
     telescope = {
         enabled = true,
     },
     mason = true,
+    neogit = true,
+    gitsigns = true,
 }
 
 local opts = {
@@ -47,7 +49,7 @@ local opts = {
     },
     color_overrides = {},
     custom_highlights = {},
-    integrations = intg,
+    integrations = integ,
 }
 
 plug.init = function()
