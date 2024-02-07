@@ -26,3 +26,5 @@ local opts = {
 }
 
 require("lazy").setup("plug", opts)
+
+vim.keymap.set("n", "<leader>hl", vim.cmd.Lazy)
