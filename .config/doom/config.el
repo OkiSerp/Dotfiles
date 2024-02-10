@@ -4,8 +4,8 @@
 ;; sync' after modifying this file!
 
 ;; Frames seem to be a bit small. So we're going to fix it:
-(add-to-list 'default-frame-alist '(width . 120))
-(add-to-list 'default-frame-alist '(height . 30))
+(add-to-list 'default-frame-alist '(width . 126))
+(add-to-list 'default-frame-alist '(height . 34))
 
 ;; Hold `Alt/Meta' and press `RMB' to copy selection
 (bind-key [M-mouse-3] 'clipboard-kill-ring-save)
