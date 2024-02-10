@@ -115,22 +115,7 @@ NOTE: the function works perfectly on frame switch."
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function.
-(use-package! catppuccin-theme
-  :custom
-  (catppuccin-flavor 'mocha)
-  :config
-  (load-theme 'catppuccin t))
-
-(after! catppuccin-theme
-  (custom-set-faces!
-    `(show-paren-match
-      :background ,(catppuccin-get-color 'surface1))))
-
-(after! (:and org catppuccin-theme)
-  (custom-set-faces!
-    `(org-todo :foreground ,(catppuccin-get-color 'teal))
-    `(org-table :foreground ,(catppuccin-get-color 'overlay2))
-    `(org-verbatim :foreground ,(catppuccin-get-color 'yellow))))
+(setq doom-theme 'doom-one)
 
 (add-hook! '(prog-mode-hook conf-mode-hook)
   (face-remap-add-relative 'font-lock-comment-face :slant 'italic))
