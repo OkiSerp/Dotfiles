@@ -33,6 +33,8 @@ alias cls="$(which clear)"
 
 alias neofetch "$(which echo) && $(which neofetch)"
 
+fish_add_path $HOME/.cargo/bin
+
 alias ls "$(which lsd) --group-dirs first --icon never --color always"
 alias la "$(which lsd) --group-dirs first --icon never --color always -A"
 
