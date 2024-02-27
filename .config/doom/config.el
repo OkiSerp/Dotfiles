@@ -3,6 +3,11 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+(map! :leader :desc "Browse private config"
+      "fp" 'doom/open-private-config
+      :desc "Find file in private config"
+      "fP" 'doom/find-file-in-private-config)
+
 ;; Frames seem to be a bit small. So we're going to fix it:
 (add-to-list 'default-frame-alist '(width . 126))
 (add-to-list 'default-frame-alist '(height . 34))
