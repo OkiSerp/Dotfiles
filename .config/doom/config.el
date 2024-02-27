@@ -152,7 +152,7 @@ NOTE: the function works perfectly on frame switch."
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Org/")
+(setq org-directory "~/.orgfiles/")
 
 (after! org
   (setq org-log-done t
