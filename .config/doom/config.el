@@ -295,6 +295,9 @@ NOTE: the function works perfectly on frame switch."
 (map! :leader (:prefix ("l" . "translate")))
 
 (use-package! google-translate
+  :init
+  (setq google-translate-preferable-input-methods-alist
+        '((nil) (ukrainian-computer . ("uk" "ru"))))
   :config
   (setq google-translate-default-source-language "en"
         google-translate-default-target-language "uk"
@@ -302,27 +305,30 @@ NOTE: the function works perfectly on frame switch."
         google-translate-output-destination 'help
         google-translate-backend-method 'curl
         google-translate-show-phonetic t
-        google-translate-display-translation-phonetic nil))
+        google-translate-display-translation-phonetic nil
+        google-translate-input-method-auto-toggling t))
 
 (after! google-translate
   (map! :leader :desc "Translate buffer"
         "lb" 'google-translate-buffer)
   (map! :leader :desc "Translate at point"
         "lw" 'google-translate-at-point)
-  (map! :leader :desc "Translate at point reverse"
-        "lW" 'google-translate-at-point-reverse)
   (map! :leader :desc "Translate smooth"
         "ls" 'google-translate-smooth-translate)
   (map! :leader :desc "Translate query"
-        "lq" 'google-translate-query-translate)
-  (map! :leader :desc "Translate query reverse"
-        "lQ" 'google-translate-query-translate-reverse))
+        "lq" 'google-translate-query-translate))
 
 (after! google-translate
-  (map! :leader :desc "Change source lang to ru" "lr"
-        (cmd! (setq google-translate-default-target-language "ru")))
-  (map! :leader :desc "Change source lang to uk" "lu"
-        (cmd! (setq google-translate-default-target-language "uk"))))
+  (map! :leader :desc "Translate at point reverse"
+        "lW" (cmd! (setq google-translate-show-phonetic nil)
+                   (google-translate-at-point-reverse)
+                   (setq google-translate-show-phonetic t))))
+
+(after! google-translate
+  (map! :leader :desc "Translate query reverse"
+        "lQ" (cmd! (setq google-translate-show-phonetic nil)
+                   (google-translate-query-translate-reverse)
+                   (setq google-translate-show-phonetic t))))
 
 (defun serp/google-translate-from-clipboard (&rest _)
   "Translate text from clipboard by using `google-translate' package."
@@ -348,7 +354,7 @@ NOTE: the function works perfectly on frame switch."
       (cmd! (+lookup/online
              (doom-thing-at-point-or-region) "Cambridge dictionary")))
 
-(map! :leader :desc "Cambridge dictionary from CB" "lC"
+(map! :leader :desc "Cambridge dictionary from clipboard" "lC"
       (cmd! (+lookup/online
              (gui-get-selection 'CLIPBOARD) "Cambridge dictionary")))
 
