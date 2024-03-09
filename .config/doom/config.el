@@ -10,10 +10,10 @@
       "fP" 'doom/find-file-in-private-config)
 
 ;; Frames seem to be a bit small. So we're going to fix it:
-(add-to-list 'default-frame-alist '(width . 120))
+(add-to-list 'default-frame-alist '(width . 110))
 (add-to-list 'default-frame-alist '(height . 40))
 
-(setq frame-title-format "Doom Emacs")
+(setq frame-title-format nil)
 
 ;; Fed up with confirmation?
 (setq confirm-kill-emacs nil)
