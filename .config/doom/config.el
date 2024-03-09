@@ -292,16 +292,6 @@ NOTE: the function works perfectly on frame switch."
 
 (setq default-input-method "ukrainian-computer")
 
-(defun serp/toggle-input-method (&rest _)
-  "Toggle input method with message."
-  (interactive)
-  (toggle-input-method nil t)
-  (if (null evil-input-method)
-      (message "Back to normal!")
-    (message "Ukrainian input method!")))
-
-(bind-key [remap toggle-input-method] 'serp/toggle-input-method)
-
 (map! :leader (:prefix ("l" . "translate")))
 
 (use-package! google-translate
