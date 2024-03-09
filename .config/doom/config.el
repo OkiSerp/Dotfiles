@@ -249,6 +249,9 @@ NOTE: the function works perfectly on frame switch."
 (after! evil-snipe
   (setq evil-snipe-scope 'visible))
 
+(map! "M-s" 'save-buffer
+      "M-q" 'kill-current-buffer)
+
 ;; Make `M-j/k' keys your friend.
 (map! :map vertico-map
       "M-k" 'vertico-previous
@@ -326,10 +329,6 @@ NOTE: the function works perfectly on frame switch."
         "lq" 'google-translate-query-translate)
   (map! :leader :desc "Translate query reverse"
         "lQ" 'google-translate-query-translate-reverse))
-
-(after! google-translate
-  (map! "M-p" 'google-translate-query-translate
-        "M-P" 'google-translate-query-translate-reverse))
 
 (after! google-translate
   (map! :leader :desc "Change source lang to ru" "lr"
