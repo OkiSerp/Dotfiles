@@ -326,6 +326,10 @@ NOTE: the function works perfectly on frame switch."
         "lQ" 'google-translate-query-translate-reverse))
 
 (after! google-translate
+  (map! "M-p" 'google-translate-query-translate
+        "M-P" 'google-translate-query-translate-reverse))
+
+(after! google-translate
   (map! :leader :desc "Change source lang to ru" "lr"
         (cmd! (setq google-translate-default-target-language "ru")))
   (map! :leader :desc "Change source lang to uk" "lu"
