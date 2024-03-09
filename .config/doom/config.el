@@ -9,8 +9,10 @@
       "fP" 'doom/find-file-in-private-config)
 
 ;; Frames seem to be a bit small. So we're going to fix it:
-(add-to-list 'default-frame-alist '(width . 126))
-(add-to-list 'default-frame-alist '(height . 34))
+(add-to-list 'default-frame-alist '(width . 120))
+(add-to-list 'default-frame-alist '(height . 40))
+
+(setq frame-title-format "Doom Emacs")
 
 ;; Hold `Alt/Meta' and press `RMB' to copy selection
 (bind-key [M-mouse-3] 'clipboard-kill-ring-save)
@@ -107,8 +109,8 @@ NOTE: the function works perfectly on frame switch."
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
 ;; refresh your font settings. If Emacs still can't find your font, it likely
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
-(let ((size 18)
-      (font "JetBrains Mono"))
+(let ((size 20)
+      (font "mononoki"))
   (when (doom-font-exists-p font)
     (setq doom-font (font-spec :name font :size size)
           doom-big-font (font-spec :name font :size (+ 6 size)))))
@@ -168,7 +170,7 @@ NOTE: the function works perfectly on frame switch."
         org-appear-autoemphasis nil))
 
 (after! org
-  (setq org-superstar-headline-bullets-list '(9679)
+  (setq org-superstar-headline-bullets-list '(42)
         org-superstar-item-bullet-alist '((43 . 187) (45 . 8250))))
 
 (defun serp/browse-org-directory (&rest _)
