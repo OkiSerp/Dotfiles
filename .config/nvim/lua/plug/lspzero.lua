@@ -72,8 +72,6 @@ plug.config = function()
             },
         },
     })
-
-    lspconfig.clangd.setup({})
 end
 
 return plug
