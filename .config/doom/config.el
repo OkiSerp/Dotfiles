@@ -3,7 +3,9 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-(map! :leader :desc "Browse private config"
+;; Swap maps for private config functions
+(map! :leader
+      :desc "Browse private config"
       "fp" 'doom/open-private-config
       :desc "Find file in private config"
       "fP" 'doom/find-file-in-private-config)
