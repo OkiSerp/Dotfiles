@@ -337,22 +337,6 @@ NOTE: the function works perfectly on frame switch."
       :leader :desc "Translate from clipboard"
       "lf" 'serp/google-translate-from-clipboard)
 
-(defun serp/google-translate-buffer-reverse (&rest _)
-  "Translate current buffer, but switch target and source languages
-by using `google-translate' package."
-  (interactive)
-  (let ((source google-translate-default-source-language)
-        (target google-translate-default-target-language))
-    (setq google-translate-default-source-language target
-          google-translate-default-target-language source)
-    (google-translate-buffer)
-    (setq google-translate-default-source-language source
-          google-translate-default-target-language target)))
-
-(map! :after google-translate
-      :leader :desc "Translate buffer reverse"
-      "lB" 'serp/google-translate-buffer-reverse)
-
 (dolist
     (provider
      '(("Cambridge dictionary"
