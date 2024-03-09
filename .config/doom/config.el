@@ -363,7 +363,8 @@ by using `google-translate' package."
 (dolist
     (provider
      '(("Cambridge dictionary"
-        "https://dictionary.cambridge.org/dictionary/english/%s")))
+        "https://dictionary.cambridge.org/dictionary/english/%s")
+       ("Slovnyk" "https://slovnyk.ua/index.php?swrd=%s")))
   (add-to-list '+lookup-provider-url-alist provider))
 
 (map! :leader :desc "Cambridge dictionary" "lc"
@@ -373,6 +374,10 @@ by using `google-translate' package."
 (map! :leader :desc "Cambridge dictionary from CB" "lC"
       (cmd! (+lookup/online
              (gui-get-selection 'CLIPBOARD) "Cambridge dictionary")))
+
+(map! :leader :desc "Slovnyk" "lv"
+      (cmd! (+lookup/online
+             (doom-thing-at-point-or-region) "Slovnyk")))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
