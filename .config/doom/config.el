@@ -3,8 +3,7 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-;; Swap maps for private config functions
-(map! :leader
+(map! :leader ; Swap maps for private config functions
       :desc "Browse private config"
       "fp" 'doom/open-private-config
       :desc "Find file in private config"
@@ -15,9 +14,6 @@
 (add-to-list 'default-frame-alist '(height . 40))
 
 (setq frame-title-format "Doom Emacs")
-
-;; Hold `Alt/Meta' and press `RMB' to copy selection
-(bind-key [M-mouse-3] 'clipboard-kill-ring-save)
 
 ;; Fed up with confirmation?
 (setq confirm-kill-emacs nil)
