@@ -297,7 +297,7 @@ NOTE: the function works perfectly on frame switch."
 (use-package! google-translate
   :init
   (setq google-translate-preferable-input-methods-alist
-        '((nil) (ukrainian-computer . ("uk" "ru"))))
+        `((nil) (,default-input-method . ("uk" "ru"))))
   :config
   (setq google-translate-default-source-language "en"
         google-translate-default-target-language "uk"
