@@ -299,7 +299,10 @@ NOTE: the function works perfectly on frame switch."
   (setq google-translate-preferable-input-methods-alist
         `((nil) (,default-input-method . ("uk" "ru"))))
   :config
-  (setq google-translate-default-source-language "en"
+  (set-face-attribute
+   'google-translate-listen-button-face nil :height 1.0)
+  (setq google-translate-listen-button-label "[Play]"
+        google-translate-default-source-language "en"
         google-translate-default-target-language "uk"
         google-translate-pop-up-buffer-set-focus t
         google-translate-output-destination 'help
@@ -318,6 +321,12 @@ NOTE: the function works perfectly on frame switch."
         "ls" 'google-translate-smooth-translate)
   (map! :leader :desc "Translate query"
         "lq" 'google-translate-query-translate))
+
+(map! :after google-translate
+      :leader :desc "Play translation"
+      "le" (cmd! (google-translate-listen-translation
+                  google-translate-default-source-language
+                  (doom-thing-at-point-or-region))))
 
 (after! google-translate
   (map! :leader :desc "Translate at point reverse"
@@ -354,10 +363,6 @@ NOTE: the function works perfectly on frame switch."
 (map! :leader :desc "Cambridge dictionary" "lc"
       (cmd! (+lookup/online
              (doom-thing-at-point-or-region) "Cambridge dictionary")))
-
-(map! :leader :desc "Cambridge dictionary from clipboard" "lC"
-      (cmd! (+lookup/online
-             (gui-get-selection 'CLIPBOARD) "Cambridge dictionary")))
 
 (map! :leader :desc "Slovnyk" "lv"
       (cmd! (+lookup/online
