@@ -290,11 +290,9 @@ NOTE: the function works perfectly on frame switch."
 
 (map! :leader :desc "RSS" "oe" 'elfeed)
 
-(setq default-input-method "ukrainian-computer")
-
-(map! :leader (:prefix ("l" . "translate")))
-
 (use-package! google-translate
+  :custom
+  (default-input-method "ukrainian-computer")
   :init
   (setq google-translate-preferable-input-methods-alist
         `((nil) (,default-input-method . ("uk" "ru"))))
@@ -311,6 +309,8 @@ NOTE: the function works perfectly on frame switch."
         google-translate-show-phonetic t
         google-translate-display-translation-phonetic nil
         google-translate-input-method-auto-toggling t))
+
+(map! :leader (:prefix ("l" . "translate")))
 
 (after! google-translate
   (map! :leader :desc "Translate buffer"
