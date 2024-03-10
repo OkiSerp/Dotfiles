@@ -160,8 +160,8 @@ NOTE: the function works perfectly on frame switch."
 (setq org-directory "~/.orgfiles/")
 
 (after! org
-  (setq org-log-done t
-        org-ellipsis " …"
+  (setq org-ellipsis " …"
+        org-log-done 'time
         org-startup-folded 'fold
         org-image-actual-width nil
         org-hide-emphasis-markers t
