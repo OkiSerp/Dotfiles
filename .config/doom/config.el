@@ -303,6 +303,7 @@ NOTE: the function works perfectly on frame switch."
         google-translate-default-target-language "uk"
         google-translate-pop-up-buffer-set-focus t
         google-translate-output-destination 'help
+        google-translate-listen-program "mplayer"
         google-translate-backend-method 'curl
         google-translate-show-phonetic t
         google-translate-display-translation-phonetic nil
