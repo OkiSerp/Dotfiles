@@ -3,19 +3,11 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-(map! :leader ; Swap maps for private config functions
-      :desc "Browse private config"
-      "fp" 'doom/open-private-config
-      :desc "Find file in private config"
-      "fP" 'doom/find-file-in-private-config)
-
-;; Frames seem to be a bit small. So we're going to fix it:
 (add-to-list 'default-frame-alist '(width . 110))
 (add-to-list 'default-frame-alist '(height . 40))
 
 (setq frame-title-format nil)
 
-;; Fed up with confirmation?
 (setq confirm-kill-emacs nil)
 
 (defun serp/delete-frame (&rest _)
@@ -27,7 +19,6 @@
 
 (bind-key [remap delete-frame] 'serp/delete-frame)
 
-;; Can't leave without blurred frames. Not true…
 (defun serp/add-blur-behind-x-frame (&optional frame &rest _)
   "Set blur behind `x' frame.\n
 If FRAME in nil, use current frame."
@@ -125,7 +116,6 @@ NOTE: the function works perfectly on frame switch."
 (add-hook! '(prog-mode-hook conf-mode-hook)
   (face-remap-add-relative 'font-lock-comment-face :slant 'italic))
 
-;; Get rid of bloated dashboard.
 (defun serp/doom-dashboard-widget-quote ()
   (when doom-init-time
     (insert
@@ -148,7 +138,6 @@ NOTE: the function works perfectly on frame switch."
 (setq display-line-numbers-type nil
       scroll-margin 7)
 
-;; You should care about indentations!
 (setq-default tab-width 2
               indent-tabs-mode nil)
 
@@ -227,14 +216,12 @@ NOTE: the function works perfectly on frame switch."
   (evil-set-register ?r [?v ?i ?w escape ?a ?_ escape ?b ?i ?_ escape ?w])
   (evil-set-register ?f [?v ?i ?w escape ?a ?+ escape ?b ?i ?+ escape ?w]))
 
-;; Make sure to turn off spell checker after opening my rhymes.
 (add-hook! 'find-file-hook
   (let ((wbuf (expand-file-name "verses.org" org-directory))
         (cbuf (buffer-file-name (current-buffer))))
     (when (and (string-equal-ignore-case wbuf cbuf) spell-fu-mode)
       (spell-fu-mode 0))))
 
-;; When you almost `evil' by default.
 (use-package! evil
   :init
   (setq evil-disable-insert-state-bindings t
@@ -247,10 +234,15 @@ NOTE: the function works perfectly on frame switch."
 (after! evil-snipe
   (setq evil-snipe-scope 'visible))
 
+(map! :leader
+      :desc "Browse private config"
+      "fp" 'doom/open-private-config
+      :desc "Find file in private config"
+      "fP" 'doom/find-file-in-private-config)
+
 (map! "M-s" 'save-buffer
       "M-q" 'kill-current-buffer)
 
-;; Make `M-j/k' keys your friend.
 (map! :map vertico-map
       "M-k" 'vertico-previous
       "M-j" 'vertico-next)
@@ -267,7 +259,6 @@ NOTE: the function works perfectly on frame switch."
       :nvi "M-j" 'next-buffer
       :nvi "M-i" 'ibuffer)
 
-;; Create `dired' prefix map.
 (map! :leader
       (:prefix ("d" . "dired")
        :n "j" 'dired-jump
@@ -277,12 +268,10 @@ NOTE: the function works perfectly on frame switch."
       :n "h" 'dired-up-directory
       :n "l" 'dired-find-alternate-file)
 
-;; Be careful with your trash.
 (setq trash-directory "~/.local/share/Trash/files/"
       delete-by-moving-to-trash t
       magit-delete-by-moving-to-trash t)
 
-;; That's how neck-beards communicate.
 (use-package! elfeed
   :hook (elfeed-search-mode . elfeed-update)
   :config
