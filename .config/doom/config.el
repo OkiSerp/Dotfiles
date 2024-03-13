@@ -135,7 +135,9 @@ NOTE: the function works perfectly on frame switch."
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type nil
+(setq display-line-numbers-type nil)
+
+(setq hscroll-margin 13
       scroll-margin 7)
 
 (setq-default tab-width 2
@@ -267,6 +269,8 @@ NOTE: the function works perfectly on frame switch."
 (map! :map dired-mode-map
       :n "h" 'dired-up-directory
       :n "l" 'dired-find-alternate-file)
+
+(map! :leader "w M-o" 'delete-other-windows)
 
 (setq trash-directory "~/.local/share/Trash/files/"
       delete-by-moving-to-trash t
