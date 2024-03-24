@@ -60,3 +60,4 @@ function __history_previous_command_arguments
 end
 
 zoxide init fish | source
+alias cd "__zoxide_z"
