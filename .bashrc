@@ -16,9 +16,11 @@ bind "set show-mode-in-prompt off"
 
 export LESSHISTFILE="/dev/null"
 
-export SUDO_EDITOR="$which(nvim)"
-export EDITOR="$which(nvim)"
-export VISUAL="$which(nvim)"
+export SUDO_EDITOR="$(which nvim)"
+export EDITOR="$(which nvim)"
+export VISUAL="$(which nvim)"
+
+set -o vi
 
 if [ -f $HOME/.bash_aliases ]; then
     source $HOME/.bash_aliases
@@ -29,8 +31,6 @@ if [[ -d "$HOME/.config/emacs/bin" ]] ; then
 fi
 
 export DOOMDIR="$HOME/.config/doom"
-
-set -o vi
 
 RST="\\[\\033[00m\\]"
 RED="${RST}\\[\\033[01;31m\\]"
@@ -43,3 +43,5 @@ PGB="\$(git branch 2> /dev/null | sed -e \
     '/^[^*]/d' -e 's/* \(.*\)/ ${BLU}(${GRN}\1${BLU})/')"
 
 export PS1="${BLU}[${PUR}\u${RED}@${BLU}\h ${YLW}\W${RST}${BLU}]${PGB}${RED} » ${RST}"
+
+eval "$(zoxide init bash)"
