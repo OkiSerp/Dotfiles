@@ -98,8 +98,8 @@ NOTE: the function works perfectly on frame switch."
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
 ;; refresh your font settings. If Emacs still can't find your font, it likely
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
-(let ((size 20)
-      (font "mononoki"))
+(let ((size 18)
+      (font "JetBrains Mono"))
   (when (doom-font-exists-p font)
     (setq doom-font (font-spec :name font :size size)
           doom-big-font (font-spec :name font :size (+ 6 size)))))
@@ -305,6 +305,12 @@ NOTE: the function works perfectly on frame switch."
         google-translate-show-phonetic t
         google-translate-display-translation-phonetic nil
         google-translate-input-method-auto-toggling t))
+
+(when (eql google-translate-output-destination 'help)
+  (map! :after google-translate
+        :map help-mode-map
+        :n "p" (cmd! (forward-button 1) (push-button))
+        :n "P" (cmd! (backward-button 1) (push-button))))
 
 (map! :leader (:prefix ("l" . "translate")))
 
