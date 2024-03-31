@@ -137,6 +137,13 @@ NOTE: the function works perfectly on frame switch."
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type nil)
 
+;; (pixel-scroll-precision-mode 1)
+
+(setq mouse-wheel-progressive-speed nil
+      mouse-wheel-follow-mouse t
+      mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
+      mouse-wheel-scroll-amount-horizontal 2)
+
 (setq hscroll-margin 13
       scroll-margin 7)
 
