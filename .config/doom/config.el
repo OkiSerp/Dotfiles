@@ -373,15 +373,17 @@ NOTE: the function works perfectly on frame switch."
       (cmd! (+lookup/online
              (doom-thing-at-point-or-region) "Cambridge dictionary")))
 
-(defun serp/lookup-online (&rest _)
+(defun serp/lookup-slovnyk (&rest _)
   (interactive)
   (minibuffer-with-setup-hook
       (lambda (&rest _)
         (set-input-method default-input-method))
-    (+lookup/online (read-string "Look up definition ⇒ ") "Slovnyk")))
+    (browse-url-default-browser
+     (format "https://slovnyk.ua/index.php?swrd=%s"
+             (read-string "Look up definition ⇒ ")))))
 
 (map! :leader :desc "Look up Slovnyk"
-      "lv" 'serp/lookup-online)
+      "lv" 'serp/lookup-slovnyk)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
