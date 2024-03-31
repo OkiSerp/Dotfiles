@@ -380,7 +380,7 @@ NOTE: the function works perfectly on frame switch."
         (set-input-method default-input-method))
     (browse-url-default-browser
      (format "https://slovnyk.ua/index.php?swrd=%s"
-             (read-string "Look up definition ⇒ ")))))
+             (read-string "Slovnyk ⇒ ")))))
 
 (map! :leader :desc "Look up Slovnyk"
       "lv" 'serp/lookup-slovnyk)
