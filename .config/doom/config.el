@@ -378,7 +378,7 @@ NOTE: the function works perfectly on frame switch."
   (minibuffer-with-setup-hook
       (lambda (&rest _)
         (set-input-method default-input-method))
-    (+lookup/online (read-string "Find this: ") "Slovnyk")))
+    (+lookup/online (read-string "Тлумачення ⇒ ") "Slovnyk")))
 
 (map! :leader :desc "Look up Slovnyk"
       "lv" 'serp/lookup-online)
