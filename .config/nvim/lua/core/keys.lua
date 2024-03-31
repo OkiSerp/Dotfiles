@@ -18,6 +18,8 @@ bind(nvi, "<M-Q>", function()
     vim.cmd(":qall!")
 end)
 
+bind(nvi, "<M-e>", vim.cmd.bdelete)
+
 bind(nvi, "<M-s>", vim.cmd.write)
 
 bind(nvi, "<M-k>", vim.cmd.bprevious)
