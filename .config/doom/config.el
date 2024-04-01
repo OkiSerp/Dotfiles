@@ -330,7 +330,7 @@ NOTE: the function works perfectly on frame switch."
   (let ((source google-translate-default-source-language)
         (target google-translate-default-target-language)
         (output google-translate-output-destination)
-        (text (gui-get-selection 'CLIPBOARD)))
+        (text (gui-get-selection 'CLIPBOARD 'TEXT)))
     (google-translate-translate source target text output)))
 
 (map! :after google-translate
