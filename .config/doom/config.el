@@ -294,12 +294,6 @@ NOTE: the function works perfectly on frame switch."
         google-translate-display-translation-phonetic nil
         google-translate-input-method-auto-toggling t))
 
-(map! :after google-translate
-      :when (eql google-translate-output-destination 'help)
-      :map help-mode-map
-      :n "p" (cmd! (forward-button 1) (push-button))
-      :n "P" (cmd! (backward-button 1) (push-button)))
-
 (map! :leader (:prefix ("l" . "translate")))
 
 (after! google-translate
