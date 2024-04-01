@@ -225,12 +225,6 @@ NOTE: the function works perfectly on frame switch."
   (evil-set-register ?r [?v ?i ?w escape ?a ?_ escape ?b ?i ?_ escape ?w])
   (evil-set-register ?f [?v ?i ?w escape ?a ?+ escape ?b ?i ?+ escape ?w]))
 
-(add-hook! 'find-file-hook
-  (let ((wbuf (expand-file-name "verses.org" org-directory))
-        (cbuf (buffer-file-name (current-buffer))))
-    (when (and (string-equal-ignore-case wbuf cbuf) spell-fu-mode)
-      (spell-fu-mode 0))))
-
 (use-package! evil
   :init
   (setq evil-disable-insert-state-bindings t
