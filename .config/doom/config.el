@@ -283,13 +283,6 @@ NOTE: the function works perfectly on frame switch."
       delete-by-moving-to-trash t
       magit-delete-by-moving-to-trash t)
 
-(use-package! elfeed
-  :hook (elfeed-search-mode . elfeed-update)
-  :config
-  (setq elfeed-search-filter "@4-month-ago +unread"))
-
-(map! :leader :desc "RSS" "oe" 'elfeed)
-
 (setq default-input-method "ukrainian-computer")
 
 (map! :leader :desc "Toggle input method"
