@@ -354,11 +354,12 @@ NOTE: the function works perfectly on frame switch."
       (cmd! (+lookup/online
              (doom-thing-at-point-or-region) "Cambridge dictionary")))
 
-(defun serp/lookup (url &optional prompt im &rest _)
+(defun serp/lookup (url &optional query prompt im &rest _)
   "Look up query via prompt using minibuffer.\n
 A search URL (needs on '%s' to substitute with an url encoded query).
+If QUERY is nil, than use minibuffer prompt; contrary use thing at point.
 If PROMPT is passed, use it instead of default value.
-Third option IM is input method to be used. If true than use
+Third option IM is input method to be used. If true, than use
 `default-input-method', but when it's nil, do nothing.\n
 FIXME: Can't execute via `M-x'."
   (interactive)
@@ -369,12 +370,13 @@ FIXME: Can't execute via `M-x'."
           (unless (null im)
             (set-input-method im)))
       (browse-url-default-browser
-       (format url (read-string prompt))))))
+       (format url (cond (query (doom-thing-at-point-or-region))
+                         (t (read-string prompt))))))))
 
 (map! :leader :desc "Look up Slovnyk"
       "lv" (cmd! (serp/lookup
                   "https://slovnyk.ua/index.php?swrd=%s"
-                  "Search for ⇒ " t)))
+                  nil "Search for ⇒ " t)))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
