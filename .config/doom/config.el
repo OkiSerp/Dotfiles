@@ -219,12 +219,6 @@ NOTE: the function works perfectly on frame switch."
       "M-RET" 'serp/org-meta-return
       :n "RET" '+org/dwim-at-point)
 
-(after! org
-  (evil-set-register ?w [?A ?* escape ?^ ?w ?i ?* escape ?j])
-  (evil-set-register ?e [?A ?/ escape ?^ ?w ?i ?/ escape ?j])
-  (evil-set-register ?r [?v ?i ?w escape ?a ?_ escape ?b ?i ?_ escape ?w])
-  (evil-set-register ?f [?v ?i ?w escape ?a ?+ escape ?b ?i ?+ escape ?w]))
-
 (use-package! evil
   :init
   (setq evil-disable-insert-state-bindings t
