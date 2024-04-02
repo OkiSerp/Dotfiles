@@ -276,6 +276,12 @@ NOTE: the function works perfectly on frame switch."
 (map! :leader :desc "Toggle input method"
       "ti" 'toggle-input-method)
 
+(when (not (modulep! +flyspell))
+  (add-hook! 'input-method-activate-hook
+    (spell-fu-mode 0))
+  (add-hook! 'input-method-deactivate-hook
+    (spell-fu-mode 1)))
+
 (use-package! google-translate
   :init
   (setq google-translate-preferable-input-methods-alist
