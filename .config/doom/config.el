@@ -273,14 +273,9 @@ NOTE: the function works perfectly on frame switch."
 
 (setq default-input-method "ukrainian-computer")
 
-(map! :leader :desc "Toggle input method"
-      "ti" 'toggle-input-method)
-
-(when (not (modulep! +flyspell))
+(when (not (modulep! :checkers +flyspell))
   (add-hook! 'input-method-activate-hook
-    (spell-fu-mode 0))
-  (add-hook! 'input-method-deactivate-hook
-    (spell-fu-mode 1)))
+    (spell-fu-mode 0)))
 
 (use-package! google-translate
   :init
@@ -300,37 +295,7 @@ NOTE: the function works perfectly on frame switch."
         google-translate-display-translation-phonetic nil
         google-translate-input-method-auto-toggling t))
 
-(map! :leader (:prefix ("l" . "translate")))
-
-(after! google-translate
-  (map! :leader :desc "Translate buffer"
-        "lb" 'google-translate-buffer)
-  (map! :leader :desc "Translate at point"
-        "lw" 'google-translate-at-point)
-  (map! :leader :desc "Translate smooth"
-        "ls" 'google-translate-smooth-translate)
-  (map! :leader :desc "Translate query"
-        "lq" 'google-translate-query-translate))
-
-(map! :after google-translate
-      :leader :desc "Play translation"
-      "le" (cmd! (google-translate-listen-translation
-                  google-translate-default-source-language
-                  (doom-thing-at-point-or-region))))
-
-(after! google-translate
-  (map! :leader :desc "Translate at point reverse"
-        "lW" (cmd! (setq google-translate-show-phonetic nil)
-                   (google-translate-at-point-reverse)
-                   (setq google-translate-show-phonetic t))))
-
-(after! google-translate
-  (map! :leader :desc "Translate query reverse"
-        "lQ" (cmd! (setq google-translate-show-phonetic nil)
-                   (google-translate-query-translate-reverse)
-                   (setq google-translate-show-phonetic t))))
-
-(defun serp/google-translate-from-clipboard (&rest _)
+(defun serp/google-translate-clipboard (&rest _)
   "Translate text from clipboard by using `google-translate' package."
   (interactive)
   (let ((source google-translate-default-source-language)
@@ -339,9 +304,26 @@ NOTE: the function works perfectly on frame switch."
         (text (gui-get-selection 'CLIPBOARD 'TEXT)))
     (google-translate-translate source target text output)))
 
+(defun serp/google-translate-query-reverse (&rest _)
+  "Like `google-translate-query-translate-reverse', but don't show phonetic."
+  (interactive)
+  (setq google-translate-show-phonetic nil)
+  (google-translate-query-translate-reverse)
+  (setq google-translate-show-phonetic t))
+
 (map! :after google-translate
-      :leader :desc "Translate from clipboard"
-      "lf" 'serp/google-translate-from-clipboard)
+      :leader
+      (:prefix ("l" . "translate")
+       :desc "Translate at point"
+       "lw" 'google-translate-at-point
+       :desc "Translate query"
+       "lq" 'google-translate-query-translate
+       :desc "Translate smooth"
+       "ls" 'google-translate-smooth-translate
+       :desc "Translate clipboard"
+       "lf" 'serp/google-translate-clipboard
+       :desc "Translate query reverse"
+       "le" 'serp/google-translate-query-reverse))
 
 (dolist
     (provider
@@ -349,10 +331,6 @@ NOTE: the function works perfectly on frame switch."
         "https://dictionary.cambridge.org/dictionary/english/%s")
        ("Slovnyk" "https://slovnyk.ua/index.php?swrd=%s")))
   (add-to-list '+lookup-provider-url-alist provider))
-
-(map! :leader :desc "Cambridge dictionary" "lc"
-      (cmd! (+lookup/online
-             (doom-thing-at-point-or-region) "Cambridge dictionary")))
 
 (defun serp/lookup (url &optional query prompt im &rest _)
   "Look up query via prompt using minibuffer.\n
@@ -363,7 +341,7 @@ Third option IM is input method to be used. If true, than use
 `default-input-method', but when it's nil, do nothing.\n
 FIXME: Can't execute via `M-x'."
   (interactive)
-  (let ((prompt (cond (prompt) ("Search for » ")))
+  (let ((prompt (cond (prompt) ("Search for: ")))
         (im (cond ((stringp im) im) ((eql im t) default-input-method))))
     (minibuffer-with-setup-hook
         (lambda (&rest _)
@@ -375,8 +353,7 @@ FIXME: Can't execute via `M-x'."
 
 (map! :leader :desc "Look up Slovnyk"
       "lv" (cmd! (serp/lookup
-                  "https://slovnyk.ua/index.php?swrd=%s"
-                  nil "Search for ⇒ " t)))
+                  "https://slovnyk.ua/index.php?swrd=%s" nil nil t)))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
