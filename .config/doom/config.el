@@ -315,15 +315,15 @@ NOTE: the function works perfectly on frame switch."
       :leader
       (:prefix ("l" . "translate")
        :desc "Translate at point"
-       "lw" 'google-translate-at-point
+       "w" 'google-translate-at-point
        :desc "Translate query"
-       "lq" 'google-translate-query-translate
+       "q" 'google-translate-query-translate
        :desc "Translate smooth"
-       "ls" 'google-translate-smooth-translate
+       "s" 'google-translate-smooth-translate
        :desc "Translate clipboard"
-       "lf" 'serp/google-translate-clipboard
+       "f" 'serp/google-translate-clipboard
        :desc "Translate query reverse"
-       "le" 'serp/google-translate-query-reverse))
+       "e" 'serp/google-translate-query-reverse))
 
 (dolist
     (provider
