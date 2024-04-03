@@ -273,7 +273,7 @@ NOTE: the function works perfectly on frame switch."
 
 (setq default-input-method "ukrainian-computer")
 
-(when (not (modulep! :checkers +flyspell))
+(when (not (modulep! :checkers spell +flyspell))
   (add-hook! 'input-method-activate-hook
     (spell-fu-mode 0)))
 
