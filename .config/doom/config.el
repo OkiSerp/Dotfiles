@@ -305,7 +305,8 @@ NOTE: the function works perfectly on frame switch."
     (google-translate-translate source target text output)))
 
 (defun serp/google-translate-query-reverse (&rest _)
-  "Like `google-translate-query-translate-reverse', but don't show phonetic."
+  "Like `google-translate-query-translate-reverse', but do not show
+the phonetic spell."
   (interactive)
   (setq google-translate-show-phonetic nil)
   (google-translate-query-translate-reverse)
