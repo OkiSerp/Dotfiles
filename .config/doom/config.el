@@ -328,8 +328,7 @@ NOTE: the function works perfectly on frame switch."
 (dolist
     (provider
      '(("Cambridge dictionary"
-        "https://dictionary.cambridge.org/dictionary/english/%s")
-       ("Slovnyk" "https://slovnyk.ua/index.php?swrd=%s")))
+        "https://dictionary.cambridge.org/dictionary/english/%s")))
   (add-to-list '+lookup-provider-url-alist provider))
 
 (defun serp/lookup (url &optional query prompt im &rest _)
@@ -344,7 +343,7 @@ NOTE: the function works perfectly on frame switch."
        (format url (cond (query (read-string prompt))
                          (t (doom-thing-at-point-or-region))))))))
 
-(map! :leader :desc "Look up Slovnyk"
+(map! :leader :desc "Slovnyk"
       "lv" (cmd! (serp/lookup "https://slovnyk.ua/index.php?swrd=%s" t nil t)))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
