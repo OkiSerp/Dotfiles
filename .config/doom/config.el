@@ -326,10 +326,9 @@ the phonetic spell."
        :desc "Translate query reverse"
        "e" 'serp/google-translate-query-reverse))
 
-(dolist
-    (provider
-     '(("Cambridge dictionary"
-        "https://dictionary.cambridge.org/dictionary/english/%s")))
+(dolist (provider
+         '(("Cambridge dictionary"
+            "https://dictionary.cambridge.org/dictionary/english/%s")))
   (add-to-list '+lookup-provider-url-alist provider))
 
 (defun serp/lookup (url &optional query prompt im &rest _)
