@@ -3,9 +3,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-(add-to-list 'default-frame-alist '(width . 110))
-(add-to-list 'default-frame-alist '(height . 40))
-
 (setq frame-title-format nil)
 
 (setq confirm-kill-emacs nil)
@@ -74,30 +71,12 @@ NOTE: the function works perfectly on frame switch."
 (map! :leader :desc "Blur behind frame"
       "tu" 'serp/toggle-blur-behind-x-frame)
 
-;; Some functionality uses this to identify you, e.g. GPG configuration, email
-;; clients, file templates and snippets. It is optional.
 (setq user-full-name "Oleksii Kapula"
       user-mail-address "")
 
-;; Doom exposes five (optional) variables for controlling fonts in Doom:
-;;
-;; - `doom-font' -- the primary font to use
-;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
-;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
-;;   presentations or streaming.
-;; - `doom-symbol-font' -- for symbols
-;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
-;;
-;; See 'C-h v doom-font' for documentation and more examples of what they
-;; accept. For example:
-;;
-;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-;;
-;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
-;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
-;; refresh your font settings. If Emacs still can't find your font, it likely
-;; wasn't installed correctly. Font issues are rarely Doom issues!
+(add-to-list 'default-frame-alist '(width . 110))
+(add-to-list 'default-frame-alist '(height . 36))
+
 (let ((size 18)
       (font "JetBrains Mono"))
   (when (doom-font-exists-p font)
@@ -108,9 +87,6 @@ NOTE: the function works perfectly on frame switch."
   (when (doom-font-exists-p font)
     (setq doom-emoji-font (font-spec :name font))))
 
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function.
 (setq doom-theme 'doom-one)
 
 (add-hook! '(prog-mode-hook conf-mode-hook)
@@ -133,11 +109,7 @@ NOTE: the function works perfectly on frame switch."
 
 (setq doom-modeline-icon nil)
 
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type nil)
-
-;; (pixel-scroll-precision-mode 1)
 
 (setq mouse-wheel-progressive-speed nil
       mouse-wheel-follow-mouse t
@@ -153,8 +125,6 @@ NOTE: the function works perfectly on frame switch."
 (after! fish-mode
   (setq fish-indent-offset 2))
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/.orgfiles/")
 
 (after! org
@@ -182,7 +152,7 @@ NOTE: the function works perfectly on frame switch."
 (setq org-emphasis-regexp-components
       '("-[:space:]('\"{" "-[:space:].,:!?;'\")}\\[‼…" "[:space:]" "." 1))
 
-(defun serp/org-enlarge-headlines (&rest _)
+(defun serp/org-enlarge-headings (&rest _)
   "Make org headings larger and thicker."
   (dolist (face '((org-level-1 . 1.5) (org-level-2 . 1.4)
                   (org-level-3 . 1.3) (org-level-4 . 1.3)
@@ -190,7 +160,7 @@ NOTE: the function works perfectly on frame switch."
                   (org-level-7 . 1.3) (org-level-8 . 1.3)))
     (set-face-attribute (car face) nil :weight 'heavy :height (cdr face))))
 
-(add-hook 'org-mode-hook 'serp/org-enlarge-headlines)
+(add-hook 'org-mode-hook 'serp/org-enlarge-headings)
 
 (defun serp/org-insert-heading-fn (&rest _)
   "Add one line above newly created org heading."
@@ -202,7 +172,7 @@ NOTE: the function works perfectly on frame switch."
 (add-hook 'org-insert-heading-hook 'serp/org-insert-heading-fn)
 
 (defun serp/org-meta-return (&optional arg)
-  "Make the same logic as `org-meta-return', but better."
+  "Make the same logic as `org-meta-return', but a bit better."
   (interactive "P")
   (or (run-hook-with-args-until-success 'org-metareturn-hook)
       (call-interactively
@@ -240,9 +210,15 @@ NOTE: the function works perfectly on frame switch."
 (map! "M-s" 'save-buffer
       "M-q" 'kill-current-buffer)
 
+(map! :nvi "M-k" 'previous-buffer
+      :nvi "M-j" 'next-buffer
+      :nvi "M-i" 'ibuffer)
+
 (map! :map vertico-map
       "M-k" 'vertico-previous
       "M-j" 'vertico-next)
+
+(customize-set-variable 'company-box-scrollbar nil)
 
 (map! :map company-active-map
       "M-k" 'company-select-previous
@@ -251,10 +227,6 @@ NOTE: the function works perfectly on frame switch."
 (map! :map read-expression-map
       "M-k" 'previous-line-or-history-element
       "M-j" 'next-line-or-history-element)
-
-(map! :nvi "M-k" 'previous-buffer
-      :nvi "M-j" 'next-buffer
-      :nvi "M-i" 'ibuffer)
 
 (map! :leader
       (:prefix ("d" . "dired")
@@ -273,10 +245,6 @@ NOTE: the function works perfectly on frame switch."
 
 (setq default-input-method "ukrainian-computer")
 
-(when (not (modulep! :checkers spell +flyspell))
-  (add-hook! 'input-method-activate-hook
-    (spell-fu-mode 0)))
-
 (use-package! google-translate
   :init
   (setq google-translate-preferable-input-methods-alist
@@ -284,7 +252,7 @@ NOTE: the function works perfectly on frame switch."
   :config
   (set-face-attribute
    'google-translate-listen-button-face nil :height 1.0)
-  (setq google-translate-listen-button-label "[Play]"
+  (setq google-translate-listen-button-label "[Listen]"
         google-translate-default-source-language "en"
         google-translate-default-target-language "uk"
         google-translate-pop-up-buffer-set-focus t
@@ -334,7 +302,7 @@ the phonetic spell."
 (defun serp/lookup (url &optional query prompt im &rest _)
   "TODO: Look up query via prompt using minibuffer, …"
   (let ((prompt (cond (prompt) ("Search for: ")))
-        (im (cond ((stringp im) im) ((eql im t) default-input-method))))
+        (im (cond ((stringp im) im) (im default-input-method))))
     (minibuffer-with-setup-hook
         (lambda (&rest _)
           (unless (null im)
@@ -344,36 +312,5 @@ the phonetic spell."
                          (t (doom-thing-at-point-or-region))))))))
 
 (map! :leader :desc "Slovnyk"
-      "lv" (cmd! (serp/lookup "https://slovnyk.ua/index.php?swrd=%s" t nil t)))
-
-;; Whenever you reconfigure a package, make sure to wrap your config in an
-;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
-;;
-;;   (after! PACKAGE
-;;     (setq x y))
-;;
-;; The exceptions to this rule:
-;;
-;;   - Setting file/directory variables (like `org-directory')
-;;   - Setting variables which explicitly tell you to set them before their
-;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
-;;   - Setting doom variables (which start with 'doom-' or '+').
-;;
-;; Here are some additional functions/macros that will help you configure Doom.
-;;
-;; - `load!' for loading external *.el files relative to this one
-;; - `use-package!' for configuring packages
-;; - `after!' for running code after a package has loaded
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
-;;   `require' or `use-package'.
-;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
-;; This will open documentation for it, including demos of how they are used.
-;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
-;; etc).
-;;
-;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
-;; they are implemented.
+      "lv" (cmd! (serp/lookup "https://slovnyk.ua/index.php?swrd=%s"
+                              'query nil 'input-method)))
