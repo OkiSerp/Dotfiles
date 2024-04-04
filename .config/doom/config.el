@@ -305,7 +305,7 @@ the phonetic spell."
 
 (defun serp/lookup (url &optional query prompt im &rest _)
   "TODO: Look up query via prompt using minibuffer, …"
-  (let ((prompt (cond (prompt) ("Search for: ")))
+  (let ((prompt (cond (prompt) ((propertize "Search for → " 'face 'warning))))
         (im (cond ((stringp im) im) (im default-input-method))))
     (minibuffer-with-setup-hook
         (lambda (&rest _)
