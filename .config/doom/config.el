@@ -245,6 +245,10 @@ NOTE: the function works perfectly on frame switch."
 
 (setq default-input-method "ukrainian-computer")
 
+(when (modulep! :checkers spell)
+  (add-hook! 'input-method-activate-hook
+    (spell-fu-mode 0)))
+
 (use-package! google-translate
   :init
   (setq google-translate-preferable-input-methods-alist

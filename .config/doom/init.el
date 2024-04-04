@@ -1,4 +1,4 @@
-;;; init.el -*- lexical-binding: t; -*-
+;;; $DOOMDIR/init.el -*- lexical-binding: t; -*-
 
 ;; This file controls what Doom modules are enabled and what order they load
 ;; in. Remember to run 'doom sync' after modifying it!
@@ -87,7 +87,7 @@
 
        :checkers
        (syntax +childframe) ; tasing you for every semicolon you forget
-       ;;(spell +flyspell)  ; tasing you for misspelling mispelling
+       (spell +aspell)  ; tasing you for misspelling mispelling
        ;;grammar            ; tasing grammar mistake every you make
 
        :tools
