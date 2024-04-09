@@ -25,7 +25,7 @@ bind(nvi, "<M-s>", vim.cmd.write)
 bind(nvi, "<M-k>", vim.cmd.bprevious)
 bind(nvi, "<M-j>", vim.cmd.bnext)
 
-bind(nvi, "<M-B>", vim.cmd.bdelete)
+bind(i, "<M-Cr>", "<C-o>O")
 
 bind(v, "J", ":move '>+1<Cr>gv=gv", sil)
 bind(v, "K", ":move '<-2<Cr>gv=gv", sil)
