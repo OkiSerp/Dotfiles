@@ -4,31 +4,15 @@ end
 
 set -g fish_greeting
 
-fish_vi_key_bindings
+bind \ek "history-search-backward"
+bind \ej "history-search-forward"
 
-bind -M insert \ek "history-search-backward"
-bind -M insert \ej "history-search-forward"
-
-bind -M insert \el "forward-char"
+bind \el "forward-char"
 
 set -gx EDITOR (which nvim)
 
 fish_add_path $HOME/.config/emacs/bin
 set -gx DOOMDIR $HOME/.config/doom
-
-if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end
-
-fundle plugin "IlanCosman/tide@v6"
-fundle plugin "PatrickF1/fzf.fish"
-
-fundle init
-
-set -gx FZF_DEFAULT_OPTS "--bind=alt-j:down,alt-k:up \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
-
-set fzf_fd_opts --hidden --no-ignore --exclude=.git --exclude=node_modules
 
 zoxide init fish | source
 alias cd "__zoxide_z"
@@ -52,21 +36,22 @@ alias neofetch "$(which echo) && $(which neofetch)"
 alias ls "$(which lsd) --group-dirs first --icon never --color always"
 alias la "$(which lsd) --group-dirs first --icon never --color always -A"
 
-alias ll "$(which lsd) --group-dirs first --icon always --icon-theme fancy \
+alias ll "$(which lsd) --group-dirs first --icon never --icon-theme fancy \
 --color always --blocks permission,user,size,date,git,name \
 -lA --date \"+%y/%m/%d\""
 
-alias lt "$(which lsd) --group-dirs first --icon always --icon-theme fancy \
+alias lt "$(which lsd) --group-dirs first --icon never --icon-theme fancy \
 --color always --blocks permission,user,size,date,git,name -lAX \
 --date \"+%y/%m/%d\" --tree -I .git -I node_modules"
 
-if [ "$fish_key_bindings" = fish_vi_key_bindings ]
-  bind -M insert ! __history_previous_command
-  bind -M insert '$' __history_previous_command_arguments
-else
-  bind ! __history_previous_command
-  bind '$' __history_previous_command_arguments
-end
+# alias ls "$(which ls) --group-directories-first --color=always"
+# alias la "$(which ls) -AX --group-directories-first --color=always"
+#
+# alias ll "$(which ls) -oAhX --group-directories-first --color=always \
+# --indicator-style=none --time-style='+%y/%m/%d'"
+
+bind ! __history_previous_command
+bind '$' __history_previous_command_arguments
 
 function __history_previous_command
   switch (commandline -t)
