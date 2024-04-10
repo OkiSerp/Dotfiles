@@ -1,6 +1,8 @@
-if status is-interactive
-  fish_config theme choose "CatpMocha"
+if not status --is-interactive
+  return
 end
+
+fish_config theme choose "CatpMocha"
 
 set -g fish_greeting
 
