@@ -1,0 +1,83 @@
+import = [
+  "~/.config/alacritty/colorscheme.toml"
+]
+
+shell.program = "fish"
+#shell.args = [ "--no-config", "--private" ]
+
+working_directory = "None"
+
+live_config_reload = true
+
+[env]
+TERM = "xterm-256color"
+EDITOR = "nvim"
+
+[window]
+dimensions.columns = 120
+dimensions.lines = 40
+
+position = "None"
+
+padding = { x = 8, y = 8 }
+dynamic_padding = false
+
+decorations = "Full"
+opacity = 1.0
+blur = false
+
+startup_mode = "Windowed"
+
+title = "Alacritty"
+dynamic_title = true
+
+class.instance = "Alacritty"
+class.general = "Alacritty"
+
+decorations_theme_variant = "Dark"
+
+resize_increments = false
+
+option_as_alt = "None"
+
+[scrolling]
+history = 8000
+multiplier = 2
+
+[font]
+normal.family = "Mononoki Nerd Font"
+
+normal.style = "Regular"
+bold.style = "Bold"
+italic.style = "Italic"
+bold_italic.style = "Bold Italic"
+
+size = 14.25
+
+offset = { x = 0, y = 0 }
+glyph_offset = { x = 0, y = 0 }
+
+builtin_box_drawing = true
+
+[bell]
+animation = "Linear"
+duration = 0
+
+command = "None"
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style.shape = "Block"
+style.blinking = "Never"
+
+vi_mode_style = "None"
+
+blink_interval = 850
+blink_timeout = 7
+
+unfocused_hollow = true
+
+[mouse]
+hide_when_typing = true
