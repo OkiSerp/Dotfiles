@@ -43,7 +43,7 @@ alias du (which du)\ -h
 alias df (which df)\ -h
 alias free (which free)\ -m
 
-alias cat (which bat)
+alias cat (which bat)\ -p
 
 alias cls (which clear)
 
