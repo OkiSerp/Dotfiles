@@ -16,6 +16,7 @@ plug.opts = {
     defaults = {
         file_ignore_patterns = {
             ".git/",
+            "node_modules/",
         },
         mappings = {
             i = {
