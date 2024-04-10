@@ -6,9 +6,6 @@ set -g fish_greeting
 
 fish_vi_key_bindings
 
-bind -M default \ek "history-search-backward"
-bind -M default \ej "history-search-forward"
-
 bind -M insert \ek "history-search-backward"
 bind -M insert \ej "history-search-forward"
 
@@ -35,9 +32,39 @@ set -gx FZF_DEFAULT_OPTS "--bind=alt-j:down,alt-k:up \
 
 set fzf_fd_opts --hidden --no-ignore --exclude=.git --exclude=node_modules
 
+zoxide init fish | source
+alias cd "__zoxide_z"
+
+alias vi (which nvim)
+alias vim (which nvim)
+
+alias mv (which mv)\ -i
+alias cp (which cp)\ -i
+
+alias du (which du)\ -h
+alias df (which df)\ -h
+alias free (which free)\ -m
+
+alias cat (which bat)
+
+alias cls (which clear)
+
+alias neofetch "$(which echo) && $(which neofetch)"
+
+alias ls "$(which lsd) --group-dirs first --icon never --color always"
+alias la "$(which lsd) --group-dirs first --icon never --color always -A"
+
+alias ll "$(which lsd) --group-dirs first --icon always --icon-theme fancy \
+--color always --blocks permission,user,size,date,git,name \
+-lA --date \"+%y/%m/%d\""
+
+alias lt "$(which lsd) --group-dirs first --icon always --icon-theme fancy \
+--color always --blocks permission,user,size,date,git,name -lAX \
+--date \"+%y/%m/%d\" --tree -I .git -I node_modules"
+
 if [ "$fish_key_bindings" = fish_vi_key_bindings ]
-  bind -Minsert ! __history_previous_command
-  bind -Minsert '$' __history_previous_command_arguments
+  bind -M insert ! __history_previous_command
+  bind -M insert '$' __history_previous_command_arguments
 else
   bind ! __history_previous_command
   bind '$' __history_previous_command_arguments
@@ -62,6 +89,3 @@ function __history_previous_command_arguments
       commandline -i '$'
   end
 end
-
-zoxide init fish | source
-alias cd "__zoxide_z"
