@@ -13,8 +13,6 @@ bind -M insert \el "forward-char"
 
 set -gx EDITOR (which nvim)
 
-source "$HOME/.config/fish/aliases.fish"
-
 fish_add_path $HOME/.config/emacs/bin
 set -gx DOOMDIR $HOME/.config/doom
 
