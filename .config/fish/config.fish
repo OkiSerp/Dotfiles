@@ -35,22 +35,21 @@ alias cls (which clear)
 
 alias neofetch "$(which echo) && $(which neofetch)"
 
-alias ls "$(which lsd) --group-dirs first --icon never --color always"
-alias la "$(which lsd) --group-dirs first --icon never --color always -A"
-
-alias ll "$(which lsd) --group-dirs first --icon never --icon-theme fancy \
---color always --blocks permission,user,size,date,git,name \
--lA --date \"+%y/%m/%d\""
-
-alias lt "$(which lsd) --group-dirs first --icon never --icon-theme fancy \
---color always --blocks permission,user,size,date,git,name -lAX \
---date \"+%y/%m/%d\" --tree -I .git -I node_modules"
-
-# alias ls "$(which ls) --group-directories-first --color=always"
-# alias la "$(which ls) -AX --group-directories-first --color=always"
-#
-# alias ll "$(which ls) -oAhX --group-directories-first --color=always \
-# --indicator-style=none --time-style='+%y/%m/%d'"
+if type -q lsd
+  alias ls "$(which lsd) --group-dirs first --icon never --color always"
+  alias la "$(which lsd) --group-dirs first --icon never --color always -A"
+  alias ll "$(which lsd) --group-dirs first --icon never --icon-theme fancy \
+  --color always --blocks permission,user,size,date,git,name \
+  -lA --date \"+%y/%m/%d\""
+  alias lt "$(which lsd) --group-dirs first --icon never --icon-theme fancy \
+  --color always --blocks permission,user,size,date,git,name -lAX \
+  --date \"+%y/%m/%d\" --tree -I .git -I node_modules"
+else
+  alias ls "$(which ls) --group-directories-first --color=always"
+  alias la "$(which ls) -AX --group-directories-first --color=always"
+  alias ll "$(which ls) -oAhX --group-directories-first --color=always \
+  --indicator-style=none --time-style='+%y/%m/%d'"
+end
 
 bind ! __history_previous_command
 bind '$' __history_previous_command_arguments
