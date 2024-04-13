@@ -27,6 +27,9 @@ alias du (which du)\ -h
 alias df (which df)\ -h
 alias free (which free)\ -m
 
+alias grep "$(which grep) --color=always"
+alias egrep "$(which grep) --color=always -E"
+
 if type -q bat
   alias cat (which bat)\ -p
 end
@@ -40,12 +43,11 @@ end
 if type -q lsd
   alias ls "$(which lsd) --group-dirs first --icon never --color always"
   alias la "$(which lsd) --group-dirs first --icon never --color always -A"
-  alias ll "$(which lsd) --group-dirs first --icon never --icon-theme fancy \
-  --color always --blocks permission,user,size,date,git,name \
-  -lA --date \"+%y/%m/%d\""
-  alias lt "$(which lsd) --group-dirs first --icon never --icon-theme fancy \
-  --color always --blocks permission,user,size,date,git,name -lAX \
-  --date \"+%y/%m/%d\" --tree -I .git -I node_modules"
+  alias ll "$(which lsd) --group-dirs first --icon never --color always \
+  --blocks permission,user,size,date,git,name -lA --date \"+%y/%m/%d\""
+  alias lt "$(which lsd) --group-dirs first --icon never --color always \
+  --blocks permission,user,size,date,git,name -lAX --date \"+%y/%m/%d\" \
+  --tree -I .git -I node_modules"
 else
   alias ls "$(which ls) --group-directories-first --color=always"
   alias la "$(which ls) -AX --group-directories-first --color=always"
