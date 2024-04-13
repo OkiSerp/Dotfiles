@@ -4,20 +4,21 @@ end
 
 fish_config theme choose "CatpMocha"
 
-set -g fish_greeting
+set -U fish_greeting
 
 bind \ek "history-search-backward"
 bind \ej "history-search-forward"
 
 bind \el "forward-char"
 
-set -gx EDITOR (which nvim)
-
 fish_add_path $HOME/.config/emacs/bin
 set -gx DOOMDIR $HOME/.config/doom
 
-alias vi (which nvim)
-alias vim (which nvim)
+if type -q nvim
+  set -gx EDITOR (which nvim)
+  alias vi $EDITOR
+  alias vim $EDITOR
+end
 
 alias mv (which mv)\ -i
 alias cp (which cp)\ -i
@@ -26,11 +27,15 @@ alias du (which du)\ -h
 alias df (which df)\ -h
 alias free (which free)\ -m
 
-alias cat (which bat)\ -p
+if type -q bat
+  alias cat (which bat)\ -p
+end
 
 alias cls (which clear)
 
-alias neofetch "$(which echo) && $(which neofetch)"
+if type -q neofetch
+  alias neofetch "$(which echo) && $(which neofetch)"
+end
 
 if type -q lsd
   alias ls "$(which lsd) --group-dirs first --icon never --color always"
@@ -45,11 +50,13 @@ else
   alias ls "$(which ls) --group-directories-first --color=always"
   alias la "$(which ls) -AX --group-directories-first --color=always"
   alias ll "$(which ls) -oAhX --group-directories-first --color=always \
-  --indicator-style=none --time-style='+%y/%m/%d'"
+  --indicator-style=none --time-style=\"+%y/%m/%d\""
 end
 
-zoxide init fish | source
-alias cd "__zoxide_z"
+if type -q zoxide
+  zoxide init fish | source
+  alias cd "__zoxide_z"
+end
 
 set -gx nvm_default_version lts/iron
 set -gx nvm_default_packages yarn pnpm bun
@@ -61,7 +68,7 @@ fundle plugin "jorgebucaran/nvm.fish"
 fundle init
 
 bind ! __history_previous_command
-bind '$' __history_previous_command_arguments
+bind "\$" __history_previous_command_arguments
 
 function __history_previous_command
   switch (commandline -t)
@@ -79,6 +86,6 @@ function __history_previous_command_arguments
       commandline -t ""
       commandline -f history-token-search-backward
     case "*"
-      commandline -i '$'
+      commandline -i "\$"
   end
 end
