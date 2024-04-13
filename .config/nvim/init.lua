@@ -16,6 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 require("core.opts")
 require("core.keys")
 
+require("autocmd")
+
 local opts = {
     defaults = {
         lazy = true,
