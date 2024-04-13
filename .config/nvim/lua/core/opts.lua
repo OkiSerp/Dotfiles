@@ -1,5 +1,10 @@
 vim.cmd("set shell=fish")
 
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
+})
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " m"
 
