@@ -16,9 +16,6 @@ set -gx EDITOR (which nvim)
 fish_add_path $HOME/.config/emacs/bin
 set -gx DOOMDIR $HOME/.config/doom
 
-zoxide init fish | source
-alias cd "__zoxide_z"
-
 alias vi (which nvim)
 alias vim (which nvim)
 
@@ -50,6 +47,18 @@ else
   alias ll "$(which ls) -oAhX --group-directories-first --color=always \
   --indicator-style=none --time-style='+%y/%m/%d'"
 end
+
+zoxide init fish | source
+alias cd "__zoxide_z"
+
+set -gx nvm_default_version lts/iron
+set -gx nvm_default_packages yarn pnpm bun
+
+if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end
+
+fundle plugin "jorgebucaran/nvm.fish"
+
+fundle init
 
 bind ! __history_previous_command
 bind '$' __history_previous_command_arguments
