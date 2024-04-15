@@ -19,6 +19,8 @@ set -gx DOOMDIR $HOME/.config/doom
 
 if type -q nvim
   set -gx EDITOR (which nvim)
+  set -gx VISUAL $EDITOR
+  set -gx SUDO_EDITOR $EDITOR
   alias vi $EDITOR
   alias vim $EDITOR
 end
