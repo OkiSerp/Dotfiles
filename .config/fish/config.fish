@@ -11,7 +11,10 @@ bind \ej "history-search-forward"
 
 bind \el "forward-char"
 
-fish_add_path $HOME/.config/emacs/bin
+if test -d $HOME/.config/emacs/bin
+  fish_add_path $HOME/.config/emacs/bin
+end
+
 set -gx DOOMDIR $HOME/.config/doom
 
 if type -q nvim
@@ -51,8 +54,8 @@ if type -q lsd
 else
   alias ls "$(which ls) --group-directories-first --color=always"
   alias la "$(which ls) -AX --group-directories-first --color=always"
-  alias ll "$(which ls) -oAhX --group-directories-first --color=always \
-  --indicator-style=none --time-style=\"+%y/%m/%d\""
+  alias ll "$(which ls) -oAhX --group-directories-first \
+  --color=always --time-style=\"+%y/%m/%d\""
 end
 
 if type -q zoxide
