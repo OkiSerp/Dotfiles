@@ -31,7 +31,7 @@ vim.opt.smarttab = true
 vim.opt.breakindent = true
 vim.opt.wrap = false
 
-vim.opt.spell = true
+vim.opt.spell = false
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
