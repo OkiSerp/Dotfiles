@@ -16,6 +16,7 @@ if test -d $HOME/.config/emacs/bin
 end
 
 set -gx DOOMDIR $HOME/.config/doom
+alias emacs (which emacs)\ --no-window-system
 
 if type -q nvim
   set -gx EDITOR (which nvim)
