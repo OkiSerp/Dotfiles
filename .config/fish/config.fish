@@ -19,10 +19,7 @@ set -gx DOOMDIR $HOME/.config/doom
 
 if type -q nvim
   set -gx EDITOR (which nvim)
-  set -gx VISUAL $EDITOR
-  set -gx SUDO_EDITOR $EDITOR
-  alias vi $EDITOR
-  alias vim $EDITOR
+  alias e $EDITOR
 end
 
 alias mv (which mv)\ -i
@@ -48,16 +45,11 @@ end
 if type -q lsd
   alias ls "$(which lsd) --group-dirs first --icon never --color always"
   alias la "$(which lsd) --group-dirs first --icon never --color always -A"
-  alias ll "$(which lsd) --group-dirs first --icon never --color always \
+  alias l "$(which lsd) --group-dirs first --icon never --color always \
   --blocks permission,user,size,date,git,name -lA --date \"+%y/%m/%d\""
   alias lt "$(which lsd) --group-dirs first --icon never --color always \
   --blocks permission,user,size,date,git,name -lAX --date \"+%y/%m/%d\" \
   --tree -I .git -I node_modules"
-else
-  alias ls "$(which ls) --group-directories-first --color=always"
-  alias la "$(which ls) -AX --group-directories-first --color=always"
-  alias ll "$(which ls) -oAhX --group-directories-first \
-  --color=always --time-style=\"+%y/%m/%d\""
 end
 
 if type -q zoxide
