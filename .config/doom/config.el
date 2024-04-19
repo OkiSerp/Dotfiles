@@ -87,7 +87,23 @@ NOTE: the function works perfectly on frame switch."
   (when (doom-font-exists-p font)
     (setq doom-emoji-font (font-spec :name font))))
 
-(setq doom-theme 'doom-one)
+(if (display-graphic-p)
+    (setq doom-theme 'doom-one)
+  (progn
+    (use-package! catppuccin-theme
+      :custom
+      (catppuccin-flavor 'mocha)
+      :config
+      (load-theme 'catppuccin t))
+    (after! catppuccin-theme
+      (custom-set-faces!
+        `(show-paren-match
+          :background ,(catppuccin-get-color 'surface1))))
+    (after! (:and org catppuccin-theme)
+      (custom-set-faces!
+        `(org-todo :foreground ,(catppuccin-get-color 'teal))
+        `(org-table :foreground ,(catppuccin-get-color 'overlay2))
+        `(org-verbatim :foreground ,(catppuccin-get-color 'yellow))))))
 
 (add-hook! '(prog-mode-hook conf-mode-hook)
   (face-remap-add-relative 'font-lock-comment-face :slant 'italic))
