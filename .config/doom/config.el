@@ -246,6 +246,8 @@ NOTE: the function works perfectly on frame switch."
 (setq default-input-method "ukrainian-computer")
 
 (when (modulep! :checkers spell)
+  (spell-fu-global-mode 0)
+  (remove-hook 'text-mode-hook 'spell-fu-mode)
   (add-hook! 'input-method-activate-hook
     (spell-fu-mode 0)))
 
