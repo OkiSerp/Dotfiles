@@ -1,6 +1,24 @@
-if not status --is-interactive
-  return
+if type -q zoxide; zoxide init fish | source; end
+
+set -gx nvm_default_version lts/iron
+set -gx nvm_default_packages yarn pnpm bun
+
+if not functions -q fundle
+  eval (curl -sfL https://git.io/fundle-install)
 end
+
+fundle plugin "jorgebucaran/nvm.fish"
+
+fundle init
+
+if test -d $HOME/.config/emacs/bin
+  fish_add_path $HOME/.config/emacs/bin
+  set -gx DOOMDIR $HOME/.config/doom
+end
+
+if type -q nvim; set -gx EDITOR (which nvim); end
+
+if not status --is-interactive; return; end
 
 fish_config theme choose "CatpMocha"
 
@@ -11,17 +29,15 @@ bind \ej "history-search-forward"
 
 bind \el "forward-char"
 
-if test -d $HOME/.config/emacs/bin
-  fish_add_path $HOME/.config/emacs/bin
+if functions -q __zoxide_z
+  alias cd "__zoxide_z"
 end
 
-set -gx DOOMDIR $HOME/.config/doom
-alias emacs (which emacs)\ --no-window-system
-
-if type -q nvim
-  set -gx EDITOR (which nvim)
-  alias e $EDITOR
+if type -q emacs
+  alias emacs (which emacs)\ --no-window-system
 end
+
+if type -q nvim; alias e (which nvim); end
 
 alias mv (which mv)\ -i
 alias cp (which cp)\ -i
@@ -30,8 +46,8 @@ alias du (which du)\ -h
 alias df (which df)\ -h
 alias free (which free)\ -m
 
-alias grep "$(which grep) --color=always"
-alias egrep "$(which grep) --color=always -E"
+alias grep (which grep)\ --color=always
+alias egrep (which grep)\ --color=always\ -E
 
 if type -q bat
   alias cat (which bat)\ -p
@@ -52,20 +68,6 @@ if type -q lsd
   --blocks permission,user,size,date,git,name -lAX --date \"+%y/%m/%d\" \
   --tree -I .git -I node_modules"
 end
-
-if type -q zoxide
-  zoxide init fish | source
-  alias cd "__zoxide_z"
-end
-
-set -gx nvm_default_version lts/iron
-set -gx nvm_default_packages yarn pnpm bun
-
-if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end
-
-fundle plugin "jorgebucaran/nvm.fish"
-
-fundle init
 
 bind ! __history_previous_command
 bind "\$" __history_previous_command_arguments
