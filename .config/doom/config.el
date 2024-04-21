@@ -293,7 +293,7 @@ NOTE: the function works perfectly on frame switch."
        :desc "Translate query reverse"
        "e" 'google-translate-query-translate-reverse
        :desc "Translate clipboard"
-       "f" 'serp/google-translate-clipboard))
+       "c" 'serp/google-translate-clipboard))
 
 (dolist (provider
          '(("Cambridge dictionary"
@@ -312,6 +312,6 @@ NOTE: the function works perfectly on frame switch."
        (format url (cond (query (read-string prompt))
                          (t (doom-thing-at-point-or-region))))))))
 
-(map! :leader :desc "Slovnyk"
+(map! :leader :desc "Interpret UA word"
       "lv" (cmd! (serp/lookup "https://slovnyk.ua/index.php?swrd=%s"
                               'query nil 'input-method)))
