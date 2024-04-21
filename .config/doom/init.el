@@ -19,6 +19,8 @@
 (add-hook! 'window-setup-hook
   (make-frame-visible (selected-frame)))
 
+(setq shell-file-name (executable-find "bash"))
+
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
        ;;chinese
