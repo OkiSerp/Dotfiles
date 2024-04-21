@@ -218,15 +218,19 @@ NOTE: the function works perfectly on frame switch."
       "M-k" 'vertico-previous
       "M-j" 'vertico-next)
 
-(customize-set-variable 'company-box-scrollbar nil)
-
-(map! :map company-active-map
-      "M-k" 'company-select-previous
-      "M-j" 'company-select-next)
+(use-package! company
+  :custom (company-box-scrollbar nil)
+  :bind (:map company-active-map
+              ("M-k" . company-select-previous)
+              ("M-j" . company-select-next)))
 
 (map! :map read-expression-map
       "M-k" 'previous-line-or-history-element
       "M-j" 'next-line-or-history-element)
+
+(map! :map minibuffer-mode-map
+      "M-k" 'previous-history-element
+      "M-j" 'next-history-element)
 
 (map! :leader
       (:prefix ("d" . "dired")
