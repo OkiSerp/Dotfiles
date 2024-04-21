@@ -89,9 +89,6 @@ NOTE: the function works perfectly on frame switch."
 
 (setq doom-theme 'doom-one)
 
-(unless (display-graphic-p)
-  (set-face-background 'default "undefined"))
-
 (add-hook! '(prog-mode-hook conf-mode-hook)
   (face-remap-add-relative 'font-lock-comment-face :slant 'italic))
 
