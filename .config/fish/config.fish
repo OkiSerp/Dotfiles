@@ -1,4 +1,6 @@
-if type -q zoxide; zoxide init fish | source; end
+if test -d $HOME/.local/bin
+  fish_add_path $HOME/.local/bin
+end
 
 set -gx nvm_default_version lts/iron
 set -gx nvm_default_packages yarn pnpm bun
@@ -20,21 +22,14 @@ if type -q nvim; set -gx EDITOR (which nvim); end
 
 if not status --is-interactive; return; end
 
-fish_config theme choose "CatpMocha"
-
 set -U fish_greeting
 
-bind \ek "history-search-backward"
-bind \ej "history-search-forward"
+fish_config theme choose "CatpMocha"
 
-bind \el "forward-char"
+if type -q zoxide; zoxide init fish | source; end
 
 if functions -q __zoxide_z
   alias cd "__zoxide_z"
-end
-
-if type -q emacs
-  alias emacs (which emacs)\ --no-window-system
 end
 
 if type -q nvim; alias e (which nvim); end
@@ -46,31 +41,22 @@ alias du (which du)\ -h
 alias df (which df)\ -h
 alias free (which free)\ -m
 
-alias grep (which grep)\ --color=always
-alias egrep (which grep)\ --color=always\ -E
-
 if type -q bat
   alias cat (which bat)\ -p
 end
 
-alias cls (which clear)
-
-if type -q neofetch
-  alias neofetch "$(which echo) && $(which neofetch)"
-end
-
 if type -q lsd
-  alias ls "$(which lsd) --group-dirs first --icon never --color always"
-  alias la "$(which lsd) --group-dirs first --icon never --color always -A"
   alias l "$(which lsd) --group-dirs first --icon never --color always \
-  --blocks permission,user,size,date,git,name -lA --date \"+%y/%m/%d\""
-  alias lt "$(which lsd) --group-dirs first --icon never --color always \
-  --blocks permission,user,size,date,git,name -lAX --date \"+%y/%m/%d\" \
-  --tree -I .git -I node_modules"
+    --blocks permission,user,size,date,git,name -lA --date \"+%y/%m/%d\""
 end
 
-bind ! __history_previous_command
-bind "\$" __history_previous_command_arguments
+bind -M default \ek "history-search-backward"
+bind -M default \ej "history-search-forward"
+
+bind -M default \el "forward-char"
+
+bind -M default ! __history_previous_command
+bind -M default "\$" __history_previous_command_arguments
 
 function __history_previous_command
   switch (commandline -t)
