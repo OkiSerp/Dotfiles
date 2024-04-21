@@ -19,7 +19,7 @@ fi
 
 if [[ -x "$(command -v lsd)" ]]; then
   alias l="$(which lsd) --group-dirs first --icon never --color always \
-    --blocks permission,user,size,date,git,name -lA --date \"+%y/%m/%d\""
+    --blocks permission,size,date,name -lA --date \"+%y/%m/%d\""
 fi
 
 if [[ -x "$(command -v bat)" ]]; then
