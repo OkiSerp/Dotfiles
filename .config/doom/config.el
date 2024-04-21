@@ -281,14 +281,6 @@ NOTE: the function works perfectly on frame switch."
         (text (gui-get-selection 'CLIPBOARD 'TEXT)))
     (google-translate-translate source target text output)))
 
-(defun serp/google-translate-query-reverse (&rest _)
-  "Like `google-translate-query-translate-reverse', but do not show
-the phonetic spell."
-  (interactive)
-  (setq google-translate-show-phonetic nil)
-  (google-translate-query-translate-reverse)
-  (setq google-translate-show-phonetic t))
-
 (map! :after google-translate
       :leader
       (:prefix ("l" . "translate")
@@ -298,10 +290,10 @@ the phonetic spell."
        "q" 'google-translate-query-translate
        :desc "Translate smooth"
        "s" 'google-translate-smooth-translate
-       :desc "Translate clipboard"
-       "f" 'serp/google-translate-clipboard
        :desc "Translate query reverse"
-       "e" 'serp/google-translate-query-reverse))
+       "e" 'google-translate-query-translate-reverse
+       :desc "Translate clipboard"
+       "f" 'serp/google-translate-clipboard))
 
 (dolist (provider
          '(("Cambridge dictionary"
