@@ -204,11 +204,10 @@ NOTE: the function works perfectly on frame switch."
 (map! :leader
       :desc "Browse private config"
       "fp" 'doom/open-private-config
-      :desc "Find file in private config"
-      "fP" 'doom/find-file-in-private-config)
+      "fP" 'ignore)
 
 (map! "M-s" 'save-buffer
-      "M-q" 'kill-current-buffer)
+      "M-e" 'kill-current-buffer)
 
 (map! :nvi "M-k" 'previous-buffer
       :nvi "M-j" 'next-buffer
