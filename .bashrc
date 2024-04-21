@@ -44,7 +44,7 @@ BLU="${RST}\\[\\033[01;34m\\]"
 PUR="${RST}\\[\\033[01;35m\\]"
 
 PGB="\$(git branch 2> /dev/null | sed -e \
-    '/^[^*]/d' -e 's/* \(.*\)/ ${BLU}(${GRN}\1${BLU})/')"
+  '/^[^*]/d' -e 's/* \(.*\)/ ${BLU}(${GRN}\1${BLU})/')"
 
 export PS1="${BLU}[${PUR}\u${RED}@${BLU}\h ${YLW}\W${RST}${BLU}]${PGB}${RED} » ${RST}"
 
