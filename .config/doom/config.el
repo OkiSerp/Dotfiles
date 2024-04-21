@@ -152,12 +152,6 @@ NOTE: the function works perfectly on frame switch."
 (setq org-emphasis-regexp-components
       '("-[:space:]('\"{" "-[:space:].,:!?;'\")}\\[‼…" "[:space:]" "." 1))
 
-(map! :after org
-      :map org-mode-map
-      :localleader
-      :desc "Show all content"
-      "s." 'org-fold-show-all)
-
 (defun serp/org-enlarge-headings (&rest _)
   "Make org headings larger and thicker."
   (dolist (face '((org-level-1 . 1.5) (org-level-2 . 1.4)
@@ -193,7 +187,8 @@ NOTE: the function works perfectly on frame switch."
       "M-h" 'org-metaleft
       "M-l" 'org-metaright
       "M-RET" 'serp/org-meta-return
-      :n "RET" '+org/dwim-at-point)
+      :n "RET" '+org/dwim-at-point
+      :localleader "s." 'org-fold-show-all)
 
 (use-package! evil
   :init
