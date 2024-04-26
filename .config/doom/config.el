@@ -7,16 +7,16 @@
 
 (setq confirm-kill-emacs nil)
 
-(defun serp/delete-frame (&rest _)
+(defun srp/delete-frame (&rest _)
   "Delete frame without prompt."
   (interactive)
   (if (cdr (visible-frame-list))
       (delete-frame)
     (save-buffers-kill-terminal)))
 
-(bind-key [remap delete-frame] 'serp/delete-frame)
+(bind-key [remap delete-frame] 'srp/delete-frame)
 
-(defun serp/add-blur-behind-x-frame (&optional frame &rest _)
+(defun srp/add-blur-behind-x-frame (&optional frame &rest _)
   "Set blur behind `x' frame.\n
 If FRAME in nil, use current frame."
   (interactive)
@@ -31,7 +31,7 @@ If FRAME in nil, use current frame."
       (call-process-shell-command command)
       (set-frame-parameter frame 'blur 1))))
 
-(defun serp/remove-blur-behind-x-frame (&optional frame &rest _)
+(defun srp/remove-blur-behind-x-frame (&optional frame &rest _)
   "Remove blur behind `x' frame.\n
 If FRAME is nil, use current frame."
   (interactive)
@@ -44,32 +44,32 @@ If FRAME is nil, use current frame."
       (call-process-shell-command command)
       (set-frame-parameter frame 'blur 0))))
 
-(defun serp/toggle-blur-behind-x-frame (&optional frame &rest _)
+(defun srp/toggle-blur-behind-x-frame (&optional frame &rest _)
   "Toggle blur behind `x' frame.\n
 If FRAME is nil, use current frame."
   (interactive)
   (let* ((frame (cond (frame) (t (selected-frame))))
          (blur (frame-parameter frame 'blur)))
     (if (or (eql blur nil) (<= blur 0))
-        (serp/add-blur-behind-x-frame frame)
-      (serp/remove-blur-behind-x-frame frame))))
+        (srp/add-blur-behind-x-frame frame)
+      (srp/remove-blur-behind-x-frame frame))))
 
-(defun serp/add-blur-behind-new-x-frame-on-switch (&rest _)
+(defun srp/add-blur-behind-new-x-frame-on-switch (&rest _)
   "Set blur behind newly created `x' frame.\n
 NOTE: the function works perfectly on frame switch."
   (let ((blur (frame-parameter (selected-frame) 'blur)))
     (when (eql blur nil)
-      (serp/add-blur-behind-x-frame))))
+      (srp/add-blur-behind-x-frame))))
 
 (add-to-list 'default-frame-alist '(alpha-background . 90))
 
-(add-hook 'window-setup-hook 'serp/add-blur-behind-x-frame)
+(add-hook 'window-setup-hook 'srp/add-blur-behind-x-frame)
 
 (add-hook! 'window-selection-change-functions
-  (serp/add-blur-behind-new-x-frame-on-switch))
+  (srp/add-blur-behind-new-x-frame-on-switch))
 
 (map! :leader :desc "Blur behind frame"
-      "tu" 'serp/toggle-blur-behind-x-frame)
+      "tu" 'srp/toggle-blur-behind-x-frame)
 
 (setq user-full-name "Oleksii Kapula"
       user-mail-address "")
@@ -92,7 +92,7 @@ NOTE: the function works perfectly on frame switch."
 (add-hook! '(prog-mode-hook conf-mode-hook)
   (face-remap-add-relative 'font-lock-comment-face :slant 'italic))
 
-(defun serp/doom-dashboard-widget-quote ()
+(defun srp/doom-dashboard-widget-quote ()
   (when doom-init-time
     (insert
      (propertize
@@ -102,7 +102,7 @@ NOTE: the function works perfectly on frame switch."
       'face 'doom-dashboard-banner))))
 
 (setq +doom-dashboard-functions
-      '(serp/doom-dashboard-widget-quote))
+      '(srp/doom-dashboard-widget-quote))
 
 (add-hook! '+doom-dashboard-mode-hook
   (setq-local evil-normal-state-cursor '(hbar . 0)))
@@ -139,7 +139,7 @@ NOTE: the function works perfectly on frame switch."
   (setq org-superstar-headline-bullets-list '(42)
         org-superstar-item-bullet-alist '((43 . 187) (45 . 8250))))
 
-(defun serp/browse-org-directory (&rest _)
+(defun srp/browse-org-directory (&rest _)
   "Browse your `org-directory'."
   (interactive)
   (unless (file-directory-p org-directory)
@@ -147,12 +147,12 @@ NOTE: the function works perfectly on frame switch."
   (doom-project-browse org-directory))
 
 (map! :leader :desc "Browse org directory"
-      "fo" 'serp/browse-org-directory)
+      "fo" 'srp/browse-org-directory)
 
 (setq org-emphasis-regexp-components
       '("-[:space:]('\"{" "-[:space:].,:!?;'\")}\\[‼…" "[:space:]" "." 1))
 
-(defun serp/org-enlarge-headings (&rest _)
+(defun srp/org-enlarge-headings (&rest _)
   "Make org headings larger and thicker."
   (dolist (face '((org-level-1 . 1.5) (org-level-2 . 1.4)
                   (org-level-3 . 1.3) (org-level-4 . 1.3)
@@ -160,18 +160,18 @@ NOTE: the function works perfectly on frame switch."
                   (org-level-7 . 1.3) (org-level-8 . 1.3)))
     (set-face-attribute (car face) nil :weight 'heavy :height (cdr face))))
 
-(add-hook 'org-mode-hook 'serp/org-enlarge-headings)
+(add-hook 'org-mode-hook 'srp/org-enlarge-headings)
 
-(defun serp/org-insert-heading-fn (&rest _)
+(defun srp/org-insert-heading-fn (&rest _)
   "Add one line above newly created org heading."
   (evil-open-above 1)
   (evil-normal-state)
   (evil-next-line)
   (evil-append-line 1))
 
-(add-hook 'org-insert-heading-hook 'serp/org-insert-heading-fn)
+(add-hook 'org-insert-heading-hook 'srp/org-insert-heading-fn)
 
-(defun serp/org-meta-return (&optional arg)
+(defun srp/org-meta-return (&optional arg)
   "Make the same logic as `org-meta-return', but a bit better."
   (interactive "P")
   (or (run-hook-with-args-until-success 'org-metareturn-hook)
@@ -186,7 +186,7 @@ NOTE: the function works perfectly on frame switch."
       "M-d" 'org-metadown
       "M-h" 'org-metaleft
       "M-l" 'org-metaright
-      "M-RET" 'serp/org-meta-return
+      "M-RET" 'srp/org-meta-return
       :n "RET" '+org/dwim-at-point
       :localleader "s." 'org-fold-show-all)
 
@@ -273,7 +273,7 @@ NOTE: the function works perfectly on frame switch."
         google-translate-display-translation-phonetic nil
         google-translate-input-method-auto-toggling t))
 
-(defun serp/google-translate-clipboard (&rest _)
+(defun srp/google-translate-clipboard (&rest _)
   "Translate text from clipboard by using `google-translate' package."
   (interactive)
   (let ((source google-translate-default-source-language)
@@ -294,14 +294,14 @@ NOTE: the function works perfectly on frame switch."
        :desc "Translate query reverse"
        "e" 'google-translate-query-translate-reverse
        :desc "Translate clipboard"
-       "c" 'serp/google-translate-clipboard))
+       "c" 'srp/google-translate-clipboard))
 
 (dolist (provider
          '(("Cambridge dictionary"
             "https://dictionary.cambridge.org/dictionary/english/%s")))
   (add-to-list '+lookup-provider-url-alist provider))
 
-(defun serp/lookup (url &optional query prompt im &rest _)
+(defun srp/lookup (url &optional query prompt im &rest _)
   "TODO: Look up query via prompt using minibuffer, …\n
 FIXME: Issue with input method."
   (let ((prompt (cond (prompt) ((propertize "Search for → " 'face 'warning))))
@@ -315,5 +315,5 @@ FIXME: Issue with input method."
                          (t (doom-thing-at-point-or-region))))))))
 
 (map! :leader :desc "Interpret UA word"
-      "lv" (cmd! (serp/lookup "https://slovnyk.ua/index.php?swrd=%s"
+      "lv" (cmd! (srp/lookup "https://slovnyk.ua/index.php?swrd=%s"
                               'query nil "ukrainian-computer")))
