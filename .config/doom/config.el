@@ -302,7 +302,8 @@ NOTE: the function works perfectly on frame switch."
   (add-to-list '+lookup-provider-url-alist provider))
 
 (defun serp/lookup (url &optional query prompt im &rest _)
-  "TODO: Look up query via prompt using minibuffer, …"
+  "TODO: Look up query via prompt using minibuffer, …\n
+FIXME: Issue with input method."
   (let ((prompt (cond (prompt) ((propertize "Search for → " 'face 'warning))))
         (im (cond ((stringp im) im) (im default-input-method))))
     (minibuffer-with-setup-hook
@@ -315,4 +316,4 @@ NOTE: the function works perfectly on frame switch."
 
 (map! :leader :desc "Interpret UA word"
       "lv" (cmd! (serp/lookup "https://slovnyk.ua/index.php?swrd=%s"
-                              'query nil 'input-method)))
+                              'query nil "ukrainian-computer")))
