@@ -34,6 +34,8 @@ end
 
 if type -q nvim; alias e (which nvim); end
 
+alias ip (which ip)\ --color=always
+
 alias mv (which mv)\ -i
 alias cp (which cp)\ -i
 
