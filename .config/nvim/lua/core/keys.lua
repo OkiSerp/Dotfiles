@@ -1,6 +1,6 @@
 local utils = require("utils")
 
-local n, v, i = "n", "v", "i"
+local n, v, i, c = "n", "v", "i", "c"
 local nv, nvi = { n, v }, { n, v, i }
 
 local sil = { silent = true }
@@ -24,6 +24,9 @@ bind(nvi, "<M-s>", vim.cmd.write)
 
 bind(nvi, "<M-k>", vim.cmd.bprevious)
 bind(nvi, "<M-j>", vim.cmd.bnext)
+
+bind(c, "<M-k>", "<Up>")
+bind(c, "<M-j>", "<Down>")
 
 bind(i, "<M-Cr>", "<C-o>O")
 

@@ -1,4 +1,8 @@
-vim.cmd("set shell=fish")
+if vim.fn.executable("fish") then
+  vim.cmd("set shell=fish")
+else
+  vim.cmd("set shell=bash")
+end
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " m"
