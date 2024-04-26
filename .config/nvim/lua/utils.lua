@@ -29,4 +29,15 @@ utils.togglespell = function()
   vim.cmd("set spell")
 end
 
+utils.toggleinputmethod = function ()
+  local opt = vim.opt.keymap:get()
+  if opt == nil or opt == "" then
+    vim.cmd("set iminsert=1 imsearch=1")
+    vim.cmd("set keymap=ukrainian-jcuken")
+    return
+  end
+  vim.cmd("set iminsert=0 imsearch=-1")
+  vim.cmd("set keymap=")
+end
+
 return utils

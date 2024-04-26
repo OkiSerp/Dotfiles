@@ -11,6 +11,8 @@ bind(n, "<leader>tw", utils.togglewrap)
 bind(n, "<leader>tl", utils.togglenumber)
 bind(n, "<leader>ts", utils.togglespell)
 
+bind(nvi, "<C-\\>", utils.toggleinputmethod)
+
 bind(n, "<leader>oe", vim.cmd.Explore)
 
 bind(nvi, "<M-q>", vim.cmd.xall)
