@@ -18,8 +18,6 @@ local ensure = {
     "html",
     "scss",
     "css",
-    "cpp",
-    "c",
 }
 
 plug.config = function()

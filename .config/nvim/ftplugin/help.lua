@@ -1,1 +1,1 @@
-vim.keymap.set({ "n", "v" }, "q", ":helpclose<Cr>", { buffer = true })
+vim.keymap.set({ "n", "v" }, "q", vim.cmd.helpclose, { buffer = true })
