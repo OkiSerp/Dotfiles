@@ -20,13 +20,13 @@ plug.opts = {
         },
         mappings = {
             i = {
-                ["<M-p>"] = "move_selection_previous",
-                ["<M-n>"] = "move_selection_next",
+                ["<M-k>"] = "move_selection_previous",
+                ["<M-j>"] = "move_selection_next",
                 ["<C-c>"] = "close",
             },
             n = {
-                ["<M-p>"] = "move_selection_previous",
-                ["<M-n>"] = "move_selection_next",
+                ["<M-k>"] = "move_selection_previous",
+                ["<M-j>"] = "move_selection_next",
                 ["<C-c>"] = "close",
             },
         },

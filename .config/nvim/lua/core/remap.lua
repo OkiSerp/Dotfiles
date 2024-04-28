@@ -7,11 +7,11 @@ vim.keymap.set({ "n", "v", "i" }, "<M-s>", vim.cmd.write)
 
 vim.keymap.set({ "n", "v", "i" }, "<M-e>", vim.cmd.bdelete)
 
-vim.keymap.set({ "n", "v", "i" }, "<M-p>", vim.cmd.bprevious)
-vim.keymap.set({ "n", "v", "i" }, "<M-n>", vim.cmd.bnext)
+vim.keymap.set({ "n", "v", "i" }, "<M-k>", vim.cmd.bprevious)
+vim.keymap.set({ "n", "v", "i" }, "<M-j>", vim.cmd.bnext)
 
-vim.keymap.set("c", "<M-p>", "<Up>")
-vim.keymap.set("c", "<M-n>", "<Down>")
+vim.keymap.set("c", "<M-k>", "<Up>")
+vim.keymap.set("c", "<M-j>", "<Down>")
 
 vim.keymap.set("i", "<M-Cr>", "<C-o>O")
 vim.keymap.set("i", "<C-c>", "<Esc>")
