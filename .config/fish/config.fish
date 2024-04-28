@@ -44,7 +44,8 @@ alias df (which df)\ -h
 alias free (which free)\ -m
 
 if type -q bat
-  alias cat (which bat)\ -p
+  set -gx PAGER (which bat)\ -p
+  alias cat $PAGER
 end
 
 if type -q lsd
