@@ -247,7 +247,10 @@ NOTE: the function works perfectly on frame switch."
       delete-by-moving-to-trash t
       magit-delete-by-moving-to-trash t)
 
-(setq default-input-method "ukrainian-computer")
+(defvar srp/im "ukrainian-computer"
+  "Define variable for my input method.")
+
+(setq default-input-method srp/im)
 
 (when (modulep! :checkers spell)
   (spell-fu-global-mode 0)
@@ -258,7 +261,7 @@ NOTE: the function works perfectly on frame switch."
 (use-package! google-translate
   :init
   (setq google-translate-preferable-input-methods-alist
-        `((nil) (,default-input-method . ("uk" "ru"))))
+        `((nil) (,srp/im . ("uk" "ru"))))
   :config
   (set-face-attribute
    'google-translate-listen-button-face nil :height 1.0)
@@ -298,14 +301,15 @@ NOTE: the function works perfectly on frame switch."
 
 (dolist (provider
          '(("Cambridge dictionary"
-            "https://dictionary.cambridge.org/dictionary/english/%s")))
+            "https://dictionary.cambridge.org/dictionary/english/%s")
+           ("Urban dictionary"
+            "https://www.urbandictionary.com/define.php?term=%s")))
   (add-to-list '+lookup-provider-url-alist provider))
 
 (defun srp/lookup (url &optional query prompt im &rest _)
-  "TODO: Look up query via prompt using minibuffer, …\n
-FIXME: Issue with input method."
+  "My custom look up function that can change input method."
   (let ((prompt (cond (prompt) ((propertize "Search for → " 'face 'warning))))
-        (im (cond ((stringp im) im) (im default-input-method))))
+        (im (cond ((stringp im) im) (im srp/im))))
     (minibuffer-with-setup-hook
         (lambda (&rest _)
           (unless (null im)
@@ -316,4 +320,4 @@ FIXME: Issue with input method."
 
 (map! :leader :desc "Interpret UA word"
       "lv" (cmd! (srp/lookup "https://slovnyk.ua/index.php?swrd=%s"
-                              'query nil "ukrainian-computer")))
+                              'query nil t)))
