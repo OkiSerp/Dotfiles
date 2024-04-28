@@ -45,14 +45,14 @@ history = 8000
 multiplier = 2
 
 [font]
-normal.family = "JetBrainsMono NF"
+normal.family = "Agave Nerd Font"
 
 normal.style = "Regular"
 bold.style = "Bold"
 italic.style = "Italic"
 bold_italic.style = "Bold Italic"
 
-size = 14.25
+size = 16.25
 
 offset = { x = 0, y = 0 }
 glyph_offset = { x = 0, y = 0 }
