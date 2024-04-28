@@ -15,7 +15,7 @@ EDITOR = "nvim"
 
 [window]
 dimensions.columns = 120
-dimensions.lines = 34
+dimensions.lines = 36
 
 position = "None"
 
