@@ -6,6 +6,7 @@ export HISTCONTROL=ignoreboth
 
 export HISTSIZE=2000
 export HISTFILESIZE=2000
+export HISTFILE="${XDG_STATE_HOME}"/bash/history
 
 shopt -s histappend
 
