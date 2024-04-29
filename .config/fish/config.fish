@@ -11,7 +11,16 @@ end
 
 fundle plugin "jorgebucaran/nvm.fish"
 
+fundle plugin "PatrickF1/fzf.fish"
+
 fundle init
+
+set -gx FZF_DEFAULT_OPTS "--bind=alt-j:down,alt-k:up \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+
+set fzf_fd_opts --hidden --no-ignore --exclude=.git --exclude=node_modules
 
 if test -d $HOME/.config/emacs/bin
   fish_add_path $HOME/.config/emacs/bin
