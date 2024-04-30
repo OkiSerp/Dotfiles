@@ -39,8 +39,13 @@ srp.toggle.im = function()
     if opt == nil or opt == "" then
         vim.cmd("set iminsert=1 imsearch=1")
         vim.cmd("set keymap=ukrainian-jcuken")
+        if vim.opt.spell:get() then
+            vim.cmd("set spelllang=uk")
+            vim.cmd("set spell")
+        end
         return
     end
+    vim.cmd("set spelllang=en")
     vim.cmd("set iminsert=0 imsearch=-1")
     vim.cmd("set keymap=")
 end
