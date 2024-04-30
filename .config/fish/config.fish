@@ -3,12 +3,21 @@ set -gx XDG_STATE_HOME $HOME/.local/state
 set -gx XDG_CACHE_HOME $HOME/.cache
 set -gx XDG_CONFIG_HOME $HOME/.config
 
+set -gx PASSWORD_STORE_DIR $XDG_DATA_HOME/pass
+
 if test -d $HOME/.local/bin
   fish_add_path $HOME/.local/bin
 end
 
+if test -d $HOME/.config/emacs/bin
+  fish_add_path $HOME/.config/emacs/bin
+  set -gx DOOMDIR $HOME/.config/doom
+end
+
+if type -q nvim; set -gx EDITOR (which nvim); end
+
 set -gx nvm_default_version lts/iron
-set -gx nvm_default_packages yarn pnpm bun
+set -gx nvm_default_packages yarn pnpm
 
 if not functions -q fundle
   eval (curl -sfL https://git.io/fundle-install)
@@ -21,18 +30,11 @@ fundle plugin "PatrickF1/fzf.fish"
 fundle init
 
 set -gx FZF_DEFAULT_OPTS "--bind=alt-j:down,alt-k:up \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+  --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
 set fzf_fd_opts --hidden --no-ignore --exclude=.git --exclude=node_modules
-
-if test -d $HOME/.config/emacs/bin
-  fish_add_path $HOME/.config/emacs/bin
-  set -gx DOOMDIR $HOME/.config/doom
-end
-
-if type -q nvim; set -gx EDITOR (which nvim); end
 
 if not status --is-interactive; return; end
 
