@@ -125,7 +125,7 @@ NOTE: the function works perfectly on frame switch."
 (after! fish-mode
   (setq fish-indent-offset 2))
 
-(setq org-directory "~/.orgfiles/")
+(setq org-directory "~/.orgnotes/")
 
 (after! org
   (setq org-ellipsis " …"
