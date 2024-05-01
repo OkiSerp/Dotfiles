@@ -1,2 +1,5 @@
+XF86AudioMute
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+
 XF86Audio{Lower,Raise}Volume
   pactl set-sink-volume @DEFAULT_SINK@ {-4%,+4%}
