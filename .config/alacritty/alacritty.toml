@@ -52,7 +52,7 @@ bold.style = "Bold"
 italic.style = "Italic"
 bold_italic.style = "Bold Italic"
 
-size = 16.25
+size = 11.25
 
 offset = { x = 0, y = 0 }
 glyph_offset = { x = 0, y = 0 }
