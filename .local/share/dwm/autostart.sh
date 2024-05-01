@@ -6,7 +6,7 @@ while true; do
   date="$(date '+%R')"
   sbar="${vol} | ${bat} | ${date}"
   xsetroot -name "${sbar}"
-  sleep 2s
+  sleep 1s
 done &
 
 xrandr --size 1920x1080 &
