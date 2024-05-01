@@ -15,7 +15,7 @@ xset r rate 350 55 &
 
 xinput set-prop "Synaptics TM3336-001" "libinput Tapping Enabled" 1 &
 
-sxhkd -c ~/.dotfiles/.sxhkdrc &
+sxhkd -c ~/.config/sxhkd/sxhkdrc &
 
 wall="${HOME}/.myhome.d/pictures/walls/index"
 if [[ -f ${wall} ]]; then
