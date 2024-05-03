@@ -1,0 +1,17 @@
+# Adding new themes!
+
+# This works very similar to how we add new syntax definitions. First, create a
+# folder with the new syntax highlighting themes:
+
+mkdir -p "$(bat --config-dir)/themes"
+
+# Download a theme in `.thTheme' format, for example:
+
+wget -P "$(bat --config-dir)/themes" \
+  https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+
+mv Catppuccin\ Mocha.tmTheme CatpMocha.tmTheme
+
+# Update the binary cache:
+
+bat cache --build
