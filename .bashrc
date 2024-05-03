@@ -3,6 +3,8 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+
 if [[ -d "$HOME/.local/bin" ]]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
@@ -11,6 +13,8 @@ if [[ -d "$HOME/.config/emacs/bin" ]]; then
   export PATH="$HOME/.config/emacs/bin:$PATH"
   export DOOMDIR="$HOME/.config/doom"
 fi
+
+export MPLAYER_HOME="$XDG_CONFIG_HOME/mplayer"
 
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 
@@ -52,6 +56,6 @@ alias l="$(which ls) -gGAh --group-directories-first --color=auto"
 
 [[ -x "$(command -v nvim)" ]] && alias e="$(which nvim)"
 
-alias wget="$(which wget) --no-hsts"
+[[ -x "$(command -v wget)" ]] && alias wget="$(which wget) --no-hsts"
 
 eval "$(zoxide init bash)"

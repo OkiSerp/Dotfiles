@@ -42,13 +42,11 @@ set -U fish_greeting
 
 fish_config theme choose "CatpMocha"
 
-if type -q zoxide; zoxide init fish | source; end
+type -q zoxide && zoxide init fish | source
 
-if functions -q __zoxide_z
-  alias cd "__zoxide_z"
-end
+functions -q __zoxide_z && alias cd __zoxide_z
 
-if type -q nvim; alias e (which nvim); end
+type -q nvim && alias e (which nvim)
 
 alias ip (which ip)\ --color=always
 
@@ -68,6 +66,8 @@ if type -q lsd
   alias l "$(which lsd) --group-dirs first --icon never --color always \
     --blocks permission,size,date,name -lA --date \"+%y/%m/%d\""
 end
+
+type -q wget && alias wget (which wget)\ --no-hsts
 
 bind -M default \ek "history-search-backward"
 bind -M default \ej "history-search-forward"

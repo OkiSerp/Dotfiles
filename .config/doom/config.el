@@ -266,11 +266,11 @@ NOTE: the function works perfectly on frame switch."
   (set-face-attribute
    'google-translate-listen-button-face nil :height 1.0)
   (setq google-translate-listen-button-label "[Listen]"
+        google-translate-listen-program (executable-find "mplayer")
         google-translate-default-source-language "en"
         google-translate-default-target-language "uk"
         google-translate-pop-up-buffer-set-focus t
         google-translate-output-destination 'help
-        google-translate-listen-program "mplayer"
         google-translate-backend-method 'curl
         google-translate-show-phonetic t
         google-translate-display-translation-phonetic nil
