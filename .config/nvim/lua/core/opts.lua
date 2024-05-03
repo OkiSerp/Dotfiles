@@ -1,12 +1,7 @@
 local srp = {
-    shell = "fish",
     undodir = "~/.cache/nvim/srp/undodir",
     tabwidth = 2,
 }
-
-if vim.fn.executable(srp.shell) then
-    vim.cmd("set shell=fish")
-end
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " m"

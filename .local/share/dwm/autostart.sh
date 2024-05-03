@@ -15,9 +15,11 @@ xset r rate 350 55 &
 
 xinput set-prop "Synaptics TM3336-001" "libinput Tapping Enabled" 1 &
 
-sxhkd -c ~/.config/sxhkd/sxhkdrc &
+if [[ -f "${HOME}/.config/sxhkd/sxhkdrc" ]]; then
+  sxhkd -c "${HOME}/.config/sxhkd/sxhkdrc"  &
+fi
 
-wall="${HOME}/.myhome.d/pictures/walls/index"
+wall="${HOME}/.local/share/dwm/wallpaper"
 if [[ -f ${wall} ]]; then
   feh --no-fehbg --bg-scale ${wall} &
 fi
