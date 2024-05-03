@@ -45,7 +45,7 @@ history = 8000
 multiplier = 2
 
 [font]
-normal.family = "Agave Nerd Font"
+normal.family = "JetBrains Mono"
 
 normal.style = "Regular"
 bold.style = "Bold"
