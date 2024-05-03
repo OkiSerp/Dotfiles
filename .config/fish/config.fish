@@ -60,7 +60,7 @@ alias df (which df)\ -h
 alias free (which free)\ -m
 
 if type -q bat
-  set -gx PAGER (which bat)\ -p
+  set -gx PAGER (which bat)
   alias cat $PAGER
 end
 
