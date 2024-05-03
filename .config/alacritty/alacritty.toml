@@ -15,7 +15,7 @@ EDITOR = "nvim"
 
 [window]
 dimensions.columns = 120
-dimensions.lines = 30
+dimensions.lines = 32
 
 position = "None"
 
@@ -45,14 +45,14 @@ history = 8000
 multiplier = 2
 
 [font]
-normal.family = "JetBrains Mono"
+normal.family = "M+CodeLat60 Nerd Font"
 
 normal.style = "Regular"
 bold.style = "Bold"
 italic.style = "Italic"
 bold_italic.style = "Bold Italic"
 
-size = 12.75
+size = 13.75
 
 offset = { x = 0, y = 0 }
 glyph_offset = { x = 0, y = 0 }
