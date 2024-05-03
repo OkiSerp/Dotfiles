@@ -15,7 +15,7 @@ EDITOR = "nvim"
 
 [window]
 dimensions.columns = 120
-dimensions.lines = 36
+dimensions.lines = 30
 
 position = "None"
 
@@ -52,7 +52,7 @@ bold.style = "Bold"
 italic.style = "Italic"
 bold_italic.style = "Bold Italic"
 
-size = 11.25
+size = 12.75
 
 offset = { x = 0, y = 0 }
 glyph_offset = { x = 0, y = 0 }
