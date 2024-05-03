@@ -1,30 +1,23 @@
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
+
+export HISTFILE="${XDG_STATE_HOME}/bash/history"
+
+export LESSHISTFILE="/dev/null"
+
+[[ -x "$(command -v nvim)" ]] && export EDITOR="$(which nvim)"
+
 [[ $- != *i* ]] && return
 
-[[ $DISPLAY ]] && shopt -s checkwinsize
-
-export HISTCONTROL=ignoreboth
-
-export HISTSIZE=2000
-export HISTFILESIZE=2000
-
-shopt -s histappend
+PS1="[\u@\h \W]\$ "
 
 shopt -s autocd
 
 bind "set completion-ignore-case on"
-
-if [[ -x "$(command -v nvim)" ]]; then
-  alias e="$(which nvim)"
-fi
-
-if [[ -x "$(command -v lsd)" ]]; then
-  alias l="$(which lsd) --group-dirs first --icon never --color always \
-    --blocks permission,size,date,name -lA --date \"+%y/%m/%d\""
-fi
-
-if [[ -x "$(command -v bat)" ]]; then
-  alias cat="$(which bat) -p"
-fi
 
 alias mv="$(which mv) -i"
 alias cp="$(which cp) -i"
@@ -33,19 +26,20 @@ alias du="$(which du) -h"
 alias df="$(which df) -h"
 alias free="$(which free) -m"
 
-alias grep="$(which grep) --color=always"
-alias egrep="$(which grep) --color=always -E"
+alias grep="$(which grep) --color=auto"
+alias egrep="$(which grep) --color=auto -E"
 
-RST="\\[\\033[00m\\]"
-RED="${RST}\\[\\033[01;31m\\]"
-GRN="${RST}\\[\\033[01;32m\\]"
-YLW="${RST}\\[\\033[03;33m\\]"
-BLU="${RST}\\[\\033[01;34m\\]"
-PUR="${RST}\\[\\033[01;35m\\]"
+alias ip="$(which ip) -color=auto"
 
-PGB="\$(git branch 2> /dev/null | sed -e \
-  '/^[^*]/d' -e 's/* \(.*\)/ ${BLU}(${GRN}\1${BLU})/')"
+alias l="$(which ls) -gGAh --group-directories-first --color=auto"
 
-export PS1="${BLU}[${PUR}\u${RED}@${BLU}\h ${YLW}\W${RST}${BLU}]${PGB}${RED} » ${RST}"
 
-eval "$(zoxide init bash)"
+[[ -x "$(command -v nvim)" ]] && alias e="$(which nvim)"
+
+if [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]; then
+  source /usr/share/doc/pkgfile/command-not-found.bash
+fi
+
+if [[ -f /usr/share/bash_completion/bash_completion ]]; then
+  source /usr/share/bash_completion/bash_completion
+fi
