@@ -26,7 +26,18 @@ export LESSHISTFILE="/dev/null"
 
 [[ ! -t 0 ]] && return
 
-PS1="[\u@\h \W]\$ "
+RST="\\[\\033[00m\\]"
+RED="${RST}\\[\\033[01;31m\\]"
+GRN="${RST}\\[\\033[01;32m\\]"
+YLW="${RST}\\[\\033[03;33m\\]"
+BLU="${RST}\\[\\033[01;34m\\]"
+PUR="${RST}\\[\\033[01;35m\\]"
+
+PGB="\$(git branch 2> /dev/null | sed -e \
+  '/^[^*]/d' -e 's/* \(.*\)/ ${BLU}(${GRN}\1${BLU})/')"
+
+PS1="${BLU}[${PUR}\u${RED}@${BLU}\h ${YLW}\W${RST}${BLU}]${PGB}${RED} \$ ${RST}"
+export PS1
 
 shopt -s autocd
 
