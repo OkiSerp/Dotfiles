@@ -74,11 +74,11 @@ NOTE: the function works perfectly on frame switch."
 (setq user-full-name "Oleksii Kapula"
       user-mail-address "")
 
-(add-to-list 'default-frame-alist '(width . 110))
-(add-to-list 'default-frame-alist '(height . 36))
+(add-to-list 'default-frame-alist '(width . 120))
+(add-to-list 'default-frame-alist '(height . 40))
 
-(let ((size 18)
-      (font "JetBrains Mono"))
+(let ((size 16)
+      (font "M+CodeLat60 Nerd Font"))
   (when (doom-font-exists-p font)
     (setq doom-font (font-spec :name font :size size)
           doom-big-font (font-spec :name font :size (+ 6 size)))))
