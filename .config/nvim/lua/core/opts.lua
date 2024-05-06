@@ -19,9 +19,9 @@ vim.opt.guicursor = ""
 vim.wo.number = true
 vim.wo.relativenumber = true
 
-vim.opt.scroll = 15
-vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 23
+-- vim.opt.scroll = 15
+-- vim.opt.scrolloff = 8
+-- vim.opt.sidescrolloff = 23
 
 vim.opt.softtabstop = srp.tabwidth
 vim.opt.shiftwidth = srp.tabwidth
