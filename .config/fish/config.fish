@@ -57,6 +57,8 @@ alias du (which du)\ -h
 alias df (which df)\ -h
 alias free (which free)\ -m
 
+alias cal (which cal)\ -m
+
 if type -q bat
   set -gx PAGER (which bat)
   alias cat $PAGER
