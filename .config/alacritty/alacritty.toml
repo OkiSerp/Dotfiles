@@ -45,7 +45,8 @@ history = 8000
 multiplier = 2
 
 [font]
-normal.family = "M+CodeLat60 Nerd Font"
+normal.family = "JetBrainsMono Nerd Font"
+# normal.family = "M+CodeLat60 Nerd Font"
 
 normal.style = "Regular"
 bold.style = "Bold"
