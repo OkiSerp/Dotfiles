@@ -68,6 +68,11 @@ plug.config = function()
             },
         },
     })
+
+    lspconfig.tsserver.setup({})
+    lspconfig.emmet_ls.setup({})
+    lspconfig.cssls.setup({})
+    lspconfig.html.setup({})
 end
 
 return plug
