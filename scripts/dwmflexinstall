@@ -2,8 +2,10 @@
 
 set -l sldir $HOME/.dotfiles/suckless
 
+test -d $sldir || mkdir -p $sldir
+
 set -l dwmflexdir $sldir/dmwflexipatch
-set -l flexfinalizerdir $sldir/flexfinalizer
+set -l finalizerdir $sldir/finalizer
 set -l destdir $sldir/dwm
 
 git clone https://github.com/bakkeby/dwm-flexipatch.git $dwmflexdir
@@ -11,7 +13,8 @@ git clone https://github.com/bakkeby/dwm-flexipatch.git $dwmflexdir
 set -l patches \
   "VIEWONTAG" "PERTAG" "AUTOSTART" \
   "ATTACHBOTTOM" "ALWAYSCENTER" "ALT_TAB" \
-  "VANITYGAPS" "XRDB" "MOVESTACK" "RESTARTSIG"
+  "VANITYGAPS" "XRDB" "MOVESTACK" "RESTARTSIG" \
+  "BAR_STATUSPADDING" "BAR_STATUSCOLORS" "BAR_STATUSALLMONS"
 
 set -l patchfile $dwmflexdir/patches.def.h
 
@@ -23,8 +26,8 @@ cd $dwmflexdir
 make && sudo make clean install
 cd -
 
-git clone https://github.com/bakkeby/flexipatch-finalizer.git $flexfinalizerdir
-cd $flexfinalizerdir
+git clone https://github.com/bakkeby/flexipatch-finalizer.git $finalizerdir
+cd $finalizerdir
 ./flexipatch-finalizer.sh -r -d $dwmflexdir -o $destdir
 
 cd $destdir
