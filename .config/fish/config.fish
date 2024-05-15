@@ -5,9 +5,11 @@ set -gx XDG_CONFIG_HOME $HOME/.config
 
 set -gx PASSWORD_STORE_DIR $XDG_DATA_HOME/pass
 
-if test -d $HOME/.local/bin
-  fish_add_path $HOME/.local/bin
-end
+set -gx MPLAYER_HOME $XDG_CONFIG_HOME/mplayer
+set -gx GTK2_RC_FILES $XDG_CONFIG_HOME/gtk-2.0/gtkrc
+set -gx W3M_DIR $XDG_DATA_HOME/w3m
+
+test -d $HOME/.local/bin && fish_add_path $HOME/.local/bin
 
 if test -d $HOME/.config/emacs/bin
   fish_add_path $HOME/.config/emacs/bin
@@ -48,7 +50,9 @@ functions -q __zoxide_z && alias cd __zoxide_z
 
 type -q nvim && alias e (which nvim)
 
-alias ip (which ip)\ --color=always
+type -q emacs && alias emacs (which emacs)\ -nw
+
+alias ip (which ip)\ -color=always
 
 alias mv (which mv)\ -i
 alias cp (which cp)\ -i
@@ -58,6 +62,8 @@ alias df (which df)\ -h
 alias free (which free)\ -m
 
 alias cal (which cal)\ -m
+
+alias pwd (which pwd)\ -P
 
 if type -q bat
   set -gx PAGER (which bat)
@@ -76,7 +82,9 @@ bind -M default \ej "history-search-forward"
 
 bind -M default \el "forward-char"
 
-bind -M default ! __history_previous_command
+bind -M default \ea "kill-whole-line"
+
+bind -M default "!" __history_previous_command
 bind -M default "\$" __history_previous_command_arguments
 
 function __history_previous_command
