@@ -20,7 +20,7 @@ set -l deps \
   "pipewire" "pipewire-alsa" "pipewire-pulse" "pipewire-jack" \
   "wireplumber" "alsa-utils"
 
-set -l xdeps "server" "xinit" "xprop" "xsetroot" "xset" "xinput"
+set -l xdeps "server" "xinit" "xprop" "xsetroot" "xset" "xinput" "xrdb"
 
 for dep in $xdeps
   set -a deps (string join "" "xorg-" $dep)

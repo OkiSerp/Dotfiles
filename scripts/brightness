@@ -19,7 +19,7 @@ end
 function print_status
   set -l current (brightnessctl get) && set -l maximum (brightnessctl max)
   set -l brightness (math "100 * $current / $maximum")
-  set -l icon "󰃟"
+  set -l icon "󱠂"
 
   printf "%s %s%%" $icon (math "round($brightness)")
 end

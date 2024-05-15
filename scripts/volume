@@ -32,9 +32,9 @@ function print_status
 
   set -l icon ""
   if [ $mute = "Mute: yes" ]
-    set icon "󰖁"
+    set icon "󰝟"
   else if [ $volume = "0" ]
-    set icon "󰖁"
+    set icon "󰝟"
   else
     set icon "󰕾"
   end
