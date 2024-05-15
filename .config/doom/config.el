@@ -3,7 +3,7 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-(setq frame-title-format nil)
+;; (setq frame-title-format nil)
 
 (setq confirm-kill-emacs nil)
 
@@ -61,7 +61,8 @@ NOTE: the function works perfectly on frame switch."
     (when (eql blur nil)
       (srp/add-blur-behind-x-frame))))
 
-(add-to-list 'default-frame-alist '(alpha-background . 90))
+(when (eql (window-system) 'x)
+  (add-to-list 'default-frame-alist '(alpha-background . 90)))
 
 (add-hook 'window-setup-hook 'srp/add-blur-behind-x-frame)
 
@@ -78,7 +79,7 @@ NOTE: the function works perfectly on frame switch."
 (add-to-list 'default-frame-alist '(height . 40))
 
 (let ((size 16)
-      (font "M+CodeLat60 Nerd Font"))
+      (font "Shure Tech Mono Nerd Font"))
   (when (doom-font-exists-p font)
     (setq doom-font (font-spec :name font :size size)
           doom-big-font (font-spec :name font :size (+ 6 size)))))
@@ -120,10 +121,19 @@ NOTE: the function works perfectly on frame switch."
       scroll-margin 7)
 
 (setq-default tab-width 2
+              standard-indent 2
               indent-tabs-mode nil)
 
 (after! fish-mode
   (setq fish-indent-offset 2))
+
+(after! projectile
+  (add-to-list 'projectile-globally-ignored-directories "node_modules"))
+
+(add-hook! 'web-mode-hook
+  (setq web-mode-part-padding 0
+        web-mode-style-padding 0
+        web-mode-script-padding 0))
 
 (setq org-directory "~/.orgnotes/")
 
@@ -189,6 +199,11 @@ NOTE: the function works perfectly on frame switch."
       "M-RET" 'srp/org-meta-return
       :n "RET" '+org/dwim-at-point
       :localleader "s." 'org-fold-show-all)
+
+(after! org
+  (evil-set-register ?w [?A ?* escape ?^ ?w ?i ?* escape ?j])
+  (evil-set-register ?e [?A ?/ escape ?^ ?w ?i ?/ escape ?j])
+  (evil-set-register ?r [?v ?i ?w escape ?a ?_ escape ?b ?i ?_ escape]))
 
 (use-package! evil
   :init
