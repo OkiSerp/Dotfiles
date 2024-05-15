@@ -4,7 +4,7 @@ set -l sldir $HOME/.dotfiles/suckless
 
 test -d $sldir || mkdir -p $sldir
 
-set -l dwmflexdir $sldir/dmwflexipatch
+set -l dwmflexdir $sldir/dwmflexipatch
 set -l finalizerdir $sldir/finalizer
 set -l destdir $sldir/dwm
 
@@ -19,7 +19,8 @@ set -l patches \
 set -l patchfile $dwmflexdir/patches.def.h
 
 for patch in $patches
-  sed -i "s#define ${patch}_PATCH 0/s#define ${patch}_PATCH 1" $patchfile
+  set -l replacement (string join "" "#define " $patch "_PATCH")
+  sed -i "s/$replacement 0/s$replacement 1/" $patchfile
 end
 
 cd $dwmflexdir
