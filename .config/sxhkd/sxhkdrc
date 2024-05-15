@@ -1,8 +1,8 @@
 XF86AudioMute
-  pactl set-sink-mute @DEFAULT_SINK@ toggle
+  ~/.dotfiles/scripts/volume.fish --mute
 
 XF86Audio{Lower,Raise}Volume
-  pactl set-sink-volume @DEFAULT_SINK@ {-4%,+4%}
+  ~/.dotfiles/scripts/volume.fish {-u -l 4, -d -l 4}
 
 XF86MonBrightness{Up,Down}
-  ~/.scripts/brightness.sh {5 up, 5 down}
+  ~/.dotfiles/scripts/brightness.fish {-u -l 5, -d -l 5}
