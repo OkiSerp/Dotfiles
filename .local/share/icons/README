@@ -1,0 +1,5 @@
+To enable your new installed cursor theme just make symbolic link to it and
+name it `default':
+
+cd ~/.local/share/icons
+ln -s YOUR_CURSOR_THEME default
