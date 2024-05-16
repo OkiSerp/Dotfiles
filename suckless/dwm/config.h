@@ -199,6 +199,7 @@ static const char *dmenucmd[] = {
   "-nf", normfgcolor,
   "-sb", selbgcolor,
   "-sf", selfgcolor,
+  "-h", "26",
   NULL
 };
 
