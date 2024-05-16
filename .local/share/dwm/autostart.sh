@@ -1,12 +1,13 @@
 #!/usr/bin/env sh
 
 while true; do
+  keyboard="$(~/.dotfiles/scripts/keyboard)"
   volume="$(~/.dotfiles/scripts/volume --status)"
   battery="$(~/.dotfiles/scripts/battery)"
-  brightness="$(fish -c '~/.dotfiles/scripts/brightness --status')"
+  brightness="$(~/.dotfiles/scripts/brightness --status)"
   datetime="$(date '+%b %d %a') $(date '+%R')"
 
-  xsetroot -name "$volume / $battery / $brightness / $datetime"
+  xsetroot -name "$keyboard / $volume / $battery / $brightness / $datetime"
 
   sleep 700ms
 done &
