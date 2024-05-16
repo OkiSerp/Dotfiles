@@ -114,9 +114,9 @@ static char *colors[][ColCount] = {
  * them. This works seamlessly with alternative tags and alttagsdecoration patches.
  */
 static char *tagicons[][NUMTAGS] = {
-  [DEFAULT_TAGS]        = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
-  [ALTERNATIVE_TAGS]    = { "A", "B", "C", "D", "E", "F", "G", "H", "I" },
-  [ALT_TAGS_DECORATION] = { "<1>", "<2>", "<3>", "<4>", "<5>", "<6>", "<7>", "<8>", "<9>" },
+  [DEFAULT_TAGS]        = { "idx", "web", "cli", "otr" },
+  [ALTERNATIVE_TAGS]    = { "{A}", "{B}", "{C}", "{D}" },
+  [ALT_TAGS_DECORATION] = { "<1>", "<2>", "<3>", "<4>" },
 };
 
 /* There are two options when it comes to per-client rules:
@@ -181,8 +181,8 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
   /* symbol     arrange function */
-  { "[]=",      tile },    /* first entry is default */
-  { "><>",      NULL },    /* no layout function means floating behavior */
+  { "[T]",      tile },    /* first entry is default */
+  { "{F}",      NULL },    /* no layout function means floating behavior */
   { "[M]",      monocle },
 };
 
