@@ -25,3 +25,5 @@ test -e $keysfile && sxhkd -c $keysfile &
 
 wallpaper="$HOME/.local/share/dwm/wallpaper"
 test -e $wallpaper && feh --no-fehbg --bg-scale $wallpaper &
+
+fish -c "~/.dotfiles/scripts/keyboard --init" &
