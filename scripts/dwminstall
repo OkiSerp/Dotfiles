@@ -13,6 +13,8 @@
 # by Oleksii Kapula
 #
 
+argparse --ignore-unknown "x/xorg" -- $argv
+
 set -l deps \
   "base-devel" "git" \
   "libx11" "libxft" "libxinerama" \
@@ -20,10 +22,15 @@ set -l deps \
   "pipewire" "pipewire-alsa" "pipewire-pulse" "pipewire-jack" \
   "wireplumber" "alsa-utils"
 
-set -l xdeps "server" "xinit" "xprop" "xsetroot" "xset" "xinput" "xrdb"
+if set -q _flag_xorg
+  set -a deps "xorg"
+else
+  set -l xdeps "server" "xinit" "xprop" \
+    "xsetroot" "xset" "xinput" "setxkbmap"
 
-for dep in $xdeps
-  set -a deps (string join "" "xorg-" $dep)
+  for dep in $xdeps
+    set -a deps (string join "" "xorg-" $dep)
+  end
 end
 
 if not type -q yay
