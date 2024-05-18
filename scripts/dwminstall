@@ -7,13 +7,11 @@
 #   \ \  \_\\ \ \  \|\__\_\  \ \  \    \ \  \
 #    \ \_______\ \____________\ \__\    \ \__\
 #     \|_______|\|____________|\|__|     \|__|
-
 #
 # DWM Installation Script
 # by Oleksii Kapula
-#
 
-argparse --ignore-unknown "x/xorg" -- $argv
+argparse -i "x/xorg" "m/make" "s/session" -- $argv
 
 set -l deps \
   "base-devel" "git" \
@@ -42,35 +40,41 @@ end
 
 yay --sync --needed $deps
 
-set -l sldir $HOME/.dotfiles/suckless
+set -l sldir $HOME/.suckless
 
 if not test -d $sldir
   mkdir -p $sldir
 end
 
-set -l tools "dwm" "dmenu"
+set -l tools "dwm" "dmenu" "st"
 
 for tool in $tools
   if test -d $sldir/$tool; continue; end
   git clone https://git.suckless.org/$tool $sldir/$tool
-  cd $sldir/$tool
-  make && sudo make clean install
-  cd -
+  if set -q _flag_make
+    cd $sldir/$tool
+    make && sudo make clean install
+    cd -
+  end
 end
 
-if not test -d /usr/bin/xsessions
-  sudo mkdir /usr/bin/xsessions
-end
+if set -q _flag_session
+  set -l dwmdesktop $HOME/dwm.desktop
+  set -l sessiondir /usr/bin/xsessions
 
-printf "%s\n%s\n%s\n%s\n%s" \
-  "[Desktop Entry]" \
-  "Type=XSession" \
-  "Exec=$(which dwm)" \
-  "Comment=Dynamic Window Manager" \
-  "Name=DWM" > $HOME/dwm.desktop
+  printf "%s\n%s\n%s\n%s\n%s" \
+    "[Desktop Entry]" \
+    "Type=XSession" \
+    "Exec=$(which dwm 2> /dev/null || echo 'dwm')" \
+    "Comment=Dynamic Window Manager" \
+    "Name=DWM" > $dwmdesktop
 
-if test -e /usr/share/xsessions/dwm.desktop
-  rm $HOME/dwm.desktop
-else
-  sudo mv $HOME/dwm.desktop /usr/share/xsessions
+  if not test -d $sessiondir
+    sudo mkdir $sessiondir
+    sudo mv $dwmdesktop $sessiondir
+  else if test -d $sessiondir && not test -e $sessiondir/$dwmdesktop
+    sudo mv $dwmdesktop $sessiondir
+  else
+    rm $dwmdesktop
+  end
 end
