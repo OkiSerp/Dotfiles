@@ -20,10 +20,11 @@ xinput set-prop "Synaptics TM3336-001" "libinput Tapping Enabled" 1 &
 
 xbanish &
 
-keysfile="$HOME/.config/sxhkd/sxhkdrc"
-test -e $keysfile && sxhkd -c $keysfile &
-
+sxhkdrc="$HOME/.config/sxhkd/sxhkdrc"
 wallpaper="$HOME/.local/share/dwm/wallpaper"
+
+test -e $keysfile && sxhkd -c $sxhkdrc &
+
 test -e $wallpaper && feh --no-fehbg --bg-scale $wallpaper &
 
-fish -c "~/.dotfiles/scripts/keyboard --init" &
+sh -c "~/.dotfiles/scripts/keyboard --init" &
