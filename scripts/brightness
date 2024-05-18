@@ -16,26 +16,10 @@ if set -q _flag_level
   exit
 end
 
-function print_status
+if set -q _flag_status
   set -l current (brightnessctl get) && set -l maximum (brightnessctl max)
   set -l brightness (math "100 * $current / $maximum")
   set -l icon "󱠂"
 
-  set -l c_low "^c#d20f39^"
-  set -l c_middle "^c#df8e1d^"
-  set -l c_high "^c#209fb5^"
-  set -l c_reset "^c#cad3f5^"
-
-  [ $brightness -le 20 ] && \
-    printf "%s%s %s%s%%" $c_low $icon $c_reset (math "round($brightness)")
-
-  [ $brightness -gt 20 ] && [ $brightness -lt 50 ] && \
-    printf "%s%s %s%s%%" $c_middle $icon $c_reset (math "round($brightness)")
-
-  [ $brightness -ge 50 ] && \
-    printf "%s%s %s%s%%" $c_high $icon $c_reset (math "round($brightness)")
-end
-
-if set -q _flag_status
-  print_status
+  printf "%s %s%%" $icon (math "round($brightness)")
 end

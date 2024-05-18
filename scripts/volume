@@ -30,16 +30,13 @@ function print_status
   set -l volume (pactl get-sink-volume @DEFAULT_SINK@ | \
     grep "Volume:" | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
 
-  set -l c_mute "^c#d20f39^"
-  set -l c_reset "^c#cdd6f4^"
-
   if [ $mute = "Mute: yes" ] || [ $volume = "0" ]
     set -g icon "󰝟"
-    printf "%s%s %s%s%%" $c_mute $icon $c_reset $volume
   else
     set -g icon "󰕾"
-    printf "%s %s%%" $icon $volume
   end
+
+  printf "%s %s%%" $icon $volume
 end
 
 if set -q _flag_status
