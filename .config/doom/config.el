@@ -79,7 +79,7 @@ NOTE: the function works perfectly on frame switch."
 (add-to-list 'default-frame-alist '(height . 40))
 
 (let ((size 16)
-      (font "Shure Tech Mono Nerd Font"))
+      (font "JetBrains Mono"))
   (when (doom-font-exists-p font)
     (setq doom-font (font-spec :name font :size size)
           doom-big-font (font-spec :name font :size (+ 6 size)))))
