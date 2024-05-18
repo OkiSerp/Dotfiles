@@ -1,15 +1,18 @@
 #!/usr/bin/env fish
 
-argparse --ignore-unknown "i/init" "r/reset" -- $argv
+argparse -i "i/init" "r/reset" -- $argv
 
 if set -q _flag_init
-  setxkbmap -layout us,ua -option grp:shifts_toggle
-else if set -q _flag_reset
-  setxkbmap -layout us -option
-else
-  set -l layout (xset -q | grep "LED" | awk "{ print \$10 }")
-  set -l icon "󰌌"
+  setxkbmap -layout us,ua -option grp:shifts_toggle && exit
+end
 
-  [ $layout = "00000000" ] && printf "%s %s" $icon "en"
-  [ $layout = "00001000" ] && printf "%s %s" $icon "ua"
+set -q _flag_reset && setxkbmap -layout us -option && exit
+
+set -l layout (xset -q | grep "LED" | awk "{ print \$10 }")
+set -l icon "󰌌"
+
+if [ $layout = "00000000" ]
+  printf "%s %s" $icon "en"
+else if [ $layout = "00001000" ]
+  printf "%s %s" $icon "ua"
 end
