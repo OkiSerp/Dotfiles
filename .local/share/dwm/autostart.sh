@@ -9,7 +9,7 @@ while true; do
 
   xsetroot -name "$keyboard / $volume / $battery / $brightness / $datetime"
 
-  sleep 700ms
+  sleep 750ms
 done &
 
 xrandr --size 1920x1080 &
