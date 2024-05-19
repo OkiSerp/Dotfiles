@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+date="$(date '+%b %d %a')"
+time="$(date '+%R')"
+
+printf "%s %s" "${date}" "${time}"

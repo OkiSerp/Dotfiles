@@ -1,15 +1,15 @@
 #!/usr/bin/env sh
 
 while true; do
-  keyboard="$(~/.dotfiles/scripts/keyboard)"
-  volume="$(~/.dotfiles/scripts/volume --status)"
-  battery="$(~/.dotfiles/scripts/battery)"
-  brightness="$(~/.dotfiles/scripts/brightness --status)"
-  datetime="$(date '+%b %d %a') $(date '+%R')"
+  key="$(~/.local/share/dwm/scripts/keyboard)"
+  vol="$(~/.local/share/dwm/scripts/volume)"
+  brt="$(~/.local/share/dwm/scripts/brightness)"
+  bat="$(~/.local/share/dwm/scripts/battery)"
+  dat="$(~/.local/share/dwm/scripts/datetime)"
 
-  xsetroot -name "$keyboard / $volume / $battery / $brightness / $datetime"
+  xsetroot -name "${key} / ${vol}/ ${brt} / ${bat} / ${dat}"
 
-  sleep 750ms
+  sleep 2s
 done &
 
 xrandr --size 1920x1080 &
@@ -25,8 +25,10 @@ xbanish &
 sxhkdrc="$HOME/.config/sxhkd/sxhkdrc"
 wallpaper="$HOME/.local/share/dwm/wallpaper"
 
-test -e $keysfile && sxhkd -c $sxhkdrc &
+test -e "${sxhkdrc}" && sxhkd -c "${sxhkdrc}" &
 
-[[ -e $wallpaper ]] && feh --no-fehbg --bg-scale $wallpaper &
+if [[ -e "${wallpaper}" ]];then
+  feh --no-fehbg --bg-scale "${wallpaper}" &
+fi
 
-sh -c "~/.dotfiles/scripts/keyboard --init" &
+setxkbmap -layout us,ua -option grp:shifts_toggle &

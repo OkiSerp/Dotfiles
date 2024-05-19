@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+cur="$(brightnessctl get)"
+max="$(brightnessctl max)"
+
+brt="$((100 * $cur / $max))"
+
+icon="󱠂"
+
+printf "%s %.*f%%" "${icon}" 0 "${brt}"
