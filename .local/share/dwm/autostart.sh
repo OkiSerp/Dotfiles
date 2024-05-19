@@ -7,7 +7,7 @@ while true; do
   bat="$(~/.local/share/dwm/scripts/battery)"
   dat="$(~/.local/share/dwm/scripts/datetime)"
 
-  xsetroot -name "${key} / ${vol}/ ${brt} / ${bat} / ${dat}"
+  xsetroot -name "${key} / ${vol} / ${brt} / ${bat} / ${dat}"
 
   sleep 2s
 done &
