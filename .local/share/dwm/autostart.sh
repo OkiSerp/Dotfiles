@@ -16,6 +16,8 @@ xrandr --size 1920x1080 &
 
 xset r rate 350 55 &
 
+xset s off -dpms &
+
 xinput set-prop "Synaptics TM3336-001" "libinput Tapping Enabled" 1 &
 
 xbanish &
@@ -25,6 +27,6 @@ wallpaper="$HOME/.local/share/dwm/wallpaper"
 
 test -e $keysfile && sxhkd -c $sxhkdrc &
 
-test -e $wallpaper && feh --no-fehbg --bg-scale $wallpaper &
+[[ -e $wallpaper ]] && feh --no-fehbg --bg-scale $wallpaper &
 
 sh -c "~/.dotfiles/scripts/keyboard --init" &
