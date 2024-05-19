@@ -6,13 +6,4 @@ if set -q _flag_init
   setxkbmap -layout us,ua -option grp:shifts_toggle && exit
 end
 
-set -q _flag_reset && setxkbmap -layout us -option && exit
-
-set -l layout (xset -q | grep "LED" | awk "{ print \$10 }")
-set -l icon "󰌌"
-
-if [ $layout = "00000000" ]
-  printf "%s %s" $icon "en"
-else if [ $layout = "00001000" ]
-  printf "%s %s" $icon "ua"
-end
+set -q _flag_reset && setxkbmap -layout us -option

@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 argparse --ignore-unknown \
-  "u/up" "d/down" "m/mute" "l/level=" "s/set=" "t/status" -- $argv
+  "u/up" "d/down" "m/mute" "l/level=" "s/set=" -- $argv
 
 not type -q pactl && exit
 
@@ -21,24 +21,4 @@ if set -q _flag_level
   else if set -q _flag_down
     pactl set-sink-volume @DEFAULT_SINK@ "-$_flag_level%"
   end
-  exit
-end
-
-function print_status
-  set -l mute (pactl get-sink-mute @DEFAULT_SINK@)
-
-  set -l volume (pactl get-sink-volume @DEFAULT_SINK@ | \
-    grep "Volume:" | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
-
-  if [ $mute = "Mute: yes" ] || [ $volume = "0" ]
-    set -g icon "󰝟"
-  else
-    set -g icon "󰕾"
-  end
-
-  printf "%s %s%%" $icon $volume
-end
-
-if set -q _flag_status
-  print_status
 end
