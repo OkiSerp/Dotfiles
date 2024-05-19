@@ -14,8 +14,8 @@ TERM = "xterm-256color"
 EDITOR = "nvim"
 
 [window]
-dimensions.columns = 120
-dimensions.lines = 32
+dimensions.columns = 100
+dimensions.lines = 30
 
 position = "None"
 
@@ -45,7 +45,7 @@ history = 8000
 multiplier = 2
 
 [font]
-normal.family = "Shure Tech Mono Nerd Font"
+normal.family = "JetBrainsMono NF"
 
 normal.style = "Regular"
 bold.style = "Bold"
