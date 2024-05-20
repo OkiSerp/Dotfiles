@@ -18,7 +18,7 @@ set -l deps \
   "libx11" "libxft" "libxinerama" \
   "feh" "brightnessctl" "sxhkd" "xbanish" \
   "pipewire" "pipewire-alsa" "pipewire-pulse" "pipewire-jack" \
-  "wireplumber" "alsa-utils"
+  "wireplumber" "alsa-utils" "calc"
 
 if set -q _flag_xorg
   set -a deps "xorg"
