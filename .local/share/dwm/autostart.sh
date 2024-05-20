@@ -1,16 +1,6 @@
 #!/usr/bin/env sh
 
-while true; do
-  key="$(~/.local/share/dwm/scripts/keyboard)"
-  vol="$(~/.local/share/dwm/scripts/volume)"
-  brt="$(~/.local/share/dwm/scripts/brightness)"
-  bat="$(~/.local/share/dwm/scripts/battery)"
-  dat="$(~/.local/share/dwm/scripts/datetime)"
-
-  xsetroot -name "${key} / ${vol} / ${brt} / ${bat} / ${dat}"
-
-  sleep 2s
-done &
+sh -c "~/.local/share/dwm/statusbar.sh" &
 
 xrandr --size 1920x1080 &
 

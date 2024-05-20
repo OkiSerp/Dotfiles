@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-key="$(xset -q | grep "LED" | awk "{ print \$10 }")"
-label="us"
-icon="󰘲"
-
-[[ "${key}" == "00001000" ]] && label="ua"
-
-printf "%s %s" "${icon}" "${label}"

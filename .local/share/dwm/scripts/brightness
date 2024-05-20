@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-brt="$(calc "100 * $(brightnessctl get) / $(brightnessctl max)")"
-
-printf "%s %.*f%%" "󱠂" 0 "${brt:2:-1}"
