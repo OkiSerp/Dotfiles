@@ -45,7 +45,7 @@ history = 8000
 multiplier = 2
 
 [font]
-normal.family = "JetBrainsMono NF"
+normal.family = "Iosevka"
 
 normal.style = "Regular"
 bold.style = "Bold"
