@@ -3,8 +3,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-;; (setq frame-title-format nil)
-
 (setq confirm-kill-emacs nil)
 
 (defun srp/delete-frame (&rest _)
@@ -16,77 +14,21 @@
 
 (bind-key [remap delete-frame] 'srp/delete-frame)
 
-(defun srp/add-blur-behind-x-frame (&optional frame &rest _)
-  "Set blur behind `x' frame.\n
-If FRAME in nil, use current frame."
-  (interactive)
-  (let* ((frame (cond (frame) (t (selected-frame))))
-         (frame-id (frame-parameter frame 'outer-window-id))
-         (command (format
-                   "xprop %s %s %s"
-                   "-f _KDE_NET_WM_BLUR_BEHIND_REGION 32c"
-                   "-set _KDE_NET_WM_BLUR_BEHIND_REGION 0 -id"
-                   frame-id)))
-    (when (eql (window-system) 'x)
-      (call-process-shell-command command)
-      (set-frame-parameter frame 'blur 1))))
-
-(defun srp/remove-blur-behind-x-frame (&optional frame &rest _)
-  "Remove blur behind `x' frame.\n
-If FRAME is nil, use current frame."
-  (interactive)
-  (let* ((frame (cond (frame) (t (selected-frame))))
-         (frame-id (frame-parameter frame 'outer-window-id))
-         (command (format
-                   "xprop -remove _KDE_NET_WM_BLUR_BEHIND_REGION -id %s"
-                   frame-id)))
-    (when (eql (window-system) 'x)
-      (call-process-shell-command command)
-      (set-frame-parameter frame 'blur 0))))
-
-(defun srp/toggle-blur-behind-x-frame (&optional frame &rest _)
-  "Toggle blur behind `x' frame.\n
-If FRAME is nil, use current frame."
-  (interactive)
-  (let* ((frame (cond (frame) (t (selected-frame))))
-         (blur (frame-parameter frame 'blur)))
-    (if (or (eql blur nil) (<= blur 0))
-        (srp/add-blur-behind-x-frame frame)
-      (srp/remove-blur-behind-x-frame frame))))
-
-(defun srp/add-blur-behind-new-x-frame-on-switch (&rest _)
-  "Set blur behind newly created `x' frame.\n
-NOTE: the function works perfectly on frame switch."
-  (let ((blur (frame-parameter (selected-frame) 'blur)))
-    (when (eql blur nil)
-      (srp/add-blur-behind-x-frame))))
-
-(when (eql (window-system) 'x)
-  (add-to-list 'default-frame-alist '(alpha-background . 90)))
-
-(add-hook 'window-setup-hook 'srp/add-blur-behind-x-frame)
-
-(add-hook! 'window-selection-change-functions
-  (srp/add-blur-behind-new-x-frame-on-switch))
-
-(map! :leader :desc "Blur behind frame"
-      "tu" 'srp/toggle-blur-behind-x-frame)
-
 (setq user-full-name "Oleksii Kapula"
       user-mail-address "")
 
 (add-to-list 'default-frame-alist '(width . 120))
 (add-to-list 'default-frame-alist '(height . 40))
 
-(let ((size 16)
-      (font "JetBrains Mono"))
-  (when (doom-font-exists-p font)
-    (setq doom-font (font-spec :name font :size size)
-          doom-big-font (font-spec :name font :size (+ 6 size)))))
+(let ((font-size 18)
+      (font-family "Iosevka"))
+  (when (doom-font-exists-p font-family)
+    (setq doom-font (font-spec :family font-family :size font-size)
+          doom-big-font (font-spec :family font-family :size (+ 6 font-size)))))
 
-(let ((font "Noto Color Emoji"))
-  (when (doom-font-exists-p font)
-    (setq doom-emoji-font (font-spec :name font))))
+(let ((font-family "Noto Color Emoji"))
+  (when (doom-font-exists-p font-family)
+    (setq doom-emoji-font (font-spec :name font-family))))
 
 (setq doom-theme 'doom-one)
 
@@ -262,16 +204,16 @@ NOTE: the function works perfectly on frame switch."
       delete-by-moving-to-trash t
       magit-delete-by-moving-to-trash t)
 
-(defvar srp/im "ukrainian-computer"
-  "Define variable for my input method.")
-
-(setq default-input-method srp/im)
-
 (when (modulep! :checkers spell)
   (spell-fu-global-mode 0)
   (remove-hook 'text-mode-hook 'spell-fu-mode)
   (add-hook! 'input-method-activate-hook
     (spell-fu-mode 0)))
+
+(defvar srp/im "ukrainian-computer"
+  "Define variable for my input method.")
+
+(setq default-input-method srp/im)
 
 (use-package! google-translate
   :init
@@ -323,7 +265,7 @@ NOTE: the function works perfectly on frame switch."
 
 (defun srp/lookup (url &optional query prompt im &rest _)
   "My custom look up function that can change input method."
-  (let ((prompt (cond (prompt) ((propertize "Search for → " 'face 'warning))))
+  (let ((prompt (cond (prompt) ((propertize "Search for: " 'face 'warning))))
         (im (cond ((stringp im) im) (im srp/im))))
     (minibuffer-with-setup-hook
         (lambda (&rest _)
@@ -333,6 +275,6 @@ NOTE: the function works perfectly on frame switch."
        (format url (cond (query (read-string prompt))
                          (t (doom-thing-at-point-or-region))))))))
 
-(map! :leader :desc "Interpret UA word"
+(map! :leader :desc "Interpret ukrainian word"
       "lv" (cmd! (srp/lookup "https://slovnyk.ua/index.php?swrd=%s"
-                              'query nil t)))
+                             'query nil t)))
