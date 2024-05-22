@@ -81,8 +81,11 @@ bind -M default \ek "history-search-backward"
 bind -M default \ej "history-search-forward"
 
 bind -M default \el "forward-char"
+bind -M default \eF "forward-bigword"
+bind -M default \eB "backward-bigword"
 
 bind -M default \ea "kill-whole-line"
+bind -M default \eD "backward-kill-word"
 
 bind -M default "!" __history_previous_command
 bind -M default "\$" __history_previous_command_arguments
