@@ -24,7 +24,7 @@
   "Default font size for `srp/font-load' function.")
 
 (defun srp/font-load
-    (_ &optional family size big-size &rest _)
+    (&optional _ family size big-size &rest _)
   "Configure font family and its size both explicitly or interactively."
   (interactive
    (list current-prefix-arg
@@ -44,7 +44,7 @@
 
 (map! :leader "hrF" 'srp/font-load)
 
-(srp/font-load nil)
+(srp/font-load)
 
 (let ((font-family "Noto Color Emoji"))
   (when (doom-font-exists-p font-family)
