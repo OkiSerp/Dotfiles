@@ -14,9 +14,6 @@
 
 (bind-key [remap delete-frame] 'srp/delete-frame)
 
-(setq user-full-name "Oleksii Kapula"
-      user-mail-address "")
-
 (add-to-list 'default-frame-alist '(width . 120))
 (add-to-list 'default-frame-alist '(height . 40))
 
