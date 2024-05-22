@@ -100,7 +100,7 @@
 (setq org-directory "~/.orgnotes/")
 
 (after! org
-  (setq org-ellipsis " …"
+  (setq org-ellipsis " "
         org-log-done 'time
         org-startup-folded 'fold
         org-image-actual-width nil
