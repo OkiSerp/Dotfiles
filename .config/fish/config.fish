@@ -66,7 +66,7 @@ alias cal (which cal)\ -m
 alias pwd (which pwd)\ -P
 
 if type -q bat
-  set -gx PAGER (which bat)
+  set -gx PAGER (which bat)\ -p
   alias cat $PAGER
 end
 
