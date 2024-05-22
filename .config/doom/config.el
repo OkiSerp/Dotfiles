@@ -20,11 +20,20 @@
 (add-to-list 'default-frame-alist '(width . 120))
 (add-to-list 'default-frame-alist '(height . 40))
 
-(let ((font-size 18)
-      (font-family "Iosevka"))
-  (when (doom-font-exists-p font-family)
-    (setq doom-font (font-spec :family font-family :size font-size)
-          doom-big-font (font-spec :family font-family :size (+ 6 font-size)))))
+(defun srp/font-load
+    (&optional font-family font-size font-big-size no-font-reload &rest _)
+  "Configure font family and its size."
+  (interactive)
+  (let* ((font-family (cond (font-family) ("Iosevka")))
+         (font-size (cond (font-size) (18)))
+         (font-big-size (cond (font-big-size) (font-size (+ 6 font-size)) (24))))
+    (when (doom-font-exists-p font-family)
+      (setq doom-font (font-spec :family font-family :size font-size)
+            doom-big-font (font-spec :family font-family :size font-big-size))
+      (unless no-font-reload
+        (doom/reload-font)))))
+
+(srp/font-load nil 18 nil 'no-font-reload)
 
 (let ((font-family "Noto Color Emoji"))
   (when (doom-font-exists-p font-family)
