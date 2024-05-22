@@ -18,16 +18,16 @@
 (add-to-list 'default-frame-alist '(height . 40))
 
 (defun srp/font-load
-    (&optional font-family font-size font-big-size no-font-reload &rest _)
+    (&optional family size big-size no-reload &rest _)
   "Configure font family and its size."
   (interactive)
-  (let* ((font-family (cond (font-family) ("Iosevka")))
-         (font-size (cond (font-size) (18)))
-         (font-big-size (cond (font-big-size) (font-size (+ 6 font-size)) (24))))
-    (when (doom-font-exists-p font-family)
-      (setq doom-font (font-spec :family font-family :size font-size)
-            doom-big-font (font-spec :family font-family :size font-big-size))
-      (unless no-font-reload
+  (let* ((family (cond (family) ("Iosevka")))
+         (size (cond (size) (18)))
+         (big-size (cond (big-size) (size (+ 6 size)) (24))))
+    (when (doom-font-exists-p family)
+      (setq doom-font (font-spec :family family :size size)
+            doom-big-font (font-spec :family family :size big-size))
+      (unless no-reload
         (doom/reload-font)))))
 
 (srp/font-load nil 18 nil 'no-font-reload)
