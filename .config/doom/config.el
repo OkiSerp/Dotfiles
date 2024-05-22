@@ -25,7 +25,7 @@
 
 (defun srp/font-load
     (_ &optional family size big-size &rest _)
-  "Configure font family and its size."
+  "Configure font family and its size both explicitly or interactively."
   (interactive
    (list current-prefix-arg
          (read-string "Font family: " srp/font-family)
