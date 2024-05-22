@@ -11,7 +11,7 @@
 # DWM Installation Script
 # by Oleksii Kapula
 
-argparse -i "x/xorg" "m/make" "s/session" -- $argv
+argparse -i "x/xorg" -- $argv
 
 set -l deps \
   "base-devel" "git" \
@@ -40,41 +40,14 @@ end
 
 yay --sync --needed $deps
 
-set -l sldir $HOME/.suckless
+set -l sldir $HOME/.local/state/suckless
 
-if not test -d $sldir
-  mkdir -p $sldir
-end
+git clone https://github.com/okisrp/suckless.git $sldir
 
-set -l tools "dwm" "dmenu" "st"
+set -l tools "dwm" "dmenu"
 
 for tool in $tools
-  if test -d $sldir/$tool; continue; end
-  git clone https://git.suckless.org/$tool $sldir/$tool
-  if set -q _flag_make
-    cd $sldir/$tool
-    make && sudo make clean install
-    cd -
-  end
-end
-
-if set -q _flag_session
-  set -l dwmdesktop $HOME/dwm.desktop
-  set -l sessiondir /usr/bin/xsessions
-
-  printf "%s\n%s\n%s\n%s\n%s" \
-    "[Desktop Entry]" \
-    "Type=XSession" \
-    "Exec=$(which dwm 2> /dev/null || echo 'dwm')" \
-    "Comment=Dynamic Window Manager" \
-    "Name=DWM" > $dwmdesktop
-
-  if not test -d $sessiondir
-    sudo mkdir $sessiondir
-    sudo mv $dwmdesktop $sessiondir
-  else if test -d $sessiondir && not test -e $sessiondir/$dwmdesktop
-    sudo mv $dwmdesktop $sessiondir
-  else
-    rm $dwmdesktop
-  end
+  cd $sldir/$tool
+  make && sudo make clean install
+  cd -
 end
