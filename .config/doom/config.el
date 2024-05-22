@@ -42,6 +42,8 @@
       (message "%s" (propertize (format "%s doesn't exists!" family)
                                 'face 'warning)))))
 
+(map! :leader "hrF" 'srp/font-load)
+
 (srp/font-load nil)
 
 (let ((font-family "Noto Color Emoji"))
