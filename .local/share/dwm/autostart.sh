@@ -8,17 +8,15 @@ xset r rate 350 55 &
 
 xset s off -dpms &
 
-xinput set-prop "Synaptics TM3336-001" "libinput Tapping Enabled" 1 &
-
 xbanish &
 
+xinput set-prop "Synaptics TM3336-001" "libinput Tapping Enabled" 1 &
+
+setxkbmap -layout us,ua -option grp:shifts_toggle &
+
 sxhkdrc="$HOME/.config/sxhkd/sxhkdrc"
-wallpaper="$HOME/.local/share/dwm/wall.jpg"
+wall="$HOME/.local/share/dwm/wall.jpg"
 
 test -e "${sxhkdrc}" && sxhkd -c "${sxhkdrc}" &
 
-if [[ -e "${wallpaper}" ]];then
-  feh --no-fehbg --bg-scale "${wallpaper}" &
-fi
-
-setxkbmap -layout us,ua -option grp:shifts_toggle &
+test -e "${wall}" && feh --no-fehbg --bg-scale "${wall}" &
