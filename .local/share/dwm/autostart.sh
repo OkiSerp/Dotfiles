@@ -13,7 +13,7 @@ xinput set-prop "Synaptics TM3336-001" "libinput Tapping Enabled" 1 &
 xbanish &
 
 sxhkdrc="$HOME/.config/sxhkd/sxhkdrc"
-wallpaper="$HOME/.local/share/dwm/wallpaper"
+wallpaper="$HOME/.local/share/dwm/wall.jpg"
 
 test -e "${sxhkdrc}" && sxhkd -c "${sxhkdrc}" &
 
