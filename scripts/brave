@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 argparse --ignore-unknown --max-args=1 \
-  "t/tor" "p/private" "n/new-window" -- $argv
+  "t/tor" "p/private" "w/window" "r/restore" -- $argv
 
 type -q brave || exit
 
@@ -9,8 +9,10 @@ if set -q _flag_tor
   brave --tor
 else if set -q _flag_private
   brave --incognito
-else if set -q _flag_new-window
+else if set -q _flag_window
   brave --new-window
+else if set -q _flag_restore
+  brave --restore-last-session
 else
   brave
 end
