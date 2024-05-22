@@ -17,20 +17,32 @@
 (add-to-list 'default-frame-alist '(width . 120))
 (add-to-list 'default-frame-alist '(height . 40))
 
-(defun srp/font-load
-    (&optional family size big-size no-reload &rest _)
-  "Configure font family and its size."
-  (interactive)
-  (let* ((family (cond (family) ("Iosevka")))
-         (size (cond (size) (18)))
-         (big-size (cond (big-size) (size (+ 6 size)) (24))))
-    (when (doom-font-exists-p family)
-      (setq doom-font (font-spec :family family :size size)
-            doom-big-font (font-spec :family family :size big-size))
-      (unless no-reload
-        (doom/reload-font)))))
+(defvar srp/font-family "Iosevka"
+  "Default font family for `srp/font-load' function.")
 
-(srp/font-load nil 18 nil 'no-font-reload)
+(defvar srp/font-size 18
+  "Default font size for `srp/font-load' function.")
+
+(defun srp/font-load
+    (_ &optional family size big-size &rest _)
+  "Configure font family and its size."
+  (interactive
+   (list current-prefix-arg
+         (read-string "Font family: " srp/font-family)
+         (read-number "Font size: " srp/font-size)))
+  (let* ((family (cond (family) (srp/font-family)))
+         (size (cond (size) (srp/font-size)))
+         (big-size (cond (big-size) (t (+ 6 size)))))
+    (if (doom-font-exists-p family)
+        (progn
+          (setq doom-font (font-spec :family family :size size)
+                doom-big-font (font-spec :family family :size big-size))
+          (when (called-interactively-p 'any)
+            (doom/reload-font)))
+      (message "%s" (propertize (format "%s doesn't exists!" family)
+                                'face 'warning)))))
+
+(srp/font-load nil)
 
 (let ((font-family "Noto Color Emoji"))
   (when (doom-font-exists-p font-family)
