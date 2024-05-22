@@ -45,7 +45,7 @@ history = 8000
 multiplier = 2
 
 [font]
-normal.family = "Iosevka"
+normal.family = "Iosevka NF"
 
 normal.style = "Regular"
 bold.style = "Bold"
