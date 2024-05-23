@@ -265,6 +265,8 @@
 (map! :after google-translate
       :leader
       (:prefix ("l" . "translate")
+       :desc "Translate buffer"
+       "b" 'google-translate-buffer
        :desc "Translate at point"
        "w" 'google-translate-at-point
        :desc "Translate query"
@@ -283,18 +285,18 @@
             "https://www.urbandictionary.com/define.php?term=%s")))
   (add-to-list '+lookup-provider-url-alist provider))
 
-(defun srp/lookup (url &optional query prompt im &rest _)
-  "My custom look up function that can change input method."
-  (let ((prompt (cond (prompt) ((propertize "Search for: " 'face 'warning))))
-        (im (cond ((stringp im) im) (im srp/im))))
-    (minibuffer-with-setup-hook
-        (lambda (&rest _)
-          (unless (null im)
-            (set-input-method im)))
-      (browse-url-default-browser
-       (format url (cond (query (read-string prompt))
-                         (t (doom-thing-at-point-or-region))))))))
+(defun srp/lookup-interpretation
+    (&optional _ word &rest _)
+  "Look up interpretation of a word."
+  (interactive
+   (list current-prefix-arg
+         (minibuffer-with-setup-hook
+             (lambda (&rest _)
+               (set-input-method "ukrainian-computer"))
+           (read-string
+            (propertize "Look up interpretation of: " 'face 'warning)))))
+  (let ((url "https://slovnyk.ua/index.php?swrd=%s"))
+    (browse-url-default-browser (format url word))))
 
-(map! :leader :desc "Тлумачення слова"
-      "lv" (cmd! (srp/lookup "https://slovnyk.ua/index.php?swrd=%s"
-                             'query (propertize "Знайти: " 'face 'warning) t)))
+(map! :leader :desc "Look up interpretation"
+      "lv" 'srp/lookup-interpretation)
