@@ -74,7 +74,11 @@ volume() {
     | grep "Volume:" | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')"
 
   clr="${grn}"; icon="󱄡"
-  [[ $mute = "Mute: yes" ]] && icon="󰸈" && clr="${red}"
+  if [[ $mute = "Mute: yes" ]]; then
+   icon="󰸈"; clr="${red}"
+  elif [[ $vol = "0" ]]; then
+   clr="${ylw}"
+  fi
 
   printf "%s%s %s%s%%" "${clr}" "${icon}" "${rst}" "${vol}"
 }
