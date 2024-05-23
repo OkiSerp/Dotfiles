@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 
+red="^c#d20f39^"
+ylw="^c#df8e1d^"
+grn="^c#40a02b^"
+blu="^c#1e66f5^"
+rst="^c#cdd6f4^"
+
 battery() {
   cap="$(cat /sys/class/power_supply/BAT0/capacity)"
   stat="$(cat /sys/class/power_supply/BAT0/status)"
@@ -7,13 +13,30 @@ battery() {
   icon="󰂃"
   [[ "${stat}" == "Charging" ]] && icon="󰂄"
 
-  printf "%s %s%%" "${icon}" "${cap}"
+  if [[ $cap -ge 60 ]]; then
+    clr="${grn}"
+  elif [[ $cap -lt 60 ]] && [[ $cap -ge 30  ]]; then
+    clr="${ylw}"
+  else
+    clr="${red}"
+  fi
+
+  printf "%s%s %s%s%%" "${clr}" "${icon}" "${rst}" "${cap}"
 }
 
 brightness() {
   brt="$(calc "100 * $(brightnessctl get) / $(brightnessctl max)")"
+  brt="$(printf "%.*f" 0 "${brt:2:-1}")"
 
-  printf "%s %.*f%%" "󱠂" 0 "${brt:2:-1}"
+  if [[ $brt -ge 50 ]]; then
+    clr="${blu}"
+  elif [[ $brt -lt 50 ]] && [[ $brt -ge 20  ]]; then
+    clr="${ylw}"
+  else
+    clr="${red}"
+  fi
+
+  printf "%s%s %s%s%%" "${clr}" "󱠂" "${rst}" "${brt}"
 }
 
 datetime() {
@@ -50,12 +73,10 @@ volume() {
   vol="$(pactl get-sink-volume @DEFAULT_SINK@ \
     | grep "Volume:" | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')"
 
-  icon="󱄡" && [[ $mute = "Mute: yes" ]] && icon="󰸈"
+  clr="${grn}"; icon="󱄡"
+  [[ $mute = "Mute: yes" ]] && icon="󰸈" && clr="${red}"
 
-  printf "%s %s%%" "${icon}" "${vol}"
+  printf "%s%s %s%s%%" "${clr}" "${icon}" "${rst}" "${vol}"
 }
 
-while true; do
-  sleep 1s && \
-    xsetroot -name "$(layout) / $(volume) / $(brightness) / $(battery) / $(wlan) / $(datetime)"
-done
+printf "%s" "$(layout) / $(volume) / $(brightness) / $(battery) / $(wlan) / $(datetime)"

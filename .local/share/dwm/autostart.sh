@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
 
-sh -c "~/.local/share/dwm/statusbar.sh" &
+while true; do
+  xsetroot -name "$(sh -c '~/.local/share/dwm/statusbar.sh')"
+  sleep 1s
+done &
 
 xrandr --size 1920x1080 &
 
