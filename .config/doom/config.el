@@ -295,6 +295,6 @@
        (format url (cond (query (read-string prompt))
                          (t (doom-thing-at-point-or-region))))))))
 
-(map! :leader :desc "Interpret ukrainian word"
+(map! :leader :desc "Тлумачення слова"
       "lv" (cmd! (srp/lookup "https://slovnyk.ua/index.php?swrd=%s"
-                             'query nil t)))
+                             'query (propertize "Знайти: " 'face 'warning) t)))
