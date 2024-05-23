@@ -1,25 +1,28 @@
-set -gx XDG_DATA_HOME $HOME/.local/share
-set -gx XDG_STATE_HOME $HOME/.local/state
-set -gx XDG_CACHE_HOME $HOME/.cache
-set -gx XDG_CONFIG_HOME $HOME/.config
+set -x XDG_DATA_HOME $HOME/.local/share
+set -x XDG_STATE_HOME $HOME/.local/state
+set -x XDG_CACHE_HOME $HOME/.cache
+set -x XDG_CONFIG_HOME $HOME/.config
 
-set -gx PASSWORD_STORE_DIR $XDG_DATA_HOME/pass
+set -x PASSWORD_STORE_DIR $XDG_DATA_HOME/pass
 
-set -gx MPLAYER_HOME $XDG_CONFIG_HOME/mplayer
-set -gx GTK2_RC_FILES $XDG_CONFIG_HOME/gtk-2.0/gtkrc
-set -gx W3M_DIR $XDG_DATA_HOME/w3m
+set -x MPLAYER_HOME $XDG_CONFIG_HOME/mplayer
+set -x GTK2_RC_FILES $XDG_CONFIG_HOME/gtk-2.0/gtkrc
+set -x W3M_DIR $XDG_DATA_HOME/w3m
 
 test -d $HOME/.local/bin && fish_add_path $HOME/.local/bin
 
 if test -d $HOME/.config/emacs/bin
   fish_add_path $HOME/.config/emacs/bin
-  set -gx DOOMDIR $HOME/.config/doom
+  set -x DOOMDIR $HOME/.config/doom
 end
 
-if type -q nvim; set -gx EDITOR (which nvim); end
+if type -q nvim
+  set -x EDITOR (which nvim)
+  set -x MANPAGER (which nvim)\ +Man!
+end
 
-set -gx nvm_default_version lts/iron
-set -gx nvm_default_packages yarn pnpm
+set -x nvm_default_version lts/iron
+set -x nvm_default_packages yarn pnpm
 
 if not functions -q fundle
   eval (curl -sfL https://git.io/fundle-install)
@@ -31,7 +34,7 @@ fundle plugin "PatrickF1/fzf.fish"
 
 fundle init
 
-set -gx FZF_DEFAULT_OPTS "--bind=alt-j:down,alt-k:up \
+set -x FZF_DEFAULT_OPTS "--bind=alt-j:down,alt-k:up \
   --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
   --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
   --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
@@ -65,10 +68,7 @@ alias cal (which cal)\ -m
 
 alias pwd (which pwd)\ -P
 
-if type -q bat
-  set -gx PAGER (which bat)
-  alias cat $PAGER
-end
+if type -q bat; alias cat (which bat); end
 
 if type -q lsd
   alias l "$(which lsd) --group-dirs first --icon never --color always \
