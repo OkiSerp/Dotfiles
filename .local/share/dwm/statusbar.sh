@@ -49,10 +49,10 @@ datetime() {
 wlan() {
   case "$(cat /sys/class/net/wl*/operstate 2> /dev/null)" in
     up)
-      stat="󰤨 Up"
+      stat="${blu}󱚽 ${rst}Up"
       ;;
     down)
-      stat="󰤭 Dn"
+      stat="${red}󱚼 ${rst}Dn"
       ;;
   esac
 
