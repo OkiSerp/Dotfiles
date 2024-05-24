@@ -262,6 +262,14 @@
         (text (gui-get-selection 'CLIPBOARD 'TEXT)))
     (google-translate-translate source target text output)))
 
+(defun srp/google-translate-listen-at-point (&rest _)
+  "Listen the word at point or the words in the active region by using
+`google-translate' package."
+  (interactive)
+  (google-translate-listen-translation
+   google-translate-default-source-language
+   (doom-thing-at-point-or-region)))
+
 (map! :after google-translate
       :leader
       (:prefix ("l" . "translate")
@@ -276,7 +284,9 @@
        :desc "Translate query reverse"
        "e" 'google-translate-query-translate-reverse
        :desc "Translate clipboard"
-       "c" 'srp/google-translate-clipboard))
+       "c" 'srp/google-translate-clipboard
+       :desc "Listen at point"
+       "r" 'srp/google-translate-listen-at-point))
 
 (dolist (provider
          '(("Cambridge dictionary"
