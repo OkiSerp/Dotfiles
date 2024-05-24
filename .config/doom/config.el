@@ -263,12 +263,13 @@
     (google-translate-translate source target text output)))
 
 (defun srp/google-translate-listen-at-point (&rest _)
-  "Listen the word at point or the words in the active region by using
-`google-translate' package."
   (interactive)
-  (google-translate-listen-translation
-   google-translate-default-source-language
-   (doom-thing-at-point-or-region)))
+  (message "Retrieving audio message...")
+  (let ((text (doom-thing-at-point-or-region))
+        (language google-translate-default-source-language))
+    (apply 'call-process google-translate-listen-program nil nil nil
+           (google-translate-format-listen-urls text language)))
+  (message "Done playing audio!"))
 
 (map! :after google-translate
       :leader
