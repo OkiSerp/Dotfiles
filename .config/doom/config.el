@@ -44,7 +44,7 @@
 
 (map! :leader "hrF" 'srp/font-load)
 
-(srp/font-load)
+(srp/font-load 0 nil 20)
 
 (let ((font-family "JoyPixels"))
   (when (doom-font-exists-p font-family)
