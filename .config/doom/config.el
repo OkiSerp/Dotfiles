@@ -288,11 +288,11 @@
        :desc "Listen at point"
        "r" 'srp/google-translate-listen-at-point))
 
-(dolist (provider
-         '(("Cambridge dictionary"
-            "https://dictionary.cambridge.org/dictionary/english/%s")
-           ("Urban dictionary"
-            "https://www.urbandictionary.com/define.php?term=%s")))
+(defvar srp/additional-lookup-prividers
+  '(("Cambridge dictionary" "https://dictionary.cambridge.org/dictionary/english/%s")
+    ("Urban dictionary" "https://www.urbandictionary.com/define.php?term=%s")))
+
+(dolist (provider srp/additional-lookup-prividers)
   (add-to-list '+lookup-provider-url-alist provider))
 
 (defun srp/lookup-interpretation
