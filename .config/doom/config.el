@@ -224,21 +224,18 @@
       delete-by-moving-to-trash t
       magit-delete-by-moving-to-trash t)
 
+(setq default-input-method "ukrainian-computer")
+
 (when (modulep! :checkers spell)
   (spell-fu-global-mode 0)
   (remove-hook 'text-mode-hook 'spell-fu-mode)
   (add-hook! 'input-method-activate-hook
     (spell-fu-mode 0)))
 
-(defvar srp/im "ukrainian-computer"
-  "Define variable for my input method.")
-
-(setq default-input-method srp/im)
-
 (use-package! google-translate
   :init
   (setq google-translate-preferable-input-methods-alist
-        `((nil) (,srp/im . ("uk" "ru"))))
+        '((nil) ("ukrainian-computer" . ("uk" "ru"))))
   :config
   (set-face-attribute
    'google-translate-listen-button-face nil :height 1.0)
@@ -264,7 +261,7 @@
 
 (defun srp/google-translate-listen-at-point (&rest _)
   (interactive)
-  (message "Retrieving audio message...")
+  (message "Retrieving audio message…")
   (let ((text (doom-thing-at-point-or-region))
         (language google-translate-default-source-language))
     (apply 'call-process google-translate-listen-program nil nil nil
