@@ -97,7 +97,7 @@
         web-mode-style-padding 0
         web-mode-script-padding 0))
 
-(setq org-directory "~/.orgnotes/")
+(setq org-directory (expand-file-name ".orgnotes/" (getenv "HOME")))
 
 (after! org
   (setq org-ellipsis " "
