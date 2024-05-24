@@ -11,7 +11,7 @@ battery() {
   stat="$(cat /sys/class/power_supply/BAT0/status)"
 
   icon="󰂃"
-  [[ "${stat}" == "Charging" ]] && icon="󰂄"
+  [[ "${stat}" = "Charging" ]] && icon="󰂄"
 
   if [[ $cap -ge 60 ]]; then
     clr="${grn}"
@@ -63,7 +63,7 @@ layout() {
   key="$(xset -q | grep "LED" | awk "{ print \$10 }")"
 
   label="us"
-  [[ "${key}" == "00001000" ]] && label="ua"
+  [[ "${key}" = "00001000" ]] && label="ua"
 
   printf "${blu}%s ${rst}%s" "󰘲" "${label}"
 }
