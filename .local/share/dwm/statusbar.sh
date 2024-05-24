@@ -4,6 +4,7 @@ red="^c#d20f39^"
 ylw="^c#df8e1d^"
 grn="^c#40a02b^"
 blu="^c#1e66f5^"
+prp="^c#8839ef^"
 rst="^c#cdd6f4^"
 
 battery() {
@@ -65,7 +66,7 @@ layout() {
   label="us"
   [[ "${key}" = "00001000" ]] && label="ua"
 
-  printf "${blu}%s ${rst}%s" "󰘲" "${label}"
+  printf "${prp}%s ${rst}%s" "󰘲" "${label}"
 }
 
 volume() {
