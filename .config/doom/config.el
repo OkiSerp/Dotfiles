@@ -46,9 +46,9 @@
 
 (srp/font-load)
 
-(let ((font-family "Noto Color Emoji"))
+(let ((font-family "JoyPixels"))
   (when (doom-font-exists-p font-family)
-    (setq doom-emoji-font (font-spec :name font-family))))
+    (setq doom-emoji-font (font-spec :family font-family))))
 
 (setq doom-theme 'doom-one)
 
