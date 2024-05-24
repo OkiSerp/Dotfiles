@@ -108,7 +108,7 @@
         org-appear-autoemphasis nil))
 
 (after! org
-  (setq org-superstar-headline-bullets-list '(42)
+  (setq org-superstar-headline-bullets-list '(10033)
         org-superstar-item-bullet-alist '((43 . 187) (45 . 8250))))
 
 (defun srp/browse-org-directory (&rest _)
