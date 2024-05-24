@@ -2,7 +2,7 @@
 
 argparse -i "h/help" -- $argv
 
-type -q reflector || exit
+type -q reflector || sudo pacman -S reflector
 
 if set -q _flag_help
   reflector --help | less && exit
