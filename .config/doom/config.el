@@ -294,8 +294,8 @@
   (add-to-list '+lookup-provider-url-alist provider))
 
 (defun srp/lookup-interpretation
-    (&optional _ word &rest _)
-  "Look up interpretation of a word."
+    (&optional _ text &rest _)
+  "Look up interpretation of text."
   (interactive
    (list current-prefix-arg
          (minibuffer-with-setup-hook
@@ -304,7 +304,7 @@
            (read-string
             (propertize "Look up interpretation of: " 'face 'warning)))))
   (let ((url "https://slovnyk.ua/index.php?swrd=%s"))
-    (browse-url-default-browser (format url word))))
+    (browse-url-with-browser-kind 'external (format url text))))
 
 (map! :leader :desc "Look up interpretation"
       "lv" 'srp/lookup-interpretation)
