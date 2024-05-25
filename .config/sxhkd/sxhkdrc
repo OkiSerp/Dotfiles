@@ -5,4 +5,4 @@ XF86Audio{Raise,Lower}Volume
   ~/.dotfiles/scripts/volume {-u -l 4, -d -l 4}
 
 XF86MonBrightness{Up,Down}
-  ~/.dotfiles/scripts/brightness {-u -l 5, -d -l 5}
+  ~/.dotfiles/scripts/brightness {-up, -down}
