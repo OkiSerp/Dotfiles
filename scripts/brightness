@@ -46,8 +46,3 @@ elif [[ "${DOWN}" = true ]]; then
 else
   sh -c "${CMD} set +${LEVEL}%"
 fi
-
-echo "${UP}"
-echo "${DOWN}"
-echo "${LEVEL}"
-echo "${SET}"
