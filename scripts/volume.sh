@@ -5,7 +5,7 @@ LONG_OPTS="up,down,mute,level:,set:"
 
 OPTS=`getopt --options "${SHORT_OPTS}" \
   --longoptions "${LONG_OPTS}" --alternative \
-  --name "adjust-brightness" -- "${@}"`
+  --name "manage-volume" -- "${@}"`
 
 if [[ "${?}" != 0 ]]; then
   echo "Failed parsing options." >&2
