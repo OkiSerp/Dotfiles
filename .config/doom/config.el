@@ -82,6 +82,13 @@
 (setq hscroll-margin 13
       scroll-margin 7)
 
+(custom-set-variables
+ '(display-fill-column-indicator-character 124)
+ '(display-fill-column-indicator-column 80))
+
+(map! :leader :desc "Vertical ruler"
+      "tc" 'display-fill-column-indicator-mode)
+
 (setq-default tab-width 2
               standard-indent 2
               indent-tabs-mode nil)
