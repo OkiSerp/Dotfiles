@@ -1,24 +1,55 @@
-#!/usr/bin/env fish
+#!/usr/bin/env sh
 
-argparse --ignore-unknown \
-  "u/up" "d/down" "m/mute" "l/level=" "s/set=" -- $argv
+SHORT_OPTS="udml:s:"
+LONG_OPTS="up,down,mute,level:,set:"
 
-not type -q pactl && exit
+OPTS=`getopt --options "${SHORT_OPTS}" \
+  --longoptions "${LONG_OPTS}" --alternative \
+  --name "adjust-brightness" -- "${@}"`
 
-if set -q _flag_mute
-  pactl set-sink-mute @DEFAULT_SINK@ toggle
-  exit
-end
+if [[ "${?}" != 0 ]]; then
+  echo "Failed parsing options." >&2
+  exit 1
+fi
 
-if set -q _flag_set
-  pactl set-sink-volume @DEFAULT_SINK@ "$_flag_set%"
-  exit
-end
+echo "${OPTS}"
+eval set -- "${OPTS}"
 
-if set -q _flag_level
-  if set -q _flag_up
-    pactl set-sink-volume @DEFAULT_SINK@ "+$_flag_level%"
-  else if set -q _flag_down
-    pactl set-sink-volume @DEFAULT_SINK@ "-$_flag_level%"
-  end
-end
+UP=true
+DOWN=false
+MUTE=false
+LEVEL=4
+SET=0
+
+while true; do
+  case "${1}" in
+    '-u' | '--up' )
+      UP=true && DOWN=false; shift ;;
+    '-d' | '--down' )
+      DOWN=true && UP=false; shift ;;
+    '-m' | '--mute' )
+      MUTE=true; shift ;;
+    '-l' | '--level' )
+      LEVEL="${2}"; shift 2 ;;
+    '-s' | '--set' )
+      SET="${2}"; shift 2 ;;
+    -- )
+      shift; break ;;
+    * )
+      break ;;
+  esac
+done
+
+CMD="$(which pactl)"
+
+if (( "${SET}" != 0 )); then
+  sh -c "${CMD} set-sink-volume 0 ${SET}%"
+elif [[ "${MUTE}" = true ]]; then
+  sh -c "${CMD} set-sink-mute 0 toggle" && exit
+elif [[ "${DOWN}" = true ]]; then
+  sh -c "${CMD} set-sink-volume 0 -${LEVEL}%"
+else
+  sh -c "${CMD} set-sink-volume 0 +${LEVEL}%"
+fi
+
+sh -c "${CMD} set-sink-mute 0 0"
