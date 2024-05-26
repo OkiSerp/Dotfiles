@@ -268,9 +268,12 @@
 
 (defun srp/google-translate-listen-at-point (&rest _)
   (interactive)
-  (message "Retrieving audio message…")
-  (let ((text (doom-thing-at-point-or-region))
-        (language google-translate-default-source-language))
+  (let* ((prompt (propertize "Retrieve audio for: " 'face 'warning))
+         (text (cond ((char-or-string-p (doom-thing-at-point-or-region))
+                      (doom-thing-at-point-or-region))
+                     (t (read-string prompt))))
+         (language google-translate-default-source-language))
+    (message "Retrieving audio message…")
     (apply 'call-process google-translate-listen-program nil nil nil
            (google-translate-format-listen-urls text language)))
   (message "Done playing audio!"))
