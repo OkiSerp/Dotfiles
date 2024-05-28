@@ -2,12 +2,7 @@ import dracula.draw
 
 config.load_autoconfig(False)
 
-dracula.draw.blood(c, {
-    "spacing": {
-        "vertical": 4,
-        "horizontal": 0,
-    },
-})
+dracula.draw.blood(c, {})
 
 c.aliases = {
     "w": "session-save",
@@ -20,15 +15,7 @@ c.aliases = {
 
 c.auto_save.session = False
 
-c.completion.height = "40%"
-
-c.completion.open_categories = [
-    'searchengines',
-    'quickmarks',
-    'bookmarks',
-    'history',
-    'filesystem',
-]
+c.completion.height = "30%"
 
 c.completion.scrollbar.width = 0
 c.completion.scrollbar.padding = 0
@@ -37,15 +24,20 @@ c.confirm_quit = [ "multiple-tabs" ]
 
 c.content.autoplay = False
 
+c.content.blocking.enabled = True
+c.content.blocking.method = "adblock"
+
 c.content.blocking.adblock.lists = [
     "https://easylist.to/easylist/easylist.txt",
     "https://easylist.to/easylist/easyprivacy.txt",
-]; c.content.blocking.enabled = True
-c.content.blocking.method = "adblock"
-
-c.content.blocking.hosts.lists = [
-    "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
+    "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
+    "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
+    "https://easylist.to/easylist/fanboy-social.txt",
 ]
+
+# If you want your adblock list work then do not set
+# `c.content.blocking.hosts.lists'. It'll make you go insane. To put it simply,
+# for some reason it won't allow adblock work.
 
 c.colors.webpage.preferred_color_scheme = "dark"
 
@@ -54,7 +46,7 @@ c.content.notifications.enabled = False
 c.fonts.default_size = "10pt"
 c.fonts.default_family = [ "Iosevka" ]
 
-c.hints.chars = 'asdfghjkl;'
+c.hints.chars = "asdfghjkl;"
 
 c.scrolling.bar = "never"
 
