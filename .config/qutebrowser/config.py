@@ -63,6 +63,13 @@ c.tabs.indicator.padding = {
     "bottom": 2,
     "left": 4,
     "right": 4,
+}; c.tabs.indicator.width = 1
+
+c.tabs.padding = {
+    "top": 2,
+    "bottom": 2,
+    "left": 4,
+    "right": 4,
 }
 
 c.url.searchengines = { "DEFAULT": "https://duckduckgo.com/?q={}" }
