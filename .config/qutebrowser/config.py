@@ -4,6 +4,8 @@ config.load_autoconfig(False)
 
 dracula.draw.blood(c, {})
 
+c.colors.webpage.preferred_color_scheme = "dark"
+
 c.aliases = {
     "w": "session-save",
     "q": "close",
@@ -19,6 +21,8 @@ c.completion.height = "30%"
 
 c.completion.scrollbar.width = 0
 c.completion.scrollbar.padding = 0
+
+c.scrolling.bar = "never"
 
 c.confirm_quit = [ "multiple-tabs" ]
 
@@ -39,7 +43,8 @@ c.content.blocking.adblock.lists = [
 # `c.content.blocking.hosts.lists'. It'll make you go insane. To put it simply,
 # for some reason it won't allow adblock work.
 
-c.colors.webpage.preferred_color_scheme = "dark"
+c.url.searchengines = { "DEFAULT": "https://duckduckgo.com/?q={}" }
+c.url.start_pages = [ "https://start.duckduckgo.com" ]
 
 c.content.notifications.enabled = False
 
@@ -48,32 +53,22 @@ c.fonts.default_family = [ "Iosevka" ]
 
 c.hints.chars = "asdfghjkl;"
 
-c.scrolling.bar = "never"
-
-c.statusbar.padding = {
-    "top": 2,
-    "bottom": 2,
-    "left": 4,
-    "right": 4,
-}
-
 c.tabs.favicons.show = "never"
-c.tabs.indicator.padding = {
-    "top": 2,
-    "bottom": 2,
-    "left": 4,
-    "right": 4,
-}; c.tabs.indicator.width = 1
 
-c.tabs.padding = {
-    "top": 2,
-    "bottom": 2,
-    "left": 4,
-    "right": 4,
+my = {
+    "padding": {
+        "top": 2,
+        "bottom": 2,
+        "left": 4,
+        "right": 4,
+    },
 }
 
-c.url.searchengines = { "DEFAULT": "https://duckduckgo.com/?q={}" }
-c.url.start_pages = [ "https://start.duckduckgo.com" ]
+c.statusbar.padding = my["padding"]
+c.tabs.indicator.padding = my["padding"]
+c.tabs.padding = my["padding"]
+
+c.tabs.indicator.width = 1
 
 c.window.hide_decoration = True
 c.window.title_format = "{perc}{current_title}{title_sep}Qute Browser"
