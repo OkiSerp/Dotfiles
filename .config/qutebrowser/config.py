@@ -1,3 +1,5 @@
+# Don't forget to install dracula theme first!
+
 import dracula.draw
 
 config.load_autoconfig(False)
