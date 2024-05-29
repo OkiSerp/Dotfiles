@@ -75,6 +75,8 @@ c.tabs.indicator.width = 1
 c.window.hide_decoration = True
 c.window.title_format = "{perc}{current_title}{title_sep}Qute Browser"
 
+config.bind(",mpv", "hint links spawn --detach mpv {hint-url}")
+
 config.bind("<Alt-K>", "tab-prev")
 config.bind("<Alt-J>", "tab-next")
 
@@ -84,16 +86,15 @@ config.bind("<Alt-Shift-J>", "tab-move +")
 config.bind("<Alt-K>", "completion-item-focus --history prev", mode="command")
 config.bind("<Alt-J>", "completion-item-focus --history next", mode="command")
 
-config.bind("<Ctrl-K>", "prompt-item-focus prev", mode="prompt")
-config.bind("<Ctrl-J>", "prompt-item-focus next", mode="prompt")
+config.bind("<Alt-K>", "prompt-item-focus prev", mode="prompt")
+config.bind("<Alt-J>", "prompt-item-focus next", mode="prompt")
 
-config.unbind("<Ctrl-C>", mode="command")
-config.bind("<Ctrl-C>", "mode-leave", mode="command")
+config.bind("<Alt-C>", "mode-leave", mode="command")
 
-config.bind("<Ctrl-C>", "mode-leave", mode="insert")
-config.bind("<Ctrl-C>", "clear-keychain ;; search ;; fullscreen --leave")
-config.bind("<Ctrl-C>", "mode-leave", mode="caret")
-config.bind("<Ctrl-C>", "mode-leave", mode="prompt")
-config.bind("<Ctrl-C>", "mode-leave", mode="register")
-config.bind("<Ctrl-C>", "mode-leave", mode="yesno")
-config.bind("<Ctrl-C>", "mode-leave", mode="hint")
+config.bind("<Alt-C>", "mode-leave", mode="insert")
+config.bind("<Alt-C>", "clear-keychain ;; search ;; fullscreen --leave")
+config.bind("<Alt-C>", "mode-leave", mode="caret")
+config.bind("<Alt-C>", "mode-leave", mode="prompt")
+config.bind("<Alt-C>", "mode-leave", mode="register")
+config.bind("<Alt-C>", "mode-leave", mode="yesno")
+config.bind("<Alt-C>", "mode-leave", mode="hint")
