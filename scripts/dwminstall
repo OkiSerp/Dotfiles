@@ -16,7 +16,7 @@ argparse -i "x/xorg" -- $argv
 set -l deps \
   "base-devel" "git" \
   "libx11" "libxft" "libxinerama" \
-  "feh" "brightnessctl" "sxhkd" "xbanish" \
+  "feh" "brightnessctl" "sxhkd" "unclutter" \
   "pipewire" "pipewire-alsa" "pipewire-pulse" "pipewire-jack" \
   "wireplumber" "alsa-utils" "calc"
 
