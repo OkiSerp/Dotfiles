@@ -231,13 +231,10 @@
       delete-by-moving-to-trash t
       magit-delete-by-moving-to-trash t)
 
-(setq! default-input-method "ukrainian-computer")
+(when (modulep! :checkers spell +aspell)
+  (remove-hook 'text-mode-hook 'spell-fu-mode))
 
-(when (modulep! :checkers spell)
-  (spell-fu-global-mode 0)
-  (remove-hook 'text-mode-hook 'spell-fu-mode)
-  (add-hook! 'input-method-activate-hook
-    (spell-fu-mode 0)))
+(setq! default-input-method "ukrainian-computer")
 
 (use-package! google-translate
   :init
