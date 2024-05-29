@@ -11,7 +11,7 @@ xset r rate 350 55 &
 
 xset s off -dpms &
 
-xbanish &
+unclutter --timeout 2 --start-hidden --jitter 10 &
 
 xinput set-prop "Synaptics TM3336-001" "libinput Tapping Enabled" 1 &
 
