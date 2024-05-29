@@ -231,7 +231,7 @@
       delete-by-moving-to-trash t
       magit-delete-by-moving-to-trash t)
 
-(setq default-input-method "ukrainian-computer")
+(setq! default-input-method "ukrainian-computer")
 
 (when (modulep! :checkers spell)
   (spell-fu-global-mode 0)
