@@ -213,7 +213,7 @@
       "M-k" 'previous-line-or-history-element
       "M-j" 'next-line-or-history-element)
 
-(map! :map minibuffer-mode-map
+(map! :map (minibuffer-mode-map evil-command-line-map)
       "M-k" 'previous-history-element
       "M-j" 'next-history-element)
 
