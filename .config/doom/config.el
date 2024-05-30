@@ -256,6 +256,17 @@
         google-translate-display-translation-phonetic nil
         google-translate-input-method-auto-toggling t))
 
+(defun srp/google-translate-listen-translation (language text)
+  "Improved version of the original `google-translate-listen-translation'
+function, but without debuging."
+  (message "Retrieving audio message…")
+  (apply 'call-process google-translate-listen-program nil nil nil
+         (google-translate-format-listen-urls text language))
+  (message "Done playing audio!"))
+
+(defalias 'google-translate-listen-translation
+  (symbol-function 'srp/google-translate-listen-translation))
+
 (defun srp/google-translate-clipboard (&rest _)
   "Translate text from clipboard by using `google-translate' package."
   (interactive)
@@ -264,18 +275,6 @@
         (output google-translate-output-destination)
         (text (gui-get-selection 'CLIPBOARD 'TEXT)))
     (google-translate-translate source target text output)))
-
-(defun srp/google-translate-listen-at-point (&rest _)
-  (interactive)
-  (let* ((prompt (propertize "Retrieve audio for: " 'face 'warning))
-         (text (cond ((char-or-string-p (doom-thing-at-point-or-region))
-                      (doom-thing-at-point-or-region))
-                     (t (read-string prompt))))
-         (language google-translate-default-source-language))
-    (message "Retrieving audio message…")
-    (apply 'call-process google-translate-listen-program nil nil nil
-           (google-translate-format-listen-urls text language)))
-  (message "Done playing audio!"))
 
 (map! :after google-translate
       :leader
@@ -291,9 +290,7 @@
        :desc "Translate query reverse"
        "e" 'google-translate-query-translate-reverse
        :desc "Translate clipboard"
-       "c" 'srp/google-translate-clipboard
-       :desc "Listen at point"
-       "r" 'srp/google-translate-listen-at-point))
+       "c" 'srp/google-translate-clipboard))
 
 (defvar srp/additional-lookup-prividers
   '(("Cambridge dictionary" "https://dictionary.cambridge.org/dictionary/english/%s")
