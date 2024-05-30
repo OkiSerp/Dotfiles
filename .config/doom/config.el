@@ -133,11 +133,15 @@
 
 (defun srp/org-enlarge-headings (&rest _)
   "Make org headings larger and thicker."
-  (dolist (face '((org-level-1 . 1.5) (org-level-2 . 1.4)
-                  (org-level-3 . 1.3) (org-level-4 . 1.3)
-                  (org-level-5 . 1.3) (org-level-6 . 1.3)
-                  (org-level-7 . 1.3) (org-level-8 . 1.3)))
-    (set-face-attribute (car face) nil :weight 'heavy :height (cdr face))))
+  (let* ((level-1 1.7)
+         (level-2 (- level-1 0.1))
+         (level-3 (- level-2 0.1))
+         (level-0 (- level-3 0.1)))
+    (dolist (face `((org-level-1 . ,level-1) (org-level-2 . ,level-2)
+                    (org-level-3 . ,level-3) (org-level-4 . ,level-0)
+                    (org-level-5 . ,level-0) (org-level-6 . ,level-0)
+                    (org-level-7 . ,level-0) (org-level-8 . ,level-0)))
+      (set-face-attribute (car face) nil :weight 'heavy :height (cdr face)))))
 
 (add-hook 'org-mode-hook 'srp/org-enlarge-headings)
 
