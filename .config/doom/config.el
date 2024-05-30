@@ -14,9 +14,6 @@
 
 (bind-key [remap delete-frame] 'srp/delete-frame)
 
-(add-to-list 'default-frame-alist '(width . 120))
-(add-to-list 'default-frame-alist '(height . 40))
-
 (defvar srp/font-family "Iosevka"
   "Default font family for `srp/font-load' function.")
 
@@ -155,7 +152,7 @@
 (add-hook 'org-insert-heading-hook 'srp/org-insert-heading-fn)
 
 (defun srp/org-meta-return (&optional arg)
-  "Make the same logic as `org-meta-return', but a bit better."
+  "Make the same logic as `org-meta-return', but more suitable."
   (interactive "P")
   (or (run-hook-with-args-until-success 'org-metareturn-hook)
       (call-interactively
@@ -185,7 +182,7 @@
         evil-want-fine-undo t))
 
 (after! evil
-  (map! :nv "'" 'evil-jump-item))
+  (map! :nv (char-to-string ?') 'evil-jump-item))
 
 (after! evil-snipe
   (setq evil-snipe-scope 'visible))
@@ -238,7 +235,8 @@
 (when (modulep! :checkers spell +aspell)
   (remove-hook 'text-mode-hook 'spell-fu-mode))
 
-(setq! default-input-method "ukrainian-computer")
+(customize-set-variable
+ 'default-input-method "ukrainian-computer")
 
 (use-package! google-translate
   :init
