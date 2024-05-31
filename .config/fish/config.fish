@@ -5,6 +5,7 @@ set -x XDG_CONFIG_HOME $HOME/.config
 
 set -x PASSWORD_STORE_DIR $XDG_DATA_HOME/pass
 
+set -x XAUTHORITY $XDG_RUNTIME_DIR/Xauthority
 set -x MPLAYER_HOME $XDG_CONFIG_HOME/mplayer
 set -x GTK2_RC_FILES $XDG_CONFIG_HOME/gtk-2.0/gtkrc
 set -x W3M_DIR $XDG_DATA_HOME/w3m
