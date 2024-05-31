@@ -8,7 +8,6 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/pass"
 
 # Stop trashing home directory
-export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
 export MPLAYER_HOME="${XDG_CONFIG_HOME}/mplayer"
 export W3M_DIR="${XDG_DATA_HOME}/w3m"
