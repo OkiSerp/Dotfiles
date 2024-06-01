@@ -21,6 +21,7 @@ return {
                 telescope = {
                     enabled = true,
                 },
+                gitsigns = true,
             },
         })
 
