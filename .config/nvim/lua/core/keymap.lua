@@ -1,6 +1,6 @@
 vim.keymap.set("n", "<M-S-s>", vim.cmd.source)
 
-vim.keymap.set("n", "<M-q>", vim.cmd.xall)
+vim.keymap.set({ "n", "i" }, "<M-q>", vim.cmd.xall)
 
 vim.keymap.set("n", "<M-s>", vim.cmd.write)
 
