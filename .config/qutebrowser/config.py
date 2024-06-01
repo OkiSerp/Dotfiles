@@ -39,6 +39,7 @@ c.content.blocking.adblock.lists = [
     "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
     "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
     "https://easylist.to/easylist/fanboy-social.txt",
+    "https://raw.githubusercontent.com/gijsdev/ublock-hide-yt-shorts/master/list.txt"
 ]
 
 # If you want your adblock list work then do not set
