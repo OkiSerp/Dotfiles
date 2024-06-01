@@ -6,15 +6,16 @@ return {
     },
     opts = {
         defaults = {
+            borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
             file_ignore_patterns = {
                 ".git/",
                 "node_modules/",
             },
             mappings = {
                 i = {
-                    ["<M-k>"] = "move_selection_previous",
-                    ["<M-j>"] = "move_selection_next",
-                    ["<Esc>"] = "close",
+                    [ "<M-k>" ] = "move_selection_previous",
+                    [ "<M-j>" ] = "move_selection_next",
+                    [ "<Esc>" ] = "close",
                 },
             },
         },
