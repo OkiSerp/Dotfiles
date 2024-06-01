@@ -13,15 +13,24 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("core")
+require("core.autocmd")
+require("core.option")
+require("core.keymap")
 
-local opts = {
+require("lazy").setup("plugin", {
+    lockfile = vim.fn.getenv("HOME") .. "/.cache/nvim/lazy/lock.json",
     defaults = {
         lazy = true,
     },
     install = {
         colorscheme = { "catppuccin" },
     },
-}
-
-require("lazy").setup("plugins", opts)
+    ui = {
+        border = "single",
+        title = " Manage Laziness ",
+        title_pos = "left",
+    },
+    change_detection = {
+        notify = false,
+    },
+})

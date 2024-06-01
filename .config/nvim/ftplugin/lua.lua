@@ -1,7 +1,2 @@
-local srp = {
-    tabwidth = 4
-}
-
-vim.opt.softtabstop = srp.tabwidth
-vim.opt.shiftwidth = srp.tabwidth
-vim.opt.tabstop = srp.tabwidth
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4

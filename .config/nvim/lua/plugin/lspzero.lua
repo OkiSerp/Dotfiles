@@ -1,27 +1,30 @@
-local plug = {
+local plugin = {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v3.x",
     lazy = false,
+    dependencies = {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/nvim-cmp",
+        "L3MON4D3/LuaSnip",
+    },
+    keys = {
+        { "<M-S-m>", vim.cmd.Mason, mode = "n" },
+    },
 }
 
-plug.dependencies = {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/nvim-cmp",
-    "L3MON4D3/LuaSnip",
-}
-
-plug.config = function()
+plugin.config = function()
     require("mason").setup({
         ui = {
+            border = "single",
             icons = {
                 package_installed = "✓",
-                package_pending = "➜",
+                package_pending = "›",
                 package_uninstalled = "✗",
             },
-        }
+        },
     })
 
     require("mason-lspconfig").setup({
@@ -38,12 +41,9 @@ plug.config = function()
             [ "<S-Tab>" ] = cmp.mapping.select_prev_item(),
             [ "<M-k>" ] = cmp.mapping.select_prev_item(),
             [ "<M-j>" ] = cmp.mapping.select_next_item(),
-            [ "<M-d>" ] = cmp.mapping.scroll_docs(-4),
-            [ "<M-f>" ] = cmp.mapping.scroll_docs(4),
             [ "<M-Space>" ] = cmp.mapping.complete(),
-            [ "<C-c>" ] = cmp.mapping.abort(),
             [ "<Cr>" ] = cmp.mapping.confirm({ select = true }),
-        })
+        }),
     })
 
     local lspzero = require("lsp-zero")
@@ -57,22 +57,19 @@ plug.config = function()
         settings = {
             Lua = {
                 diagnostics = {
-                    globals = { "vim" },
+                    globals = {
+                        "vim",
+                    },
                 },
                 workspace = {
                     library = {
-                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.stdpath("config") .. "/lua"] = true,
+                        [ vim.fn.expand("$VIMRUNTIME/lua") ] = true,
+                        [ vim.fn.stdpath("config") .. "/lua" ] = true,
                     },
                 },
             },
         },
     })
-
-    lspconfig.tsserver.setup({})
-    lspconfig.emmet_ls.setup({})
-    lspconfig.cssls.setup({})
-    lspconfig.html.setup({})
 end
 
-return plug
+return plugin

@@ -1,7 +1,5 @@
-vim.cmd [[
-if has("autocmd")
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
-endif
+vim.cmd.autocmd [[
+BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
 ]]
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
@@ -11,4 +9,11 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
         pcall(function() vim.cmd [[%s/\s\+$//e]] end)
         vim.fn.setpos(".", save_cursor)
     end,
+})
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
