@@ -12,6 +12,10 @@ return {
             transparent_background = true,
             show_end_of_buffer = true,
             term_colors = true,
+            dim_inactive = {
+                enabled = true,
+                percentage = 0.8,
+            },
             styles = {
                 conditionals = {},
             },

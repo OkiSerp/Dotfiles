@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+alias mv="$(which mv) -i"
+alias cp="$(which cp) -i"
+
+alias du="$(which du) -h"
+alias df="$(which df) -h"
+alias free="$(which free) -m"
+
+alias grep="$(which grep) --color=auto"
+alias egrep="$(which grep) --color=auto -E"
+alias ip="$(which ip) -color=auto"
+
+alias cal="$(which cal) -m"
+
+alias pwd="$(which pwd) -P"
+
+test -x "$(command -v bat)" && alias cat="$(which bat)"
+
+if [[ -x "$(command -v lsd)" ]]; then
+  alias l="$(which lsd) --group-directories-first --icon never \
+    --blocks permission,size,date,name -lA --date '+%y/%m/%d'"
+else
+  alias l="$(which ls) -gGAh --group-directories-first --color=auto"
+fi
+
+[[ -x "$(command -v nvim)" ]] && alias e="$(which nvim)"
+
+[[ -x "$(command -v wget)" ]] && alias wget="$(which wget) --no-hsts"

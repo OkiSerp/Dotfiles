@@ -12,7 +12,6 @@ if [[ "${?}" != 0 ]]; then
   exit 1
 fi
 
-echo "${OPTS}"
 eval set -- "${OPTS}"
 
 UP=true
@@ -22,15 +21,15 @@ SET=0
 
 while true; do
   case "${1}" in
-    '-u' | '--up' )
+    "-u" | "--up" )
       UP=true && DOWN=false; shift ;;
-    '-d' | '--down' )
+    "-d" | "--down" )
       DOWN=true && UP=false; shift ;;
-    '-l' | '--level' )
+    "-l" | "--level" )
       LEVEL="${2}"; shift 2 ;;
-    '-s' | '--set' )
+    "-s" | "--set" )
       SET="${2}"; shift 2 ;;
-    -- )
+    "--" )
       shift; break ;;
     * )
       break ;;

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${HOME}/.local/state"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_CONFIG_HOME="${HOME}/.config"
+
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/pass"
+
+export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
+export MPLAYER_HOME="${XDG_CONFIG_HOME}/mplayer"
+export W3M_DIR="${XDG_DATA_HOME}/w3m"
+
+export HISTFILE="${XDG_STATE_HOME}/bash/history"
+export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
+
+if [[ -d "${HOME}/.local/bin" ]]; then
+  export PATH="${HOME}/.local/bin:$PATH"
+fi
+
+if [[ -d "${HOME}/.config/emacs/bin" ]]; then
+  export PATH="${HOME}/.config/emacs/bin:$PATH"
+  export DOOMDIR="${HOME}/.config/doom"
+fi
+
+if [[ -x `command -v nvim` ]];then
+  export EDITOR=`which nvim`
+  export MANPAGER="`which nvim` +Man!"
+fi
+
+export fzf_fd_opts="--hidden --no-ignore --exclude=.git --exclude=node_modules"
+export FZF_DEFAULT_OPTS="--bind=alt-j:down,alt-k:up \
+  --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"

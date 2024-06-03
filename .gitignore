@@ -1,1 +1,5 @@
-\.config/doom/flycheck_config.el
+.config/doom/*.el
+
+!.config/doom/init.el
+!.config/doom/config.el
+!.config/doom/packages.el

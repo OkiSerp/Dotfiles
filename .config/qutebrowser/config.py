@@ -1,10 +1,8 @@
-# Don't forget to install dracula theme first!
-
-import dracula.draw
+import theme
 
 config.load_autoconfig(False)
 
-dracula.draw.blood(c, {})
+theme.apply(c, {})
 
 c.colors.webpage.preferred_color_scheme = "dark"
 
@@ -39,7 +37,6 @@ c.content.blocking.adblock.lists = [
     "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
     "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
     "https://easylist.to/easylist/fanboy-social.txt",
-    "https://raw.githubusercontent.com/gijsdev/ublock-hide-yt-shorts/master/list.txt"
 ]
 
 # If you want your adblock list work then do not set
@@ -76,7 +73,15 @@ c.tabs.indicator.width = 1
 c.window.hide_decoration = True
 c.window.title_format = "{perc}{current_title}{title_sep}Qute Browser"
 
+c.downloads.remove_finished = 2000
+
+config.bind("al", "download-clear")
+
+config.bind(",y", "open -t -- {clipboard}")
+
 config.bind(",mpv", "hint links spawn --detach mpv {hint-url}")
+
+config.bind(",s", "config-source ;; adblock-update")
 
 config.bind("<Alt-K>", "tab-prev")
 config.bind("<Alt-J>", "tab-next")

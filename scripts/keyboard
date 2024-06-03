@@ -1,9 +1,0 @@
-#!/usr/bin/env fish
-
-argparse -i "i/init" "r/reset" -- $argv
-
-if set -q _flag_init
-  setxkbmap -layout us,ua -option grp:shifts_toggle && exit
-end
-
-set -q _flag_reset && setxkbmap -layout us -option

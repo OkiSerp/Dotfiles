@@ -1,8 +1,14 @@
 XF86AudioMute
-  ~/.dotfiles/scripts/volume.sh -mute
+  ~/.scripts/volume.sh -mute
 
 XF86Audio{Raise,Lower}Volume
-  ~/.dotfiles/scripts/volume.sh {-up, -down}
+  ~/.scripts/volume.sh {-up, -down}
 
 XF86MonBrightness{Up,Down}
-  ~/.dotfiles/scripts/brightness.sh {-up, -down}
+  ~/.scripts/brightness.sh {-up, -down}
+
+super + shift + o
+  brave
+
+super + shift + u
+  kitty

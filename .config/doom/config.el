@@ -5,30 +5,30 @@
 
 (setq confirm-kill-emacs nil)
 
-(defun srp/delete-frame (&rest _)
+(defun my/delete-frame (&rest _)
   "Delete frame without prompt."
   (interactive)
   (if (cdr (visible-frame-list))
       (delete-frame)
     (save-buffers-kill-terminal)))
 
-(bind-key [remap delete-frame] 'srp/delete-frame)
+(bind-key [remap delete-frame] 'my/delete-frame)
 
-(defvar srp/font-family "Iosevka"
-  "Default font family for `srp/font-load' function.")
+(defvar my/font-family "Iosevka"
+  "Default font family for `my/font-load' function.")
 
-(defvar srp/font-size 18
-  "Default font size for `srp/font-load' function.")
+(defvar my/font-size 18
+  "Default font size for `my/font-load' function.")
 
-(defun srp/font-load
+(defun my/font-load
     (&optional _ family size big-size &rest _)
   "Configure font family and its size both explicitly or interactively."
   (interactive
    (list current-prefix-arg
-         (read-string "Font family: " srp/font-family)
-         (read-number "Font size: " srp/font-size)))
-  (let* ((family (cond (family) (srp/font-family)))
-         (size (cond (size) (srp/font-size)))
+         (read-string "Font family: " my/font-family)
+         (read-number "Font size: " my/font-size)))
+  (let* ((family (cond (family) (my/font-family)))
+         (size (cond (size) (my/font-size)))
          (big-size (cond (big-size) (t (+ 6 size)))))
     (if (doom-font-exists-p family)
         (progn
@@ -39,9 +39,9 @@
       (message "%s" (propertize (format "%s doesn't exists!" family)
                                 'face 'warning)))))
 
-(map! :leader "hrF" 'srp/font-load)
+(map! :leader "hrF" 'my/font-load)
 
-(srp/font-load 0 nil 20 32)
+(my/font-load 0 nil 20 32)
 
 (let ((font-family "JoyPixels"))
   (when (doom-font-exists-p font-family)
@@ -52,7 +52,7 @@
 (add-hook! '(prog-mode-hook conf-mode-hook)
   (face-remap-add-relative 'font-lock-comment-face :slant 'italic))
 
-(defun srp/doom-dashboard-widget-quote ()
+(defun my/doom-dashboard-widget-quote ()
   (when doom-init-time
     (insert
      (propertize
@@ -62,7 +62,7 @@
       'face 'doom-dashboard-banner))))
 
 (setq +doom-dashboard-functions
-      '(srp/doom-dashboard-widget-quote))
+      '(my/doom-dashboard-widget-quote))
 
 (add-hook! '+doom-dashboard-mode-hook
   (setq-local evil-normal-state-cursor '(hbar . 0)))
@@ -115,7 +115,7 @@
   (setq org-superstar-headline-bullets-list '(10033)
         org-superstar-item-bullet-alist '((43 . 187) (45 . 8250))))
 
-(defun srp/browse-org-directory (&rest _)
+(defun my/browse-org-directory (&rest _)
   "Browse your `org-directory'."
   (interactive)
   (unless (file-directory-p org-directory)
@@ -123,12 +123,12 @@
   (doom-project-browse org-directory))
 
 (map! :leader :desc "Browse org directory"
-      "fo" 'srp/browse-org-directory)
+      "fo" 'my/browse-org-directory)
 
 (setq org-emphasis-regexp-components
       '("-[:space:]('\"{" "-[:space:].,:!?;'\")}\\[‼…" "[:space:]" "." 1))
 
-(defun srp/org-enlarge-headings (&rest _)
+(defun my/org-enlarge-headings (&rest _)
   "Make org headings larger and thicker."
   (let* ((level-1 1.7)
          (level-2 (- level-1 0.1))
@@ -140,18 +140,18 @@
                     (org-level-7 . ,level-0) (org-level-8 . ,level-0)))
       (set-face-attribute (car face) nil :weight 'heavy :height (cdr face)))))
 
-(add-hook 'org-mode-hook 'srp/org-enlarge-headings)
+(add-hook 'org-mode-hook 'my/org-enlarge-headings)
 
-(defun srp/org-insert-heading-fn (&rest _)
+(defun my/org-insert-heading-fn (&rest _)
   "Add one line above newly created org heading."
   (evil-open-above 1)
   (evil-normal-state)
   (evil-next-line)
   (evil-append-line 1))
 
-(add-hook 'org-insert-heading-hook 'srp/org-insert-heading-fn)
+(add-hook 'org-insert-heading-hook 'my/org-insert-heading-fn)
 
-(defun srp/org-meta-return (&optional arg)
+(defun my/org-meta-return (&optional arg)
   "Make the same logic as `org-meta-return', but more suitable."
   (interactive "P")
   (or (run-hook-with-args-until-success 'org-metareturn-hook)
@@ -166,7 +166,7 @@
       "M-d" 'org-metadown
       "M-h" 'org-metaleft
       "M-l" 'org-metaright
-      "M-RET" 'srp/org-meta-return
+      "M-RET" 'my/org-meta-return
       :n "RET" '+org/dwim-at-point
       :localleader "s." 'org-fold-show-all)
 
@@ -256,7 +256,7 @@
         google-translate-display-translation-phonetic nil
         google-translate-input-method-auto-toggling t))
 
-(defun srp/google-translate-listen-translation (language text)
+(defun my/google-translate-listen-translation (language text)
   "Improved version of the original `google-translate-listen-translation'
 function, but without debuging."
   (message "Retrieving audio message…")
@@ -265,9 +265,9 @@ function, but without debuging."
   (message "Done playing audio!"))
 
 (defalias 'google-translate-listen-translation
-  (symbol-function 'srp/google-translate-listen-translation))
+  (symbol-function 'my/google-translate-listen-translation))
 
-(defun srp/google-translate-clipboard (&rest _)
+(defun my/google-translate-clipboard (&rest _)
   "Translate text from clipboard by using `google-translate' package."
   (interactive)
   (let ((source google-translate-default-source-language)
@@ -290,16 +290,16 @@ function, but without debuging."
        :desc "Translate query reverse"
        "e" 'google-translate-query-translate-reverse
        :desc "Translate clipboard"
-       "c" 'srp/google-translate-clipboard))
+       "c" 'my/google-translate-clipboard))
 
-(defvar srp/additional-lookup-prividers
+(defvar my/additional-lookup-prividers
   '(("Cambridge dictionary" "https://dictionary.cambridge.org/dictionary/english/%s")
     ("Urban dictionary" "https://www.urbandictionary.com/define.php?term=%s")))
 
-(dolist (provider srp/additional-lookup-prividers)
+(dolist (provider my/additional-lookup-prividers)
   (add-to-list '+lookup-provider-url-alist provider))
 
-(defun srp/lookup-interpretation
+(defun my/lookup-interpretation
     (&optional _ text &rest _)
   "Look up interpretation of text."
   (interactive
@@ -308,9 +308,9 @@ function, but without debuging."
              (lambda (&rest _)
                (set-input-method "ukrainian-computer"))
            (read-string
-            (propertize "Look up interpretation of: " 'face 'warning)))))
+            (propertize "Look up interpretation of: " 'face 'success)))))
   (let ((url "https://slovnyk.ua/index.php?swrd=%s"))
     (browse-url-with-browser-kind 'external (format url text))))
 
 (map! :leader :desc "Look up interpretation"
-      "lv" 'srp/lookup-interpretation)
+      "lv" 'my/lookup-interpretation)
