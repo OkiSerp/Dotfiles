@@ -47,7 +47,7 @@ set -U fish_greeting
 
 fish_config theme choose "CatpMocha"
 
-if $KDE_FULL_SESSION
+if set -q KDE_FULL_SESSION
   alias logout "qdbus6 org.kde.Shutdown /Shutdown logout"
 end
 
