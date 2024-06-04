@@ -47,6 +47,10 @@ set -U fish_greeting
 
 fish_config theme choose "CatpMocha"
 
+if $KDE_FULL_SESSION
+  alias logout "qdbus6 org.kde.Shutdown /Shutdown logout"
+end
+
 type -q zoxide && zoxide init fish | source
 
 functions -q __zoxide_z && alias cd __zoxide_z
